@@ -43,7 +43,7 @@ function createProduct(product) {
     function updateProduct(id,product){
         return(
             fetch(`${API_URL}/${id}.json`,{
-                method: 'PUT',
+                method: 'PATCH',
                 headers:{
                     'Content-type': 'application/json'
                 },

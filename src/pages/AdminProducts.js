@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+import AdminProductTable from "../components/AdminProductTable/AdminProductTable";
+import { getAllProducts } from "../services/products-service";
 
 export default function AdminProducts() {
     const productList = [
@@ -39,16 +41,7 @@ export default function AdminProducts() {
                     </tr>
                 </thead>
                 <tbody>
-                    {productList.map(product => {
-                        return(
-                            <tr key={product.id}>
-                                <th>{product.title}</th>
-                                <th>{product.price}</th>
-                                <th><Link to={`/admin/termekek/${product.id}/modositas`}>Módosítás</Link></th>
-                                <th><Link to={`/admin/termekek/${product.id}/torles`}>Törlés</Link></th>
-                            </tr>
-                        )
-                    })}
+                    <AdminProductTable />
                 </tbody>
             </table>
 

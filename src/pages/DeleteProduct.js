@@ -28,6 +28,7 @@ export default function DeleteProduct() {
     }
     function successCallback(){
         console.log("torolve");
+        navigate("/admin/termekek")
     }
     function cancelButtonHandler(){
         navigate("/admin/termekek")

@@ -6,13 +6,10 @@ export default function ProductList (){
     
     useEffect( () => {
         productsService.getAllProducts()
-        .then(json => {
-    
-            setProducts(Object.values(json))
-        })
+        .then(json => {setProducts( Object.values(json) )})
         console.log("products:",products)
     }
-
+    
     ,[])
     
     return( 

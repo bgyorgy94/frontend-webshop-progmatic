@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import AdminProductTable from "../components/AdminProductTable/AdminProductTable";
 import { getAllProducts } from "../services/products-service";
+import Filter from "../components/Filter/Filter";
 
 export default function AdminProducts() {
     const productList = [
@@ -32,7 +33,7 @@ export default function AdminProducts() {
     ]
     return (
         <div>Admin Products
-
+            <Filter />
             <table>
                 <thead>
                     <tr>

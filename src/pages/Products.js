@@ -1,5 +1,7 @@
+import ProductList from "../components/ProductList/ProductList"
+
 export default function Products() {
     return(
-        <div>Products</div>
+        <ProductList />
     )
 }

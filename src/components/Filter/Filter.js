@@ -1,10 +1,16 @@
 import { useState } from "react"
 import { useSearchParams } from "react-router-dom";
 
+const initFilter = {
+    title: "",
+    minimumPrice: "",
+    maximumPrice: ""
+};
+
 export default function Filter() {
 
     const [usp, setUsp] = useSearchParams();
-    const [filter, setFilter] = useState({});
+    const [filter, setFilter] = useState(initFilter);
 
     const handleChange = (e) => {
             setFilter((prev) => ({
@@ -15,12 +21,14 @@ export default function Filter() {
 
     const search = (e) => {
         e.preventDefault();
-        setUsp(filter);
+        let o = Object.fromEntries(Object.entries(filter).filter(([_, v]) => v != ""));
+        setUsp(o);
     };
 
     const reset = () => {
-        setFilter({});
-        setUsp(filter);
+        setFilter(initFilter);
+        let o = Object.fromEntries(Object.entries(filter).filter(([_, v]) => v != ""));
+        setUsp(o);
     }
 
     return (

@@ -11,6 +11,18 @@ function createProduct(product) {
             body: JSON.stringify(product)
         })
         .then(res=> res.json())
+        .then(json => {
+            fetch(`${API_URL}/${json.name}.json`,{
+                method:'PATCH',
+                headers:{
+                    'Content-type': 'application/json'
+                },
+                body:JSON.stringify({
+                    id:`${json.name}`
+                })
+            })
+            .then(resp => resp.json())
+        })
         )   
     }
 

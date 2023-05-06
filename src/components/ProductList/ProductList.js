@@ -9,10 +9,9 @@ export default function ProductList (){
         .then(json => {
     
             setProducts(Object.values(json))
-            console.log(products)
         })
+        console.log("products:",products)
     }
-
 
     ,[])
     

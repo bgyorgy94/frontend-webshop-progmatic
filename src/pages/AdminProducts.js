@@ -1,6 +1,6 @@
 import AdminProductTable from "../components/AdminProductTable/AdminProductTable";
 import Filter from "../components/Filter/Filter";
-import ProductNameSorter from "../components/ProductNameTitle/ProductNameSorter";
+import ProductNameSorter from "../components/ProductNameSorter/ProductNameSorter";
 
 export default function AdminProducts() {
     return (

@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import productsService from "../../services/products-service";
 import { useEffect, useState } from "react";
+import sortProducts from "../../services/sortProducts";
 export default function ProductList (){
 
     const [products, setProducts] = useState([]);
@@ -15,17 +16,20 @@ export default function ProductList (){
             const maximumPrice = usp.get("maximumPrice") || Number.MAX_SAFE_INTEGER;
 
             if (title !== null && title !== "") {
-                setProducts(originalProducts.filter((product) => (
+                return(originalProducts.filter((product) => (
                     product.name === title && product.price >= minimumPrice && product.price <= maximumPrice
                 )))
             }
             else {
-                setProducts(originalProducts.filter((product) => (
+                return(originalProducts.filter((product) => (
                     product.price >= minimumPrice && product.price <= maximumPrice
                 )))
             }
         })
-        console.log("products:",products)
+        .then(json => {
+            const sortBy = usp.get("sortBy");
+            const direction = usp.get("direction");
+            setProducts(sortProducts(json, sortBy, direction))})
     }
     ,[usp])
     

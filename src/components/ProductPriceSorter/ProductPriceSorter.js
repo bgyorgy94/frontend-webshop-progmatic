@@ -1,52 +1,43 @@
-import { useState } from "react";
+import { FaSortDown, FaSortUp } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 
 export default function ProductPriceSorter() {
     const [searchParam, setSearchParam] = useSearchParams();
-    const icons = ['§', "?", ""];
-    const directionToSet = ["asc", "desc", ""];
     const sortBy = searchParam.get("sortBy");
-    const direction = searchParam.get("direction");
+    let direction;
 
-    const [state, setState] = useState(sortBy === "price" ?
-        direction === "asc" ?
-            0
-            :
-            direction === "desc" ?
-                1
-                :
-                2
-        :
-        2
-    );
+    if (sortBy === "price") {
+        direction = searchParam.get("direction");
+    }
+
+    const icons = {
+        asc: <FaSortUp />,
+        desc: <FaSortDown />,
+    }
 
     return (
         <>
-            <span onClick={setFilter}>Termék ára {icons[state]}</span>
+            <span onClick={handleClick}>Termék ára {icons[direction]}</span>
         </>
     )
 
-    function setFilter() {
-        let currentState = state
-        if (sortBy !== "price" || ((sortBy === "price" && direction !== "asc") && (sortBy === "price" && direction !== "desc"))) {
-            setState(0);
-            currentState = 0;
+    function handleClick() {
+        if (searchParam.get("sortBy") !== "price") {
+            searchParam.set("sortBy", "price");
+            searchParam.set("direction", "asc")
+
+        } else if (searchParam.get("direction") === "asc") {
+            searchParam.set("direction", "desc")
+
+        } else if (searchParam.get("direction") === "desc") {
+            searchParam.delete("sortBy");
+            searchParam.delete("direction");
+
         } else {
-            setState(() => state + 1)
-            currentState = currentState + 1;
+            searchParam.set("direction", "asc")
         }
 
-        if (currentState === 2) {
-            searchParam.delete("sortBy");
-            searchParam.delete("direction");
-            setSearchParam(searchParam);
-        } else {
-            searchParam.delete("sortBy");
-            searchParam.delete("direction");
-            searchParam.append("sortBy", "price");
-            searchParam.append("direction", directionToSet[currentState]);
-            setSearchParam(searchParam)
-        }
+        setSearchParam(searchParam)
     }
 
 }

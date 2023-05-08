@@ -6,7 +6,8 @@ export default function Products() {
     return(
         <>
             <Filter />
-            <div>Rendezés: 
+            <div>
+                <span>Rendezés: </span>
                 <ProductNameSorter />
             </div>
             <ProductList />

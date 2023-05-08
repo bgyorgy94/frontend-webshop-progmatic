@@ -1,34 +1,34 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-export default function ProductNameSorter() {
+export default function ProductPriceSorter() {
     const [searchParam, setSearchParam] = useSearchParams();
     const icons = ['§', "?", ""];
     const directionToSet = ["asc", "desc", ""];
     const sortBy = searchParam.get("sortBy");
     const direction = searchParam.get("direction");
-    const [state, setState] = useState(sortBy === "name" ?
+
+    const [state, setState] = useState(sortBy === "price" ?
         direction === "asc" ?
             0
             :
             direction === "desc" ?
-            1
-            :
-            2
+                1
+                :
+                2
         :
         2
     );
 
-
     return (
         <>
-            <span onClick={setFilter}>Termék neve {icons[state]}</span>
+            <span onClick={setFilter}>Termék ára {icons[state]}</span>
         </>
     )
 
     function setFilter() {
         let currentState = state
-        if (sortBy !== "name" || ((sortBy === "name" && direction !== "asc") && (sortBy === "name" && direction !== "desc"))) {
+        if (sortBy !== "price" || ((sortBy === "price" && direction !== "asc") && (sortBy === "price" && direction !== "desc"))) {
             setState(0);
             currentState = 0;
         } else {
@@ -43,7 +43,7 @@ export default function ProductNameSorter() {
         } else {
             searchParam.delete("sortBy");
             searchParam.delete("direction");
-            searchParam.append("sortBy", "name");
+            searchParam.append("sortBy", "price");
             searchParam.append("direction", directionToSet[currentState]);
             setSearchParam(searchParam)
         }

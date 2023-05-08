@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import productsService from "../../services/products-service.js"
+import validation from "../../services/validation.js";
 
 
 export default function ModifyProduct() {
@@ -53,9 +54,11 @@ export default function ModifyProduct() {
     )
     function modifyProductButton (e) {
         e.preventDefault();
-        productsService.updateProduct(id,formData)
-        .then(json => console.log("sikeres modositas:",json))
-        navigate("/admin/termekek");
+        if (validation(formData.name, formData.price)) {
+            productsService.updateProduct(id,formData)
+            .then(json => console.log("sikeres modositas:",json))
+            navigate("/admin/termekek");
+        }
     }
     function cancelButton () {
         navigate("/admin/termekek");

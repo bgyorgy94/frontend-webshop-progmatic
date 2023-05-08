@@ -17,12 +17,12 @@ export default function AdminProductTable() {
 
             if (title !== null && title !== "") {
                 return(originalProducts.filter((product) => (
-                    product.name === title && product.price >= minimumPrice && product.price <= maximumPrice
+                    product.name === title && Number(product.price) >= Number(minimumPrice) && Number(product.price) <= Number(maximumPrice)
                 )))
             }
             else {
                 return(originalProducts.filter((product) => (
-                    product.price >= minimumPrice && product.price <= maximumPrice
+                    Number(product.price) >= Number(minimumPrice) && Number(product.price) <= Number(maximumPrice)
                 )))
             } 
         })

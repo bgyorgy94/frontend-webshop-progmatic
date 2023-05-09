@@ -3,16 +3,13 @@ export default function sortProducts(products, sortBy, direction, usp) {
     const direction = usp.get("direction"); */
     let sortedProducts;
 
-    console.log(usp)
-    
     if (sortBy == null) {
         return(
             products
         )
     }
-    console.log(sortBy)
+    
     if (sortBy == "price") {
-        console.log(products)
         sortedProducts = direction === "asc" ?
             products.sort((a, b) => parseFloat(a[sortBy]) - parseFloat(b[sortBy]))
             :

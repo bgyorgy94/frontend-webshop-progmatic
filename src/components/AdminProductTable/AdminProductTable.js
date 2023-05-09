@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link, useSearchParams } from "react-router-dom";
 import productsService from "../../services/products-service";
 import sortProducts from "../../services/sortProducts";
+import Toast from "../Toast/Toast";
 
 export default function AdminProductTable() {
     const [products, setProducts] = useState([]);
@@ -41,6 +42,7 @@ export default function AdminProductTable() {
                         <th>{product.price}</th>
                         <th><Link to={`/admin/termekek/${product.id}/modositas`}>Módosítás</Link></th>
                         <th><Link to={`/admin/termekek/${product.id}/torles`}>Törlés</Link></th>
+                        <Toast />
                     </tr>
                 )
             })}

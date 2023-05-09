@@ -1,0 +1,30 @@
+.toast{
+    position: fixed;
+    left:0;
+    right:0;
+    margin: 0 auto;
+    top:2em;
+    box-sizing: border-box;
+    width: 20em;
+    height: 3em;
+    border-radius: 0.5em;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+.success{
+    background-color: rgba(0, 128, 0, 0.400);
+}
+.error{
+    background-color: rgba(173, 23, 23, 0.400);
+}
+.symbol{
+    margin: 1em;
+    text-align: start;
+}
+#show{
+    display:flex;
+}
+#hide{
+    display: none;
+}

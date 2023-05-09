@@ -1,3 +1,4 @@
+
 const API_URL= "https://csapat-10-default-rtdb.europe-west1.firebasedatabase.app/termekek"
 
 
@@ -10,7 +11,12 @@ function createProduct(product) {
             },
             body: JSON.stringify(product)
         })
-        .then(res=> res.json())
+        .then(res=> {
+            if(res.ok){
+                return res.json()
+            }
+            throw new Error('Hiba történt')
+        })
         .then(json => {
             fetch(`${API_URL}/${json.name}.json`,{
                 method:'PATCH',
@@ -21,22 +27,49 @@ function createProduct(product) {
                     id:`${json.name}`
                 })
             })
-            .then(resp => resp.json())
-        })
+            .then(res => {
+                if(res.ok){
+                    return res.json()
+                }
+                throw new Error('Hiba történt')
+            })
+            .catch(error => {
+
+            })
+            })
+            .catch(error => {
+                
+            })
         )   
     }
 
     function getAllProducts() {
         return(
             fetch(`${API_URL}.json`)
-            .then(res => res.json())
+            .then(res => {
+                if(res.ok){
+                    return res.json()
+                }
+                throw new Error('Hiba történt')
+            })
+            .catch(error => {
+                
+            })
         )
     }
 
     function getProduct(id){
         return(
             fetch(`${API_URL}/${id}.json`)
-            .then(res => res.json())
+            .then(res => {
+                if(res.ok){
+                    return res.json()
+                }
+                throw new Error('Hiba történt')
+            })
+            .catch(error => {
+                
+            })
         )
     }
 
@@ -49,7 +82,15 @@ function createProduct(product) {
                 },
                 body: JSON.stringify(product)
             })
-            .then(res => res.json())
+            .then(res => {
+                if(res.ok){
+                    return res.json()
+                }
+                throw new Error('Hiba történt')
+            })
+            .catch(error => {
+                
+            })
         )
     }
 
@@ -58,7 +99,15 @@ function createProduct(product) {
             fetch(`${API_URL}/${id}.json`, {
                 method: 'Delete'
             })
-            .then(res => res.json())
+            .then(res => {
+                if(res.ok){
+                    return res.json()
+                }
+                throw new Error('Hiba történt')
+            })
+            .catch(error => {
+                
+            })
             .then(json => successCallback(json))
         )
     }

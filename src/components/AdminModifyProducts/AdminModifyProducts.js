@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import productsService from "../../services/products-service.js"
 import validation from "../../services/validation.js";
-
+import { useContext } from "react";
+import { ToastContext } from "../../services/toastContext.js";
 
 export default function ModifyProduct() {
     const {id}= useParams();
@@ -12,6 +13,7 @@ export default function ModifyProduct() {
         price:""
     })
     const navigate=useNavigate();
+    const {showToast,setShowToast}  = useContext(ToastContext);
 
     useEffect( () => {
         productsService.getProduct(id)
@@ -19,7 +21,14 @@ export default function ModifyProduct() {
             id: json.id,
             name: json.name,
             price: json.price
-        }));
+        }))
+        .catch(err => {
+            setShowToast({
+                show:true,
+                message:`Hiba történt: ${err}`,
+                type:"error"})
+            navigate("/admin/termekek");
+        })
     },[])
 
     const [formData,setFormData] = useState({product});
@@ -47,7 +56,7 @@ export default function ModifyProduct() {
                 <button onClick={cancelButton}>mégsem</button>
             
             </p>
-
+            
 
         </form>
 
@@ -56,8 +65,14 @@ export default function ModifyProduct() {
         e.preventDefault();
         if (validation(formData.name, formData.price)) {
             productsService.updateProduct(id,formData)
-            .then(json => console.log("sikeres modositas:",json))
-            navigate("/admin/termekek");
+            .then(json => {
+                setShowToast({
+                    show:true,
+                    message:`Sikeresen módosítva: ${json.name}`,
+                    type:"success"
+                })
+                navigate("/admin/termekek");
+            });
         }
     }
     function cancelButton () {

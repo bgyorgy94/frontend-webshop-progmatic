@@ -11,6 +11,7 @@ import DeleteProduct from './pages/DeleteProduct';
 import ModifyProduct from './pages/ModifyProduct';
 import AdminDashboard from './pages/AdminDashboard';
 import Login from './pages/Login';
+import UserRegistration from './pages/UserRegistration';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/belepes",
         element: <Login />
+      },
+      {
+        path:"/regisztracio",
+        element: <UserRegistration />
       },
       {
         path: "/admin",

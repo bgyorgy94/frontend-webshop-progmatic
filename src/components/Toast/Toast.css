@@ -22,9 +22,3 @@
     margin: 1em;
     text-align: start;
 }
-#show{
-    display:flex;
-}
-#hide{
-    display: none;
-}

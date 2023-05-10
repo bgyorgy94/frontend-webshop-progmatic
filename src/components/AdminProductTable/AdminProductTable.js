@@ -42,7 +42,6 @@ export default function AdminProductTable() {
                         <th>{product.price}</th>
                         <th><Link to={`/admin/termekek/${product.id}/modositas`}>Módosítás</Link></th>
                         <th><Link to={`/admin/termekek/${product.id}/torles`}>Törlés</Link></th>
-                        <Toast />
                     </tr>
                 )
             })}

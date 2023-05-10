@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import { useEffect, useState } from "react";
 import { ToastContext } from "./services/toastContext";
+import Toast from "./components/Toast/Toast";
 
 export default function Layout() {
     const [showToast,setShowToast] = useState({
@@ -16,6 +17,7 @@ export default function Layout() {
             <main>
                 <ToastContext.Provider value={{showToast: showToast, setShowToast: setShowToast}}>
                     <Outlet />
+                    <Toast />
                 </ToastContext.Provider>
             </main>
             <footer>

@@ -23,6 +23,7 @@ export default function AdminDeleteProduct() {
                 message:`Hiba történt:${err} `,
                 type:"error"
             });
+            
             navigate("/admin/termekek");
         })
     },[])

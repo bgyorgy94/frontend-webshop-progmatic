@@ -33,12 +33,6 @@ function createProduct(product) {
                 }
                 throw new Error('Hiba történt')
             })
-            .catch(error => {
-
-            })
-            })
-            .catch(error => {
-                
             })
         )   
     }
@@ -52,9 +46,6 @@ function createProduct(product) {
                 }
                 throw new Error('Hiba történt')
             })
-            .catch(error => {
-                
-            })
         )
     }
 
@@ -66,9 +57,6 @@ function createProduct(product) {
                     return res.json()
                 }
                 throw new Error('Hiba történt')
-            })
-            .catch(error => {
-                
             })
         )
     }
@@ -87,9 +75,6 @@ function createProduct(product) {
                     return res.json()
                 }
                 throw new Error('Hiba történt')
-            })
-            .catch(error => {
-                
             })
         )
     }

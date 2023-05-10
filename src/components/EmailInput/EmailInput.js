@@ -3,12 +3,12 @@ import "./emailInput.css"
 
 export default function EmailInput() {
     const [email, setEmail] = useState("");
-    const [invalidMessage, setInvalidMessage] = useState("valid-email")
+    const [invalidEmail, setInvalidEmail] = useState(false)
 
     return (
         <>
             <input type="email" value={email} onChange={typeEmail} onBlur={validateEmail}></input>
-            <span id="invalid-email-message" className={invalidMessage}>Az e-mail cím nem megfelelő</span>
+            {invalidEmail && <span id="invalid-email-message">Az e-mail cím nem megfelelő</span>}
         </>
     )
 
@@ -18,9 +18,9 @@ export default function EmailInput() {
 
     function validateEmail() {
         if (!/\S+@\S+\.\S+/.test(email)) {
-            setInvalidMessage("invalid-email")
+            setInvalidEmail(true)
         } else {
-            setInvalidMessage("valid-email")
+            setInvalidEmail(false)
         }
     }
 

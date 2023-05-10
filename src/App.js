@@ -10,6 +10,7 @@ import AddProduct from './pages/AddProduct';
 import DeleteProduct from './pages/DeleteProduct';
 import ModifyProduct from './pages/ModifyProduct';
 import AdminDashboard from './pages/AdminDashboard';
+import Login from './pages/Login';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />
+      },
+      {
+        path: "/belepes",
+        element: <Login />
       },
       {
         path: "/admin",

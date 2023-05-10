@@ -1,0 +1,11 @@
+#invalid-email-message {
+    color: red;
+}
+
+.invalid-email {
+    display: inline;
+}
+
+.valid-email {
+    display: none;
+}

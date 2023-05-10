@@ -6,6 +6,7 @@ export default function Navbar() {
             <NavLink to="/">Home</NavLink>
             <NavLink to="/termekek">Termékek</NavLink>
             <NavLink to="/admin">Admin</NavLink>
+            <NavLink to="/belepes">Belépés</NavLink>
         </div>
     )
 }

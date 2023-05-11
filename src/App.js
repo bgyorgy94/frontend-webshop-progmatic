@@ -14,6 +14,8 @@ import Login from './pages/Login';
 import UserRegistration from './pages/UserRegistration';
 import { useState } from 'react';
 import { UserContext } from './contexts/userContext'
+import Cart from './pages/Cart';
+import { CartContext } from './contexts/cartContext';
 
 const router = createBrowserRouter([
   {
@@ -33,8 +35,12 @@ const router = createBrowserRouter([
         element: <Login />
       },
       {
-        path:"/regisztracio",
+        path: "/regisztracio",
         element: <UserRegistration />
+      },
+      {
+        path: "/kosar",
+        element: <Cart />
       },
       {
         path: "/admin",
@@ -70,10 +76,14 @@ function App() {
 
   const [user, setUser] = useState("");
 
+  const [cartContext, setCartContext] = useState({});
+
   return (
-    <UserContext.Provider value={[user, setUser]}>
-    <RouterProvider router={router}/>
-    </UserContext.Provider>
+    <CartContext.Provider value={{ cartContext: cartContext, setCartContext: setCartContext }}>
+      <UserContext.Provider value={[user, setUser]}>
+        <RouterProvider router={router} />
+      </UserContext.Provider>
+    </CartContext.Provider>
   );
 }
 

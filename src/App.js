@@ -12,6 +12,8 @@ import ModifyProduct from './pages/ModifyProduct';
 import AdminDashboard from './pages/AdminDashboard';
 import Login from './pages/Login';
 import UserRegistration from './pages/UserRegistration';
+import { useState } from 'react';
+import { UserContext } from './contexts/userContext'
 
 const router = createBrowserRouter([
   {
@@ -65,8 +67,13 @@ const router = createBrowserRouter([
 ])
 
 function App() {
+
+  const [user, setUser] = useState("");
+
   return (
+    <UserContext.Provider value={[user, setUser]}>
     <RouterProvider router={router}/>
+    </UserContext.Provider>
   );
 }
 

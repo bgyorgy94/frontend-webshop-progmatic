@@ -32,7 +32,25 @@ function registration(email,password){
         .then(resp => resp.json())
         )}
 
+    function signIn(email, password) {
+    
+        return fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`,
+        {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+                returnSecureToken: true
+            })
+        })
+        .then(resp => resp.json())
+    }
+
     export default{
         registration: registration,
-        createUser: createUser
+        createUser: createUser,
+        signIn: signIn
     }

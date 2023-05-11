@@ -49,8 +49,19 @@ function registration(email,password){
         .then(resp => resp.json())
     }
 
+    function getSignedInUserData(email) {
+        return fetch(`${API_URL_DATABASE}.json`)
+        .then(resp => resp.json())
+        .then(userData => {
+            let userArray = Array.from(Object.values(userData))
+            let foundUser = userArray.find(element => element.email === email)
+            return foundUser
+        })
+    }
+
     export default{
         registration: registration,
         createUser: createUser,
-        signIn: signIn
+        signIn: signIn,
+        getSignedInUserData: getSignedInUserData
     }

@@ -6,15 +6,16 @@ import { PasswordContext } from "../contexts/passwordContext";
 import { UserContext } from "../contexts/userContext";
 import  userService from "../services/user-service";
 import { useNavigate } from "react-router-dom";
+import { ToastContext } from "../services/toastContext";
 
 
 export default function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errorMsg, setErrorMsg] = useState("");
     const [user, setUser] = useContext(UserContext);
     const navigate = useNavigate();
+    const {showToast, setShowToast} = useContext(ToastContext);
     
     return (
         <EmailContext.Provider value={[email, setEmail]}>
@@ -32,7 +33,6 @@ export default function Login() {
                 <button>Regisztráció</button>
                 <button onClick={login}>Belépés</button>
             </div>
-            <div>{errorMsg}</div>
         </>
         </PasswordContext.Provider>
         </EmailContext.Provider>
@@ -42,11 +42,21 @@ export default function Login() {
         userService.signIn(email, password)
         .then(authResp => {
             if(authResp.registered) {
-                setUser(email)
+                userService.getSignedInUserData(authResp.email)
+                .then(resp => setUser(resp))
+                .then(setShowToast({
+                    show: true,
+                    message: "Sikeres bejelentkezés",
+                    type: "success"
+                }))
                 navigate("/")
             }
             else {
-                setErrorMsg("Nincs ilyen regisztrált felhasználó!")
+                setShowToast({
+                    show: true,
+                    message: "Helytelen e-mail cím/jelszó",
+                    type: "error"
+                })
             }
         })
     }

@@ -14,9 +14,10 @@ export default function Navbar() {
             <NavLink to="/">Home</NavLink>
             <NavLink to="/termekek">Termékek</NavLink>
             <NavLink to="/admin">Admin</NavLink>
-            <NavLink to="/belepes">Belépés</NavLink>
             <NavLink to="/kosar">Kosár ({Object.keys(cartContext).length})</NavLink>
             {user ? <DisplayUser /> : ""}
+            {user ? "" : <NavLink to="/belepes">Belépés</NavLink>}
+            {user ? <DisplayUser /> : "" }
         </div>
     )
 }

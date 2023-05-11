@@ -13,13 +13,13 @@ export default function Layout() {
 
     return(
         <div>
-            <nav><Navbar /></nav>
-            <main>
-                <ToastContext.Provider value={{showToast: showToast, setShowToast: setShowToast}}>
-                    <Outlet />
-                    <Toast />
-                </ToastContext.Provider>
-            </main>
+            <ToastContext.Provider value={{showToast: showToast, setShowToast: setShowToast}}>
+                <nav><Navbar /></nav>
+                <main>
+                        <Outlet />
+                        <Toast />
+                </main>
+            </ToastContext.Provider>
             <footer>
                 footer
             </footer>

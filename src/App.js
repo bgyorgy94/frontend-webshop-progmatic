@@ -16,6 +16,7 @@ import { useState } from 'react';
 import { UserContext } from './contexts/userContext'
 import Cart from './pages/Cart';
 import { CartContext } from './contexts/cartContext';
+import UserProfile from './pages/UserProfile';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/belepes",
         element: <Login />
+      },
+      {
+        path: "/profil",
+        element: <UserProfile />
       },
       {
         path: "/regisztracio",
@@ -74,7 +79,7 @@ const router = createBrowserRouter([
 
 function App() {
 
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
 
   const [cartContext, setCartContext] = useState({});
 

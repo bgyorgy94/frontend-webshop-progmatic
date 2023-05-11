@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import UserRegistration from './pages/UserRegistration';
 import { useState } from 'react';
 import { UserContext } from './contexts/userContext'
+import UserProfile from './pages/UserProfile';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/belepes",
         element: <Login />
+      },
+      {
+        path: "/profil",
+        element: <UserProfile />
       },
       {
         path:"/regisztracio",

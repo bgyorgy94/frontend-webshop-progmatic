@@ -2,10 +2,16 @@ import { useSearchParams } from "react-router-dom";
 import productsService from "../../services/products-service";
 import { useEffect, useState } from "react";
 import sortProducts from "../../services/sortProducts";
+import Pager from "../Pager/Pager";
+
 export default function ProductList (){
 
     const [products, setProducts] = useState([]);
     const [usp] = useSearchParams();
+    let currentPage = Number(usp.get("page")) 
+    if(!currentPage ) currentPage = 1;
+    const endIdx = currentPage * 9;
+    const startIdx = endIdx - 9;
     
     useEffect( () => {
         productsService.getAllProducts()
@@ -14,6 +20,7 @@ export default function ProductList (){
             const title = usp.get("title") ;
             const minimumPrice = usp.get("minimumPrice") || 0;
             const maximumPrice = usp.get("maximumPrice") || Number.MAX_SAFE_INTEGER;
+
 
             if (title !== null && title !== "") {
                 return(originalProducts.filter((product) => (
@@ -34,18 +41,19 @@ export default function ProductList (){
     ,[usp])
     
     return( 
-        <ul>
-            {products.map((product,idx) => {
-                return(
-                <li key={idx}> 
-                    <p> Termék neve: {product.name} </p>
-                    <p> Ár: {product.price} </p>
-                </li>
-                )
-            })}    
-            
-        </ul>
-
+        <>
+            <ul>
+                {products.slice(startIdx, endIdx).map((product,idx) => {
+                    return(
+                    <li key={idx}> 
+                        <p> Termék neve: {product.name} </p>
+                        <p> Ár: {product.price} </p>
+                    </li>
+                    )
+                })}    
+            </ul>
+            <Pager allProducts={products.length} productsPerPage={9}/>    
+        </>
 )
     
         

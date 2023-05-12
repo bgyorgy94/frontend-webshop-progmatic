@@ -6,7 +6,6 @@ import { PasswordContext } from "../contexts/passwordContext";
 import { UserContext } from "../contexts/userContext";
 import  userService from "../services/user-service";
 import { useNavigate } from "react-router-dom";
-import { ToastContext } from "../services/toastContext";
 
 
 export default function Login() {
@@ -15,8 +14,8 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [user, setUser] = useContext(UserContext);
     const navigate = useNavigate();
-    const {showToast, setShowToast} = useContext(ToastContext);
     
+    console.log("render")
     return (
         <EmailContext.Provider value={[email, setEmail]}>
         <PasswordContext.Provider value={[password, setPassword]}>
@@ -38,25 +37,14 @@ export default function Login() {
         </EmailContext.Provider>
     )
 
+
     function login() {
         userService.signIn(email, password)
         .then(authResp => {
             if(authResp.registered) {
                 userService.getSignedInUserData(authResp.email)
                 .then(resp => setUser(resp))
-                .then(setShowToast({
-                    show: true,
-                    message: "Sikeres bejelentkezés",
-                    type: "success"
-                }))
                 navigate("/")
-            }
-            else {
-                setShowToast({
-                    show: true,
-                    message: "Helytelen e-mail cím/jelszó",
-                    type: "error"
-                })
             }
         })
     }

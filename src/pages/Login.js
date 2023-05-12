@@ -12,10 +12,10 @@ export default function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errorMsg, setErrorMsg] = useState("");
     const [user, setUser] = useContext(UserContext);
     const navigate = useNavigate();
     
+    console.log("render")
     return (
         <EmailContext.Provider value={[email, setEmail]}>
         <PasswordContext.Provider value={[password, setPassword]}>
@@ -29,25 +29,26 @@ export default function Login() {
                 <PasswordInput/>
             </div>
             <div>
-                <button>Regisztráció</button>
+                <button onClick={registrateButton}>Regisztráció</button>
                 <button onClick={login}>Belépés</button>
             </div>
-            <div>{errorMsg}</div>
         </>
         </PasswordContext.Provider>
         </EmailContext.Provider>
     )
 
+
     function login() {
         userService.signIn(email, password)
         .then(authResp => {
             if(authResp.registered) {
-                setUser(email)
+                userService.getSignedInUserData(authResp.email)
+                .then(resp => setUser(resp))
                 navigate("/")
             }
-            else {
-                setErrorMsg("Nincs ilyen regisztrált felhasználó!")
-            }
         })
+    }
+    function registrateButton(){
+        navigate("/regisztracio");
     }
 }

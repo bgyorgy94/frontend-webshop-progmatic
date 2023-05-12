@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import productsService from "../services/products-service";
+import { ToastContext } from "../services/toastContext"
+
 
 export default function AddProduct() {
-
+    const {showToast,setShowToast}  = useContext(ToastContext);
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState("")
 
@@ -41,7 +43,16 @@ export default function AddProduct() {
         productsService.createProduct({
             name: title,
             price: price
+        }).then(json => {
+            setShowToast({
+                show:true,
+                message:`Sikeres termékfelvitel!`,
+                type:"success"
         })
+        
+    })
+
+        
         setTitle("");
         setPrice("");
     }

@@ -30,7 +30,7 @@ export default function Login() {
                 <PasswordInput/>
             </div>
             <div>
-                <button>Regisztráció</button>
+                <button onClick={registrateButton}>Regisztráció</button>
                 <button onClick={login}>Belépés</button>
             </div>
         </>
@@ -59,5 +59,8 @@ export default function Login() {
                 })
             }
         })
+    }
+    function registrateButton(){
+        navigate("/regisztracio");
     }
 }

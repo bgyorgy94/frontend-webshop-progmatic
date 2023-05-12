@@ -58,10 +58,34 @@ function registration(email,password){
             return foundUser
         })
     }
+    function getUserDatas(){    
+        return(
+                fetch(`${API_URL_DATABASE}.json`)
+                .then(res => {
+                    if(res.ok){
+                        return res.json()
+                    }
+                    throw new Error('Hiba történt')
+                })
+        )
+    }
+    function getUserByID(id){
+        return(
+            fetch(`${API_URL_DATABASE}/${id}.json`)
+            .then(res => {
+                if(res.ok){
+                    return res.json()
+                }
+                throw new Error('Hiba történt')
+            })
+        )
+    }
 
     export default{
         registration: registration,
         createUser: createUser,
         signIn: signIn,
-        getSignedInUserData: getSignedInUserData
+        getSignedInUserData: getSignedInUserData,
+        getUserDatas:getUserDatas,
+        getUserByID: getUserByID
     }

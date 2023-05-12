@@ -11,6 +11,7 @@ export default function AdminProductTable() {
     useEffect(() => {
         productsService.getAllProducts()
         .then(json => {
+            console.log(json)
             const originalProducts = (Object.values(json))
             const title = usp.get("title") ;
             const minimumPrice = usp.get("minimumPrice") || 0;
@@ -38,10 +39,10 @@ export default function AdminProductTable() {
             {products.map((product, idx) => {
                 return (
                     <tr key={idx}>
-                        <th>{product.name}</th>
-                        <th>{product.price}</th>
-                        <th><Link to={`/admin/termekek/${product.id}/modositas`}>Módosítás</Link></th>
-                        <th><Link to={`/admin/termekek/${product.id}/torles`}>Törlés</Link></th>
+                        <td>{product.name}</td>
+                        <td>{product.price}</td>
+                        <td><Link to={`/admin/termekek/${product.id}/modositas`}>Módosítás</Link></td>
+                        <td><Link to={`/admin/termekek/${product.id}/torles`}>Törlés</Link></td>
                     </tr>
                 )
             })}

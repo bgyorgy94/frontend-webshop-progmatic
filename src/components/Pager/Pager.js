@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa"; 
 
-export default function TurnThePage({ allProducts, productsPerPage }) {
+export default function Pager({ allProducts, productsPerPage }) {
 
   const [searchParam, setSearchParam] = useSearchParams();
   let currentPage = Number(searchParam.get("page"));

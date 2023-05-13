@@ -2,11 +2,14 @@ import { useEffect, useState } from "react"
 import { Link, useSearchParams } from "react-router-dom";
 import productsService from "../../services/products-service";
 import sortProducts from "../../services/sortProducts";
+import productPager from "../../services/product-pager";
+import Pager from "../Pager/Pager";
 import Toast from "../Toast/Toast";
 
 export default function AdminProductTable() {
     const [products, setProducts] = useState([]);
     const [usp] = useSearchParams();
+    const pagerData = productPager(usp)
 
     useEffect(() => {
         productsService.getAllProducts()
@@ -36,14 +39,17 @@ export default function AdminProductTable() {
 
     return (
         <>
-            {products.map((product, idx) => {
+            {products.slice(pagerData[0], pagerData[1]).map((product, idx) => {
                 return (
-                    <tr key={idx}>
-                        <td>{product.name}</td>
-                        <td>{product.price}</td>
-                        <td><Link to={`/admin/termekek/${product.id}/modositas`}>Módosítás</Link></td>
-                        <td><Link to={`/admin/termekek/${product.id}/torles`}>Törlés</Link></td>
-                    </tr>
+                    <>
+                        <tr key={idx}>
+                            <td>{product.name}</td>
+                            <td>{product.price}</td>
+                            <td><Link to={`/admin/termekek/${product.id}/modositas`}>Módosítás</Link></td>
+                            <td><Link to={`/admin/termekek/${product.id}/torles`}>Törlés</Link></td>
+                        </tr>
+                        <Pager allProducts={products.length} productsPerPage={pagerData[2]} />
+                    </>
                 )
             })}
         </>

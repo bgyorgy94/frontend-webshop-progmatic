@@ -7,8 +7,8 @@ import Toast from "./components/Toast/Toast";
 export default function Layout() {
     const [showToast,setShowToast] = useState({
         show: false,
-        message:"elso",
-        type:"elso"
+        message:"",
+        type:""
     });
 
     return(

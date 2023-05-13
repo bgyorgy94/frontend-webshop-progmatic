@@ -14,7 +14,6 @@ export default function AdminProductTable() {
     useEffect(() => {
         productsService.getAllProducts()
         .then(json => {
-            console.log(json)
             const originalProducts = (Object.values(json))
             const title = usp.get("title") ;
             const minimumPrice = usp.get("minimumPrice") || 0;

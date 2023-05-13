@@ -2,7 +2,6 @@ export default function sortProducts(products, sortBy, direction, usp) {
 /*     const sortBy = usp.get("sortBy");
     const direction = usp.get("direction"); */
     let sortedProducts;
-
     if (sortBy == null) {
         return(
             products
@@ -20,7 +19,6 @@ export default function sortProducts(products, sortBy, direction, usp) {
         :
         products.sort((a, b) => (a[sortBy].toLowerCase() > b[sortBy].toLowerCase()) ? -1 : 1)
     }
-
     return(
         sortedProducts
     )

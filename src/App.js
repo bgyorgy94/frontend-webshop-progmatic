@@ -17,6 +17,7 @@ import { UserContext } from './contexts/userContext'
 import Cart from './pages/Cart';
 import { CartContext } from './contexts/cartContext';
 import UserProfile from './pages/UserProfile';
+import AdminCustomers from './pages/AdminCustomers';
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
           {
             path: "/admin/termek-felvitel",
             element: <AddProduct />
+          },
+          {
+            path:"/admin/vasarlok",
+            element:<AdminCustomers />
           },
           {
             path: "/admin/termekek/:id/torles",

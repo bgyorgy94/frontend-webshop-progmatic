@@ -10,7 +10,7 @@ export default function AdminProducts() {
             <table>
                 <thead>
                     <tr>
-                        <th><ProductNameSorter /></th>
+                        <th><ProductNameSorter name="Termék neve"/></th>
                         <th><ProductPriceSorter /></th>
                     </tr>
                 </thead>

@@ -4,16 +4,15 @@ import { useContext, useEffect, useState } from "react";
 import sortProducts from "../../services/sortProducts";
 import { CartContext } from "../../contexts/cartContext";
 import Pager from "../Pager/Pager";
+import productPager from "../../services/product-pager";
 
 export default function ProductList() {
 
     const [products, setProducts] = useState([]);
     const [usp] = useSearchParams();
     const { cartContext, setCartContext } = useContext(CartContext)
-    let currentPage = Number(usp.get("page")) 
-    if(!currentPage ) currentPage = 1;
-    const endIdx = currentPage * 9;
-    const startIdx = endIdx - 9;
+    const pagerData = productPager(usp)
+  
 
     useEffect(() => {
         productsService.getAllProducts()
@@ -45,7 +44,7 @@ export default function ProductList() {
     return (
         <>
             <ul>
-                {products.slice(startIdx, endIdx).map((product, idx) => {
+                {products.slice(pagerData[0], pagerData[1]).map((product, idx) => {
                     return (
                         <li key={idx}>
                             <p> Termék neve: {product.name} </p>
@@ -56,7 +55,7 @@ export default function ProductList() {
                 })}
 
             </ul>
-            <Pager allProducts={products.length} productsPerPage={9}/>
+            <Pager allProducts={products.length} productsPerPage={pagerData[2]}/>
         </>
     )
 

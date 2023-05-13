@@ -11,7 +11,7 @@ export default function EmailInput(props) {
 
     return (
         <>
-            <input type="email" onChange={typeEmail} onBlur={validateEmail}></input>
+            <input type="email" value={email} onChange={typeEmail} onBlur={validateEmail}></input>
             {invalidEmail && <span id="invalid-email-message">Az e-mail cím nem megfelelő</span>}
         </>
     )

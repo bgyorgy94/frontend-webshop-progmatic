@@ -1,8 +1,6 @@
 import { useContext, useState } from "react";
 import EmailInput from "../components/EmailInput/EmailInput";
 import PasswordInput from "../components/PasswordInput/PasswordInput";
-import { EmailContext } from "../contexts/emailContext";
-import { PasswordContext } from "../contexts/passwordContext";
 import { UserContext } from "../contexts/userContext";
 import  userService from "../services/user-service";
 import { useNavigate } from "react-router-dom";
@@ -17,32 +15,35 @@ export default function Login() {
     
     console.log("render")
     return (
-        <EmailContext.Provider value={[email, setEmail]}>
-        <PasswordContext.Provider value={[password, setPassword]}>
         <>
             <div>
                 E-mail:
-                <EmailInput/>
+                <EmailInput value={email} getEmail={getEmail}/>
             </div>
             <div>
                 Jelszó:
-                <PasswordInput/>
+                <PasswordInput value={password} getPassword={getPassword}/>
             </div>
             <div>
                 <button onClick={registrateButton}>Regisztráció</button>
                 <button onClick={login}>Belépés</button>
             </div>
         </>
-        </PasswordContext.Provider>
-        </EmailContext.Provider>
     )
 
+    function getEmail(email) {
+        setEmail(email);
+    }
+
+    function getPassword(password) {
+        setPassword(password)
+    }
 
     function login() {
         userService.signIn(email, password)
         .then(authResp => {
             if(authResp.registered) {
-                userService.getSignedInUserData(authResp.email)
+                userService.getUserByID(authResp.localId)
                 .then(resp => setUser(resp))
                 navigate("/")
             }

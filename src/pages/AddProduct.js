@@ -25,7 +25,6 @@ export default function AddProduct() {
             </p>
         </form>
         </>
-
     )
 
     function handleTitleChange(e) {

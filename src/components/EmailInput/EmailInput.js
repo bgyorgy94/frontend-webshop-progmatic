@@ -1,14 +1,17 @@
-import { useState, useContext } from "react";
-import { EmailContext } from "../../contexts/emailContext";
+import { useState, useEffect } from "react";
 import "./emailInput.css"
 
-export default function EmailInput() {
+export default function EmailInput(props) {
     const [invalidEmail, setInvalidEmail] = useState(false)
-    const [email, setEmail] = useContext(EmailContext);
+    const [email, setEmail] = useState("");
+
+    useEffect(() => {
+        props.getEmail(email)
+    }, [email])
 
     return (
         <>
-            <input type="email" onChange={typeEmail} onBlur={validateEmail}></input>
+            <input type="email" value={email} onChange={typeEmail} onBlur={validateEmail}></input>
             {invalidEmail && <span id="invalid-email-message">Az e-mail cím nem megfelelő</span>}
         </>
     )

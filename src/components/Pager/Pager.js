@@ -1,4 +1,5 @@
 import { useSearchParams } from "react-router-dom";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa"; 
 
 export default function TurnThePage({ allProducts, productsPerPage }) {
 
@@ -19,9 +20,9 @@ export default function TurnThePage({ allProducts, productsPerPage }) {
 
   return (
     <div>
-      <button onClick={toPrevPage}> ◄ </button>
+      {currentPage > 1 && <button onClick={toPrevPage}> <FaAngleLeft /> </button>}
       <span> {currentPage} </span>
-      <button onClick={toNextPage}> ► </button>
+      {currentPage < totalPages && <button onClick={toNextPage}> <FaAngleRight /> </button> }
     </div>
   );
 }

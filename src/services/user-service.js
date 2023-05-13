@@ -29,7 +29,30 @@ function registration(email,password){
             },
             body: JSON.stringify(userData)
         })
-        .then(resp => resp.json())
+        .then(resp => {
+            if(resp.ok){
+                return resp.json()
+            }
+            throw new Error('Hiba történt')
+        })
+        .then(json => {
+            fetch(`${API_URL_DATABASE}/${userID}.json`,{
+                method:'PATCH',
+                headers:{
+                    'Content-type': 'application/json'
+                },
+                body:JSON.stringify({
+                    id:`${userID}`,
+                    isAdmin: false
+                })
+            })
+            .then(resp=> {
+                if(resp.ok){
+                    return resp.json()
+                }
+                throw new Error('Hiba történt')
+            })
+        })
         )}
 
     function signIn(email, password) {

@@ -39,19 +39,19 @@ export default function AdminProductTable() {
 
     return (
         <>
-            {products.slice(pagerData[0], pagerData[1]).map((product, idx) => {
-                return (
-                    <>
-                        <tr key={idx}>
-                            <td>{product.name}</td>
-                            <td>{product.price}</td>
-                            <td><Link to={`/admin/termekek/${product.id}/modositas`}>Módosítás</Link></td>
-                            <td><Link to={`/admin/termekek/${product.id}/torles`}>Törlés</Link></td>
-                        </tr>
-                        <Pager allProducts={products.length} productsPerPage={pagerData[2]} />
-                    </>
-                )
-            })}
+            <table>
+                {products.slice(pagerData[0], pagerData[1]).map((product, idx) => {
+                    return (
+                            <tr key={idx}>
+                                <td>{product.name}</td>
+                                <td>{product.price}</td>
+                                <td><Link to={`/admin/termekek/${product.id}/modositas`}>Módosítás</Link></td>
+                                <td><Link to={`/admin/termekek/${product.id}/torles`}>Törlés</Link></td>
+                            </tr>)})}
+            </table>
+            <Pager allProducts={products.length} productsPerPage={pagerData[2]} />
+                    
+            
         </>
     )
 }

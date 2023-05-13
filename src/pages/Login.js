@@ -17,26 +17,29 @@ export default function Login() {
     
     console.log("render")
     return (
-        <EmailContext.Provider value={[email, setEmail]}>
-        <PasswordContext.Provider value={[password, setPassword]}>
         <>
             <div>
                 E-mail:
-                <EmailInput/>
+                <EmailInput getEmail={getEmail}/>
             </div>
             <div>
                 Jelszó:
-                <PasswordInput/>
+                <PasswordInput getPassword={getPassword}/>
             </div>
             <div>
                 <button onClick={registrateButton}>Regisztráció</button>
                 <button onClick={login}>Belépés</button>
             </div>
         </>
-        </PasswordContext.Provider>
-        </EmailContext.Provider>
     )
 
+    function getEmail(email) {
+        setEmail(email);
+    }
+
+    function getPassword(password) {
+        setPassword(password)
+    }
 
     function login() {
         userService.signIn(email, password)

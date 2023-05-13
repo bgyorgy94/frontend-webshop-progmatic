@@ -1,10 +1,13 @@
-import { useState, useContext } from "react";
-import { EmailContext } from "../../contexts/emailContext";
+import { useState, useEffect } from "react";
 import "./emailInput.css"
 
-export default function EmailInput() {
+export default function EmailInput(props) {
     const [invalidEmail, setInvalidEmail] = useState(false)
-    const [email, setEmail] = useContext(EmailContext);
+    const [email, setEmail] = useState("");
+
+    useEffect(() => {
+        props.getEmail(email)
+    }, [email])
 
     return (
         <>

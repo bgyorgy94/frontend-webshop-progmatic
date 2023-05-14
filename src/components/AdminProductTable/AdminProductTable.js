@@ -2,14 +2,14 @@ import { useEffect, useState } from "react"
 import { Link, useSearchParams } from "react-router-dom";
 import productsService from "../../services/products-service";
 import sortProducts from "../../services/sortProducts";
-import productPager from "../../services/product-pager";
+import pagerService from "../../services/pager-service";
 import Pager from "../Pager/Pager";
 import Toast from "../Toast/Toast";
 
 export default function AdminProductTable() {
     const [products, setProducts] = useState([]);
     const [usp] = useSearchParams();
-    const pagerData = productPager(usp)
+    const pagerData = pagerService(usp)
 
     useEffect(() => {
         productsService.getAllProducts()

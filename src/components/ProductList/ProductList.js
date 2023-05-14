@@ -4,14 +4,14 @@ import { useContext, useEffect, useState } from "react";
 import sortProducts from "../../services/sortProducts";
 import { CartContext } from "../../contexts/cartContext";
 import Pager from "../Pager/Pager";
-import productPager from "../../services/product-pager";
+import pagerService from "../../services/pager-service";
 
 export default function ProductList() {
 
     const [products, setProducts] = useState([]);
     const [usp] = useSearchParams();
     const { cartContext, setCartContext } = useContext(CartContext)
-    const pagerData = productPager(usp)
+    const pagerData = pagerService(usp)
   
 
     useEffect(() => {

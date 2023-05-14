@@ -16,11 +16,6 @@ export default function Pager({ allProducts, productsPerPage }) {
     next3: currentPage + 3,
   }
 
-  function toFirstPage() {
-    searchParam.set("page", 1)
-    setSearchParam(searchParam)
-  }
-
   function toPrevPage() {
     if(currentPage > 1) searchParam.set("page", pageStep.prev1); //
     setSearchParam(searchParam);
@@ -30,20 +25,15 @@ export default function Pager({ allProducts, productsPerPage }) {
     setSearchParam(searchParam);
   }
 
-  function toLastPage() {
-    searchParam.set("page", totalPages)
-    setSearchParam(searchParam)
-  }
-  
   function toPageNum(e)  {
-      if(currentPage < totalPages) searchParam.set("page", e.target.value)
+      if(currentPage >= 1 && currentPage <= totalPages) searchParam.set("page", e.target.value)
       setSearchParam(searchParam)
     }
   
   return (
     <div>
-      {currentPage == 1 || <button onClick={toFirstPage}> első oldal </button>}
-      {currentPage > 1 && <button onClick={toPrevPage}> <FaAngleLeft /> </button>}
+      {currentPage == 1 || <button value= {1} onClick={toPageNum}> első oldal </button>}
+      {currentPage > 1 && <button  onClick={toPrevPage}> <FaAngleLeft /> </button>}
       {pageStep.prev3 > 0 && <button value= {pageStep.prev3} onClick={toPageNum}> {pageStep.prev3} </button>}
       {pageStep.prev2 > 0 && <button value= {pageStep.prev2} onClick={toPageNum}> {pageStep.prev2} </button>}
       {pageStep.prev1 > 0 && <button value= {pageStep.prev1} onClick={toPageNum}> {pageStep.prev1} </button>} 
@@ -52,7 +42,7 @@ export default function Pager({ allProducts, productsPerPage }) {
       {pageStep.next2 <= totalPages && <button value= {pageStep.next2} onClick={toPageNum}> {pageStep.next2} </button>}
       {pageStep.next3 <= totalPages && <button value= {pageStep.next3} onClick={toPageNum}> {pageStep.next3} </button>}
       {currentPage < totalPages && <button onClick={toNextPage}> <FaAngleRight /> </button> }
-      {currentPage == totalPages || <button onClick={toLastPage}> utolsó oldal </button>}
+      {currentPage == totalPages || <button value= {totalPages} onClick={toPageNum}> utolsó oldal </button>}
     </div>
   );
 

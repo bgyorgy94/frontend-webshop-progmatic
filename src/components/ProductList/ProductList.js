@@ -18,13 +18,13 @@ export default function ProductList() {
         productsService.getAllProducts()
             .then(json => {
                 const originalProducts = (Object.values(json))
-                const title = usp.get("title");
+                const title = usp.get("title") !== null ? (usp.get("title").toLowerCase()) : null;
                 const minimumPrice = usp.get("minimumPrice") || 0;
                 const maximumPrice = usp.get("maximumPrice") || Number.MAX_SAFE_INTEGER;
 
                 if (title !== null && title !== "") {
                     return (originalProducts.filter((product) => (
-                        product.name === title && Number(product.price) >= Number(minimumPrice) && Number(product.price) <= Number(maximumPrice)
+                        product.name.toLowerCase().includes(title) && Number(product.price) >= Number(minimumPrice) && Number(product.price) <= Number(maximumPrice)
                     )))
                 }
                 else {

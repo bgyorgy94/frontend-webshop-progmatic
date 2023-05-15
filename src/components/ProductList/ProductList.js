@@ -4,14 +4,19 @@ import { useContext, useEffect, useState } from "react";
 import sortProducts from "../../services/sortProducts";
 import { CartContext } from "../../contexts/cartContext";
 import Pager from "../Pager/Pager";
+import pagerService from "../../services/pager-service";
+import { UserContext } from "../../contexts/userContext";
 
 export default function ProductList() {
 
     const [products, setProducts] = useState([]);
     const [usp] = useSearchParams();
-    const { cartContext, setCartContext } = useContext(CartContext)
-    let currentPage = Number(usp.get("page")) 
-    if(!currentPage ) currentPage = 1;
+    const pagerData = pagerService(usp)
+  
+    const [user] = useContext(UserContext);
+    const { addToCart } = useContext(CartContext)
+    let currentPage = Number(usp.get("page"))
+    if (!currentPage) currentPage = 1;
     const endIdx = currentPage * 9;
     const startIdx = endIdx - 9;
 
@@ -19,13 +24,13 @@ export default function ProductList() {
         productsService.getAllProducts()
             .then(json => {
                 const originalProducts = (Object.values(json))
-                const title = usp.get("title");
+                const title = usp.get("title") !== null ? (usp.get("title").toLowerCase()) : null;
                 const minimumPrice = usp.get("minimumPrice") || 0;
                 const maximumPrice = usp.get("maximumPrice") || Number.MAX_SAFE_INTEGER;
 
                 if (title !== null && title !== "") {
                     return (originalProducts.filter((product) => (
-                        product.name === title && Number(product.price) >= Number(minimumPrice) && Number(product.price) <= Number(maximumPrice)
+                        product.name.toLowerCase().includes(title) && Number(product.price) >= Number(minimumPrice) && Number(product.price) <= Number(maximumPrice)
                     )))
                 }
                 else {
@@ -45,35 +50,22 @@ export default function ProductList() {
     return (
         <>
             <ul>
-                {products.slice(startIdx, endIdx).map((product, idx) => {
+                {products.slice(pagerData[0], pagerData[1]).map((product, idx) => {
                     return (
                         <li key={idx}>
                             <p> Termék neve: {product.name} </p>
                             <p> Ár: {product.price} </p>
-                            <p><button onClick={() => addToCart(product)}>Kosárba</button></p>
+                            <p>
+                                <button onClick={() => addToCart(product.id)}>
+                                    Kosárba
+                                </button>
+                            </p>
                         </li>
                     )
                 })}
 
             </ul>
-            <Pager allProducts={products.length} productsPerPage={9}/>
+            <Pager allProducts={products.length} itemsPerPage={pagerData[2]}/>
         </>
     )
-
-    function addToCart(product) {
-
-        if (cartContext[product.id] == undefined) {
-            cartContext[product.id] = {
-                id: product.id,
-                name: product.name,
-                price: product.price,
-                pcs: 1
-            }
-        } else {
-            cartContext[product.id]["pcs"] = cartContext[product.id]["pcs"] + 1;
-        }
-
-        setCartContext(cartContext);
-    }
-
 }

@@ -1,8 +1,11 @@
-import { useContext, useState } from "react";
-import { PasswordContext } from "../../contexts/passwordContext";
+import { useEffect, useState } from "react";
 
-export default function PasswordInput() {
-    const [password, setPassword] = useContext(PasswordContext);
+export default function PasswordInput(props) {
+    const [password, setPassword] = useState("");
+
+    useEffect(() => {
+        props.getPassword(password)
+    }, [password])
 
     return(
         <input type="password" value={password} onChange={typePassword}></input>

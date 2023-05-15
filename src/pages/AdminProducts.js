@@ -7,18 +7,10 @@ export default function AdminProducts() {
     return (
         <div>Admin Products
             <Filter />
-            <table>
-                <thead>
-                    <tr>
-                        <th><ProductNameSorter /></th>
-                        <th><ProductPriceSorter /></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <AdminProductTable />
-                </tbody>
-            </table>
-
+            <AdminProductTable >
+                <ProductNameSorter name="Termék neve"/>
+		        <ProductPriceSorter />
+            </AdminProductTable >
         </div>
     )
 }

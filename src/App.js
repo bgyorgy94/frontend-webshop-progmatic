@@ -15,8 +15,11 @@ import UserRegistration from './pages/UserRegistration';
 import { useState } from 'react';
 import { UserContext } from './contexts/userContext'
 import Cart from './pages/Cart';
-import { CartContext } from './contexts/cartContext';
+import { CartProvider } from './contexts/cartContext';
 import UserProfile from './pages/UserProfile';
+import AdminCustomers from './pages/AdminCustomers';
+import AdminOrders from './pages/AdminOrders';
+import OrderAddress from './pages/OrderAddress';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +51,10 @@ const router = createBrowserRouter([
         element: <Cart />
       },
       {
+        path: "/megrendeles",
+        element: <OrderAddress />
+      },
+      {
         path: "/admin",
         element: <Admin />,
         children: [
@@ -62,6 +69,14 @@ const router = createBrowserRouter([
           {
             path: "/admin/termek-felvitel",
             element: <AddProduct />
+          },
+          {
+            path:"/admin/vasarlok",
+            element:<AdminCustomers />
+          },
+          {
+            path:"/admin/megrendelesek",
+            element:<AdminOrders />
           },
           {
             path: "/admin/termekek/:id/torles",
@@ -81,14 +96,16 @@ function App() {
 
   const [user, setUser] = useState(null);
 
-  const [cartContext, setCartContext] = useState({});
+  
+
+
 
   return (
-    <CartContext.Provider value={{ cartContext: cartContext, setCartContext: setCartContext }}>
-      <UserContext.Provider value={[user, setUser]}>
+    <UserContext.Provider value={[user, setUser]}>
+    <CartProvider>
         <RouterProvider router={router} />
+      </CartProvider>
       </UserContext.Provider>
-    </CartContext.Provider>
   );
 }
 

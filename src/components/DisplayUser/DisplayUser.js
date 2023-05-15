@@ -12,10 +12,15 @@ export default function DisplayUser() {
 
     return (
         <>
-            <span>{user.lastName} {user.firstName}</span>
-            <button onClick={() => navigate("/profil")}>Profil</button>
-            <button onClick={logout}>Kijelentkezés</button>
+            {user ? <>
+                        <span>{user.firstName} {user.lastName}</span>
+                        <button onClick={() => navigate("/profil")}>Profil</button>
+                        <button onClick={logout}>Kijelentkezés</button>
+                    </>
+                    : 
+                    <span>{"Nem vagy bejelentkezve"}</span>}
         </>
+            
     )
 
     function logout() {

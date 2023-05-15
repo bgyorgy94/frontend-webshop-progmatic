@@ -29,7 +29,30 @@ function registration(email,password){
             },
             body: JSON.stringify(userData)
         })
-        .then(resp => resp.json())
+        .then(resp => {
+            if(resp.ok){
+                return resp.json()
+            }
+            throw new Error('Hiba történt')
+        })
+        .then(json => {
+            fetch(`${API_URL_DATABASE}/${userID}.json`,{
+                method:'PATCH',
+                headers:{
+                    'Content-type': 'application/json'
+                },
+                body:JSON.stringify({
+                    id:`${userID}`,
+                    isAdmin: false
+                })
+            })
+            .then(resp=> {
+                if(resp.ok){
+                    return resp.json()
+                }
+                throw new Error('Hiba történt')
+            })
+        })
         )}
 
     function signIn(email, password) {
@@ -46,18 +69,14 @@ function registration(email,password){
                 returnSecureToken: true
             })
         })
-        .then(resp => resp.json())
-    }
-
-    function getSignedInUserData(email) {
-        return fetch(`${API_URL_DATABASE}.json`)
-        .then(resp => resp.json())
-        .then(userData => {
-            let userArray = Array.from(Object.values(userData))
-            let foundUser = userArray.find(element => element.email === email)
-            return foundUser
+        .then(resp =>{
+            if(resp.ok){
+                return resp.json()
+            }
+            throw new Error('Hiba történt')
         })
     }
+
     function getUserDatas(){    
         return(
                 fetch(`${API_URL_DATABASE}.json`)
@@ -85,7 +104,6 @@ function registration(email,password){
         registration: registration,
         createUser: createUser,
         signIn: signIn,
-        getSignedInUserData: getSignedInUserData,
         getUserDatas:getUserDatas,
         getUserByID: getUserByID
     }

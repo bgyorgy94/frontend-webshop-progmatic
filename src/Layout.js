@@ -7,8 +7,8 @@ import Toast from "./components/Toast/Toast";
 export default function Layout() {
     const [showToast,setShowToast] = useState({
         show: false,
-        message:"elso",
-        type:"elso"
+        message:"",
+        type:""
     });
 
     return(
@@ -17,7 +17,7 @@ export default function Layout() {
                 <nav><Navbar /></nav>
                 <main>
                         <Outlet />
-                        <Toast />
+                        {/* <Toast /> */}
                 </main>
             </ToastContext.Provider>
             <footer>

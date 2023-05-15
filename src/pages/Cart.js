@@ -1,13 +1,15 @@
 import { useContext } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import CartList from "../components/CartList/CartList";
 import { CartContext } from "../contexts/cartContext";
 
 export default function Cart() {
-    const { cartContext } = useContext(CartContext);
+    const {cart} = useContext(CartContext)
+    const navigate = useNavigate()
 
     return (
         <>
-            {Object.keys(cartContext).length === 0 ?
+            {Object.keys(cart).length === 0 ?
                 <>A kosár üres</>
                 :
                 <>
@@ -21,12 +23,15 @@ export default function Cart() {
                                 <th>Összesen</th>
                             </tr>
                         </thead>
-                        <tbody>
                             <CartList />
-                        </tbody>
                     </table>
+                    <button onClick={orderButtonHandler}>Megrendelem</button>
                 </>
             }
         </>
     )
+
+    function orderButtonHandler() {
+        navigate("/megrendeles")
+    }
 }

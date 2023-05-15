@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { FaSortUp, FaSortDown } from 'react-icons/fa'
 
-export default function ProductNameSorter() {
+export default function ProductNameSorter(props) {
     const [searchParam, setSearchParam] = useSearchParams();
     const sortBy = searchParam.get("sortBy");
     let direction;
@@ -17,7 +17,7 @@ export default function ProductNameSorter() {
 
     return (
         <>
-            <span onClick={handleClick}>Termék neve {icons[direction]}</span>
+            <span onClick={handleClick}> {props.name} {icons[direction]}</span>
         </>
     )
 

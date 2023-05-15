@@ -55,7 +55,7 @@ export default function AdminProductTable({children}) {
                             </tr>)})}
                 </tbody>
             </table>
-            <Pager allProducts={products.length} productsPerPage={pagerData[2]} />
+            <Pager allProducts={products.length} itemsPerPage={pagerData[2]} />
         </>
     )
 }

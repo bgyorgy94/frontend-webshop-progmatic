@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import userService from "../../services/user-service"
 import sortProducts from "../../services/sortProducts";
 import { useSearchParams } from "react-router-dom";
+import pagerService from "../../services/pager-service";
+import Pager from "../Pager/Pager";
 
-export default function AdminCustomersTable() {
+export default function AdminCustomersTable({children}) {
     const [displayUsers,setDisplayUsers] = useState([])
     const [usp] = useSearchParams();
     const [filter,setFilter] = useState("");
+    const pagerData = pagerService(usp)
     
     useEffect( () => {
         
@@ -26,35 +29,34 @@ export default function AdminCustomersTable() {
                     
                 })
     },[usp])
-    
+
+    const displayArr = (filter === null) ? 
+        displayUsers : 
+        (displayUsers.filter(user => user.firstName.toLowerCase().includes(filter) || user.lastName.toLowerCase().includes(filter)));
+    console.log(displayArr);
+
     return(
         <>
-         {filter ===null ?
-             displayUsers.map((user,idx) => {
-                return( 
-                    <tr key={idx}>
-                        <td>{user.lastName + " " + user.firstName}</td>
-                        <td>{user.email}</td>
-                        <td>{user.id}</td>
-                        <td>{user.isAdmin? "Igen" : "Nem"}</td>
-                    </tr>
-                    )
-                })
-         :
-             displayUsers.filter(user => user.firstName.toLowerCase().includes(filter) || user.lastName.toLowerCase().includes(filter))
-             .map((filtered,idx) => {
-                 return(
-                     <tr key={idx}>
-                         <td>{filtered.lastName + " " + filtered.firstName}</td>
-                         <td>{filtered.email}</td>
-                         <td>{filtered.id}</td>
-                         <td>{filtered.isAdmin? "Igen" : "Nem"}</td>
-                     </tr>
-                 )
-             })
-         }
-        
-        
+            <table>
+                <thead>
+                    <tr> 
+                        <th> {children} </th>
+                    </tr> 
+                </thead>
+                <tbody>
+                    {displayArr.slice(pagerData[0], pagerData[1]).map((user,idx) => {
+                        return( 
+                            <tr key={idx}>
+                                <td>{user.lastName + " " + user.firstName}</td>
+                                <td>{user.email}</td>
+                                <td>{user.id}</td>
+                                <td>{user.isAdmin? "Igen" : "Nem"}</td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
+            <Pager allProducts={displayArr.length} itemsPerPage={pagerData[2]}/>
         </>
     )
-}
+};

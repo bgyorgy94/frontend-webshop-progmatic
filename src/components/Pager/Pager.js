@@ -1,12 +1,12 @@
 import { useSearchParams } from "react-router-dom";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa"; 
 
-export default function Pager({ allProducts, productsPerPage }) {
+export default function Pager({ allProducts, itemsPerPage }) {
 
   const [searchParam, setSearchParam] = useSearchParams();
   let currentPage = Number(searchParam.get("page"));
   if (!currentPage) currentPage = 1;
-  const totalPages = Math.ceil(allProducts / productsPerPage);
+  const totalPages = Math.ceil(allProducts / itemsPerPage);
   const pageStep = {
     prev4: currentPage - 4,
     prev3: currentPage - 3,

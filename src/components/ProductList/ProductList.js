@@ -55,7 +55,7 @@ export default function ProductList() {
                 })}
 
             </ul>
-            <Pager allProducts={products.length} productsPerPage={pagerData[2]}/>
+            <Pager allProducts={products.length} itemsPerPage={pagerData[2]}/>
         </>
     )
 

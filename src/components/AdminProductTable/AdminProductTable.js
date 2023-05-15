@@ -6,7 +6,7 @@ import pagerService from "../../services/pager-service";
 import Pager from "../Pager/Pager";
 import Toast from "../Toast/Toast";
 
-export default function AdminProductTable() {
+export default function AdminProductTable({children}) {
     const [products, setProducts] = useState([]);
     const [usp] = useSearchParams();
     const pagerData = pagerService(usp)
@@ -39,18 +39,23 @@ export default function AdminProductTable() {
     return (
         <>
             <table>
-                {products.slice(pagerData[0], pagerData[1]).map((product, idx) => {
-                    return (
+                    <thead>
+                        <tr>
+                            <th> {children}</th>
+                        </tr>
+                    </thead>
+                <tbody>
+                    {products.slice(pagerData[0], pagerData[1]).map((product, idx) => {
+                        return (
                             <tr key={idx}>
                                 <td>{product.name}</td>
                                 <td>{product.price}</td>
                                 <td><Link to={`/admin/termekek/${product.id}/modositas`}>Módosítás</Link></td>
                                 <td><Link to={`/admin/termekek/${product.id}/torles`}>Törlés</Link></td>
                             </tr>)})}
+                </tbody>
             </table>
             <Pager allProducts={products.length} productsPerPage={pagerData[2]} />
-                    
-            
         </>
     )
 }

@@ -8,7 +8,6 @@ export default function Navbar() {
 
     const [user] = useContext(UserContext);
     const { cartContext } = useContext(CartContext);
-
     return (
         <div>
             <NavLink to="/">Home</NavLink>

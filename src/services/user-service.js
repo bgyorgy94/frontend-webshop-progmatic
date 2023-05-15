@@ -69,7 +69,12 @@ function registration(email,password){
                 returnSecureToken: true
             })
         })
-        .then(resp => resp.json())
+        .then(resp =>{
+            if(resp.ok){
+                return resp.json()
+            }
+            throw new Error('Hiba történt')
+        })
     }
 
     function getUserDatas(){    

@@ -12,6 +12,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [user, setUser] = useContext(UserContext);
     const navigate = useNavigate();
+    const [errorMsg,setErrorMsg] = useState("");
     
     console.log("render")
     return (
@@ -24,6 +25,7 @@ export default function Login() {
                 Jelszó:
                 <PasswordInput value={password} getPassword={getPassword}/>
             </div>
+            <div>{errorMsg}</div>
             <div>
                 <button onClick={registrateButton}>Regisztráció</button>
                 <button onClick={login}>Belépés</button>
@@ -48,6 +50,7 @@ export default function Login() {
                 navigate("/")
             }
         })
+        .catch(err => {setErrorMsg("Sikertelen bejelentkezés")})
     }
     function registrateButton(){
         navigate("/regisztracio");

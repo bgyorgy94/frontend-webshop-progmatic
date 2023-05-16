@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { UserContext } from "../../contexts/userContext"
 import { ToastContext } from "../../services/toastContext";
-import { useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 export default function DisplayUser() {
 
@@ -14,7 +14,8 @@ export default function DisplayUser() {
         <>
             {user ? <>
                         <span>{user.firstName} {user.lastName}</span>
-                        <button onClick={() => navigate("/profil")}>Profil</button>
+                        <NavLink to="/profil">Profil</NavLink>
+                        <NavLink to="/megrendelesek">Rendeléseim</NavLink>
                         <button onClick={logout}>Kijelentkezés</button>
                     </>
                     : 
@@ -30,7 +31,7 @@ export default function DisplayUser() {
             message: "Sikeres kijelentkezés",
             type: "success"
         })
-        if(location.pathname === "/profil") {
+        if(location.pathname === "/profil" || location.pathname === "/megrendelesek") {
             navigate("/")
         }
     }

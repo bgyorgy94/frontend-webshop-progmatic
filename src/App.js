@@ -19,6 +19,7 @@ import { CartContext } from './contexts/cartContext';
 import UserProfile from './pages/UserProfile';
 import AdminCustomers from './pages/AdminCustomers';
 import AdminOrders from './pages/AdminOrders';
+import UserOrders from './pages/UserOrders';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "/kosar",
         element: <Cart />
+      },
+      {
+        path: "/megrendelesek",
+        element: <UserOrders />
       },
       {
         path: "/admin",

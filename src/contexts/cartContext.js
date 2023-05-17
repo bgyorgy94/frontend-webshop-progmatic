@@ -13,7 +13,7 @@ export function CartProvider({ children }) {
     }, [user]);
 
     useEffect(() => {
-        if (user) {                   // hibaforrás
+        if (user) {
             uploadCart(user, cart)
         }
     }, [user, cart]);
@@ -31,6 +31,15 @@ export function CartProvider({ children }) {
 
         setCart(newCart);
         uploadCart(user, newCart);
+    }
+
+    function emptyCart() {
+        setCart({});
+        if (user) uploadCart(user, {})
+    }
+
+    function logOutCart() {
+        setCart({})
     }
 
     function uploadCart(user, cart) {
@@ -52,7 +61,7 @@ export function CartProvider({ children }) {
     }
 
     return (
-        <CartContext.Provider value={{ cart, setCart, addToCart, deleteFromCart }}>
+        <CartContext.Provider value={{ cart, setCart, addToCart, deleteFromCart, emptyCart, logOutCart }}>
             {children}
         </CartContext.Provider>
     )

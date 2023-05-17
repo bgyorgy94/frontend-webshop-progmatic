@@ -1,10 +1,13 @@
 import { useContext } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CartList from "../components/CartList/CartList";
 import { CartContext } from "../contexts/cartContext";
+import orderService from "../services/order-service";
+import { UserContext } from "../contexts/userContext";
 
 export default function Cart() {
-    const {cart} = useContext(CartContext)
+    const {cart, emptyCart} = useContext(CartContext)
+    const [user] = useContext(UserContext)
     const navigate = useNavigate()
 
     return (
@@ -25,13 +28,9 @@ export default function Cart() {
                         </thead>
                             <CartList />
                     </table>
-                    <button onClick={orderButtonHandler}>Megrendelem</button>
+                    <button onClick={() => orderService.sendOrder(cart, user).then(() => emptyCart())}>Megrendelem</button>
                 </>
             }
         </>
     )
-
-    function orderButtonHandler() {
-        navigate("/megrendeles")
-    }
 }

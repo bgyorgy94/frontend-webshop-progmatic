@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import productsService from "../../services/products-service";
 import { useContext, useEffect, useState } from "react";
 import sortProducts from "../../services/sortProducts";
@@ -12,6 +12,7 @@ export default function ProductList() {
     const [products, setProducts] = useState([]);
     const [usp] = useSearchParams();
     const pagerData = pagerService(usp)
+    const navigate = useNavigate();
   
     const [user] = useContext(UserContext);
     const { addToCart } = useContext(CartContext)
@@ -56,7 +57,7 @@ export default function ProductList() {
                             <p> Termék neve: {product.name} </p>
                             <p> Ár: {product.price} </p>
                             <p>
-                                <button onClick={() => addToCart(product.id)}>
+                                <button onClick={() => user? addToCart(product.id) : navigate("/belepes")}>
                                     Kosárba
                                 </button>
                             </p>

@@ -45,6 +45,7 @@ export default function Login() {
         userService.signIn(email, password)
         .then(authResp => {
             if(authResp.registered) {
+                localStorage.setItem("refreshToken", `${authResp.refreshToken}`)
                 userService.getUserByID(authResp.localId)
                 .then(resp => setUser(resp))
                 navigate("/")

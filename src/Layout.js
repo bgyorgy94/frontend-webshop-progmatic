@@ -1,8 +1,10 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ToastContext } from "./services/toastContext";
 import Toast from "./components/Toast/Toast";
+import userService from "./services/user-service";
+import { UserContext } from "./contexts/userContext";
 
 export default function Layout() {
     const [showToast,setShowToast] = useState({
@@ -10,6 +12,17 @@ export default function Layout() {
         message:"",
         type:""
     });
+
+    const [user, setUser] = useContext(UserContext)
+
+    useEffect(() => {
+        if (localStorage.getItem("refreshToken")) {
+            userService.getIDToken()
+            .then(resp => resp.json())
+            .then(json => userService.getUserByID(json.user_id))
+            .then(user => setUser(user))
+        } else setUser(null)
+      }, [])
 
     return(
         <div>

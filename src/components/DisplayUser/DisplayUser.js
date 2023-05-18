@@ -28,6 +28,7 @@ export default function DisplayUser() {
 
     function logout() {
         setUser(null)
+        localStorage.removeItem("refreshToken")
         setShowToast({
             show: true,
             message: "Sikeres kijelentkezés",

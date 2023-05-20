@@ -7,9 +7,13 @@ export default function UserProfile() {
 
         return (
             <>
-                <p>Vezetéknév: {user.lastName}</p>
-                <p>Keresztnév: {user.firstName}</p>
-                <p>E-mail cím: {user.email}</p>
+            { user &&
+                <>
+                    <p>Vezetéknév: {user.lastName}</p>
+                    <p>Keresztnév: {user.firstName}</p>
+                    <p>E-mail cím: {user.email}</p>
+                </>
+            }
             </>
         )
 }

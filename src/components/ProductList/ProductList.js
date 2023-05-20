@@ -51,7 +51,7 @@ export default function ProductList() {
     return (
         <>
             <ul>
-                {products.slice(pagerData[0], pagerData[1]).map((product, idx) => {
+                {products.slice(pagerData.startIdx, pagerData.endIdx).map((product, idx) => {
                     return (
                         <li key={idx}>
                             <p> Termék neve: {product.name} </p>
@@ -66,7 +66,7 @@ export default function ProductList() {
                 })}
 
             </ul>
-            <Pager allProducts={products.length} itemsPerPage={pagerData[2]}/>
+            <Pager allProducts={products.length} itemsPerPage={pagerData.itemsPerPage}/>
         </>
     )
 }

@@ -20,6 +20,7 @@ import UserProfile from './pages/UserProfile';
 import AdminCustomers from './pages/AdminCustomers';
 import AdminOrders from './pages/AdminOrders';
 import UserOrders from './pages/UserOrders';
+import AddCategory from './pages/AddCategory';
 
 const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
           {
             path: "/admin/termekek/:id/modositas",
             element: <ModifyProduct />
+          },
+          {
+            path:"/admin/kategoriak/uj-kategoria",
+            element: <AddCategory />
           }
         ]
       }

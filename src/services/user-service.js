@@ -99,11 +99,27 @@ function registration(email,password){
             })
         )
     }
+    function getIDToken() {
+        return(
+            fetch(`https://securetoken.googleapis.com/v1/token?key=${API_KEY}`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type":"application/x-www-form-urlencoded"
+                },
+                body: new URLSearchParams({
+                    "grant_type":"refresh_token",
+                    "refresh_token": `${localStorage.getItem("refreshToken")}`
+                })
+            })
+        )
+    }
 
     export default{
         registration: registration,
         createUser: createUser,
         signIn: signIn,
         getUserDatas:getUserDatas,
-        getUserByID: getUserByID
+        getUserByID: getUserByID,
+        getIDToken: getIDToken
     }

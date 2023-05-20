@@ -15,7 +15,7 @@ export default function DisplayUser() {
     return (
         <>
             {user ? <>
-                        <span>{user.firstName} {user.lastName}</span>
+                        <span>{user.lastName} {user.firstName} {user.isAdmin ? "(admin)" : ""}</span>
                         <NavLink to="/profil">Profil</NavLink>
                         <NavLink to="/megrendelesek">Rendeléseim</NavLink>
                         <button onClick={logout}>Kijelentkezés</button>
@@ -28,13 +28,14 @@ export default function DisplayUser() {
 
     function logout() {
         setUser(null)
+        localStorage.removeItem("refreshToken")
         setShowToast({
             show: true,
             message: "Sikeres kijelentkezés",
             type: "success"
         })
         logOutCart();
-        if(location.pathname === "/profil" || location.pathname === "/megrendelesek") {
+        if(location.pathname === "/profil" || location.pathname === "/megrendelesek" || location.pathname.includes("/admin")) {
             navigate("/")
         }
     }

@@ -6,7 +6,8 @@ import { CartContext } from "../../contexts/cartContext";
 import Pager from "../Pager/Pager";
 import pagerService from "../../services/pager-service";
 import { UserContext } from "../../contexts/userContext";
-
+import { ToastContext } from "../../services/toastContext";
+import "./ProductList.css"
 export default function ProductList() {
 
     const [products, setProducts] = useState([]);
@@ -20,6 +21,8 @@ export default function ProductList() {
     if (!currentPage) currentPage = 1;
     const endIdx = currentPage * 9;
     const startIdx = endIdx - 9;
+
+    const {showToast,setShowToast}  = useContext(ToastContext);
 
     useEffect(() => {
         productsService.getAllProducts()
@@ -54,10 +57,17 @@ export default function ProductList() {
                 {products.slice(pagerData.startIdx, pagerData.endIdx).map((product, idx) => {
                     return (
                         <li key={idx}>
+                            <img src={product.url ? product.url : ""} />
                             <p> Termék neve: {product.name} </p>
                             <p> Ár: {product.price} </p>
                             <p>
-                                <button onClick={() => user? addToCart(product.id) : navigate("/belepes")}>
+                                <button onClick={() => {
+                                    user? addToCart(product.id) : navigate("/belepes")
+                                    setShowToast({
+                                        show:true,
+                                        message:`A termék a kosárba került`,
+                                        type:"success"})
+                                    }}>
                                     Kosárba
                                 </button>
                             </p>

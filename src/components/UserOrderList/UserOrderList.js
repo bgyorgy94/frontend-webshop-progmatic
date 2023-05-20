@@ -30,7 +30,7 @@ export default function UserOrderList(props) {
         <>
             {ordersDisplay.slice(pagerData.startIdx, pagerData.endIdx).map((order, idx) => {
                     return (
-                        <table>
+                        <table key= {idx}>
                             <thead>
                                 <tr>
                                     <th>Rendelésszám</th>
@@ -38,28 +38,25 @@ export default function UserOrderList(props) {
                                     <th>Mennyiség</th>
                                 </tr>
                             </thead>
-                            <tr key={idx}>
-                                <td>{order.id}</td>
-                                <td>{Object.entries(order.termekek).map((prod, idx) => {
-                                    return (
-                                        <tr key={idx}>
-                                            <td>
-                                                {productDatas.filter(prodData => prodData.id === prod[0]).map(filtered => filtered.name)}
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
-                                </td>
-                                <td>
-                                    {Object.entries(order.termekek).map((prod, idx) => {
-                                        return (
-                                            <tr key={idx}>
-                                                <td>{prod[1]}</td>
-                                            </tr>
-                                        )
+                            <tbody>
+                                <tr key={idx}>
+                                    <td>{order.id}</td>
+                                    <td>
+                                        <ul>
+                                        {Object.entries(order.termekek).map((prod, idx) => {
+                                        return (<li key={idx}>{productDatas.filter(prodData => prodData.id === prod[0]).map(filtered => filtered.name)}</li>)
                                     })}
-                                </td>
-                            </tr>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                        {Object.entries(order.termekek).map((prod, idx) => {
+                                            return (<li key={idx}>{prod[1]}</li>)
+                                        })}
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     )
                 

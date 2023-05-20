@@ -30,7 +30,7 @@ export default function Layout() {
                 <nav><Navbar /></nav>
                 <main>
                         <Outlet />
-                        {/* <Toast /> */}
+                        <Toast />
                 </main>
             </ToastContext.Provider>
             <footer>

@@ -10,6 +10,25 @@ export default function AdminOrders() {
                     <ProductNameSorter name="Rendezés Vásárló neve szerint"/>
             </ AdminOrdersTable >
                          
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <ProductNameSorter name="Rendezés Vásárló neve szerint"/>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Vásárló neve</th>
+                        <th>Megrendelés ID</th>
+                        <th>Termékek</th>
+                        <th>Mennyiség</th>
+                        <th>Megrendelés összege</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <AdminOrdersTable />
+                </tbody>
+            </table>
         </div>
     )
 }

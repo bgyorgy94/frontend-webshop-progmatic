@@ -10,7 +10,7 @@ export default function Toast(){
         useEffect( () => {
             const toastTimer = setTimeout(()=>setShowToast({show:false}),2000)
             return() => clearTimeout(toastTimer)
-        }, [showToast])
+        }, [showToast.show])
     return showToast.show ? (
         <div 
         className={showToast.type == "success" ? "toast success" : "toast error"}

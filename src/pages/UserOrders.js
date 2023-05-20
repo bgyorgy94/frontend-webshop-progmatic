@@ -8,8 +8,12 @@ export default function UserOrders() {
 
     return (
         <>
-            <h2>Rendeléseim:</h2>
-            <UserOrderList user={user}/>
+        { user &&
+            <>
+                <h2>Rendeléseim:</h2>
+                <UserOrderList user={user}/>
+            </>
+        }
         </>
     )
 }

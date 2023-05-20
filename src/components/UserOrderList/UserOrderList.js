@@ -16,17 +16,16 @@ export default function UserOrderList(props) {
 
     useEffect(() => {
         orderService.getOrders()
-        .then(json=> setOrderDatas(Object.values(json)))
+            .then(json => setOrderDatas(Object.values(json)))
 
         userService.getUserDatas()
-        .then(json => setUserDatas(Object.values(json)))
+            .then(json => setUserDatas(Object.values(json)))
 
         productsService.getAllProducts()
-        .then(json=> setProductDatas(Object.values(json)))
+            .then(json => setProductDatas(Object.values(json)))
     }, [usp])
 
-    const ordersDisplay = orderDatas.filter(orderData => orderData.uid === props.user.id );
-    console.log(orderDatas)
+    const ordersDisplay = orderDatas.filter(orderData => orderData.uid === props.user.id);
     return (
         <>
             <table>
@@ -41,38 +40,39 @@ export default function UserOrderList(props) {
                 <tbody>
                     {ordersDisplay.slice(pagerData.startIdx, pagerData.endIdx).map((order, idx) => {
                         return (
-                                <tr key={idx}>
-                                    <td>{order.id}</td>
-                                    <td>{Object.values(order.termekek).map((prod, idx) => {
-                                        return (
-                                            <ul key={idx}>
-                                                <li>
+                            <tr key={idx}>
+                                <td>{order.id}</td>
+                                <td>
+                                    <ul>
+                                        {Object.values(order.termekek).map((prod, idx) => {
+                                            return (
+                                                <li key={idx}>
                                                     {prod.name}
                                                 </li>
-                                            </ul>
-                                        )
-                                    })}
-                                    </td>
-                                    <td>
-                                    {Object.values(order.termekek).map((prod, idx) => {
-                                        return (
-                                            <ul key={idx}>
-                                                <li>
+                                            )
+                                        })}
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        {Object.values(order.termekek).map((prod, idx) => {
+                                            return (
+                                                <li key={idx}>
                                                     {prod.quantity}
                                                 </li>
-                                            </ul>
-                                        )
-                                    })}
-                                    </td>
-                                    <td>
-                                        {Intl.DateTimeFormat('HU', { dateStyle: 'long', timeStyle: 'medium',}).format(order.timestamp)}
-                                    </td>
-                                </tr>
+                                            )
+                                        })}
+                                    </ul>
+                                </td>
+                                <td>
+                                    {Intl.DateTimeFormat('HU', { dateStyle: 'long', timeStyle: 'medium', }).format(order.timestamp)}
+                                </td>
+                            </tr>
                         )
                     })}
                 </tbody>
             </table>
-            <Pager allProducts={ordersDisplay.length} itemsPerPage={pagerData.itemsPerPage}/>
+            <Pager allProducts={ordersDisplay.length} itemsPerPage={pagerData.itemsPerPage} />
         </>
     )
 }

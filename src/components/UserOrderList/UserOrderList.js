@@ -40,24 +40,26 @@ export default function UserOrderList(props) {
                             </thead>
                             <tr key={idx}>
                                 <td>{order.id}</td>
-                                <td>{Object.entries(order.termekek).map((prod, idx) => {
+                                <td>{Object.values(order.termekek).map((prod, idx) => {
                                     return (
                                         <tr key={idx}>
                                             <td>
-                                                {productDatas.filter(prodData => prodData.id === prod[0]).map(filtered => filtered.name)}
+                                                {prod.name}
                                             </td>
                                         </tr>
                                     )
                                 })}
                                 </td>
                                 <td>
-                                    {Object.entries(order.termekek).map((prod, idx) => {
-                                        return (
-                                            <tr key={idx}>
-                                                <td>{prod[1]}</td>
-                                            </tr>
-                                        )
-                                    })}
+                                {Object.values(order.termekek).map((prod, idx) => {
+                                    return (
+                                        <tr key={idx}>
+                                            <td>
+                                                {prod.quantity}
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
                                 </td>
                             </tr>
                         </table>

@@ -1,3 +1,5 @@
+import productsService from "./products-service"
+
 const API_URL_ORDERS = "https://csapat-10-default-rtdb.europe-west1.firebasedatabase.app/megrendelesek"
 
 function getOrders() {
@@ -25,6 +27,8 @@ function getOrderById(id) {
 }
 
 function sendOrder(cart, user) {
+    const new_date = new Date()
+    let orderID;
     return (
         fetch(`${API_URL_ORDERS}.json`, {
             method: "POST",
@@ -34,7 +38,8 @@ function sendOrder(cart, user) {
             body: JSON.stringify(
                 {
                     uid: user.id,
-                    termekek: cart
+                    termekek: cart,
+                    timestamp: new_date.getTime()
                 }
             )
         })
@@ -45,6 +50,7 @@ function sendOrder(cart, user) {
                 throw new Error('Hiba történt')
             })
             .then(json => {
+                orderID = json.name;
                 fetch(`${API_URL_ORDERS}/${json.name}.json`, {
                     method: "PATCH",
                     headers: {
@@ -60,6 +66,29 @@ function sendOrder(cart, user) {
                             return res.json()
                         }
                         throw new Error('Hiba történt')
+                    })
+            })
+            .then(json => {
+                Object.keys(cart).forEach(
+                    productID => {
+                        productsService.getProduct(productID)
+                            .then(product => {
+                                fetch(`${API_URL_ORDERS}/${orderID}/termekek/${productID}.json`, {
+                                    method: "PUT",
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify(
+                                        {
+                                            id: productID,
+                                            name: product.name,
+                                            price: product.price,
+                                            quantity: cart[productID],
+                                        }
+                                    )
+                                })
+                            }
+                            )
                     })
             })
     )

@@ -26,7 +26,7 @@ export default function AdminOrdersTable({children}) {
         .then(json=> setProductDatas(Object.values(json)))
         
         
-    },[])
+    },[usp])
     
     return(
         <>

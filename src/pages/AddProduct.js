@@ -37,9 +37,10 @@ export default function AddProduct() {
             </p>
             <p>
                 Termék kategóriája:
-                <select onChange={handleCategoryChange}>
+                <select defaultValue={""} onChange={handleCategoryChange}>
+                    <option key={0} value={""}>---</option>
                     {categoryList.map((category, idx) => {
-                        return (<option key={idx} value={category.id}>{category.name}</option>)
+                        return (<option key={idx+1} value={category.id}>{category.name}</option>)
                     })}
                 </select>
             </p>
@@ -69,15 +70,15 @@ export default function AddProduct() {
     function handlerSubmit(e) {
         e.preventDefault()
                     
-        const storage = getStorage(app)
-        const fileRef = ref(storage, "images/"+file.name);
-        uploadBytes(fileRef,file)
-        .then( (uploadResult) => {
-            getDownloadURL(uploadResult?.ref)
-            .then(url => {            
-                setUploadedUrl(url);
-            })
-        })
+        // const storage = getStorage(app)
+        // const fileRef = ref(storage, "images/"+file.name);
+        // uploadBytes(fileRef,file)
+        // .then( (uploadResult) => {
+        //     getDownloadURL(uploadResult?.ref)
+        //     .then(url => {            
+        //         setUploadedUrl(url);
+        //     })
+        // })
         
         
         productsService.createProduct({

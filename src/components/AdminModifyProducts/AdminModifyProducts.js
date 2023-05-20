@@ -66,9 +66,10 @@ export default function ModifyProduct() {
             <p> Termék kategória: {categoryList.map((category => {
                 if (category.id === product.categoryId) return category.name
             }))}</p> 
-            <select value={formData.categoryId} onChange={(e) => setFormData({...formData, categoryId: e.target.value})}>  
+            <select value={formData.categoryId} onChange={(e) => setFormData({...formData, categoryId: e.target.value})}>
+                <option key={0} value={""}>---</option>  
                 {categoryList.map((category, idx) => {
-                    return (<option key={idx} value={category.id} selected={category.id === product.categoryId ? true : false}>{category.name}</option>)
+                    return (<option key={idx+1} value={category.id} selected={category.id === product.categoryId ? true : false}>{category.name}</option>)
                 })}
             </select>
             <p>

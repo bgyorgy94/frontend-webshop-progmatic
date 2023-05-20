@@ -22,7 +22,7 @@ export default function AdminCustomersTable({children}) {
             setFilter(null)
             
             if(direction !== null) {
-                setDisplayUsers(sortProducts(Object.values(json),"firstName",direction));
+                setDisplayUsers(sortProducts(Object.values(json),"lastName",direction));
             }else{
                 setDisplayUsers(Object.values(json))
             }

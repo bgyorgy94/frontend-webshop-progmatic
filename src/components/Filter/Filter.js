@@ -1,16 +1,24 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom";
+import categoryService from "../../services/category-service";
 
 const initFilter = {
     title: "",
     minimumPrice: "",
-    maximumPrice: ""
+    maximumPrice: "",
+    category: ""
 };
 
 export default function Filter() {
 
     const [usp, setUsp] = useSearchParams();
     const [filter, setFilter] = useState(initFilter);
+    const [categoryList, setCategoryList] = useState([]);
+
+    useEffect(() => {
+        categoryService.getAllCategories()
+        .then(json => setCategoryList(Object.values(json)))
+    })
 
     const handleChange = (e) => {
             setFilter((prev) => ({
@@ -41,6 +49,18 @@ export default function Filter() {
             <label>
                 Maximum ár:
                 <input type="number" name="maximumPrice" value={filter.maximumPrice} onChange={handleChange}/>
+            </label>
+            <label>
+                Kategória:
+                <select name="category" value={filter.category} onChange={handleChange}>
+                    <option key={-1} value={""}>---</option>
+                    <option key={0} value={"uncategorized"}>besorolatlan</option>
+                    {categoryList.map((category, idx) => {
+                        return (
+                            <option key={idx+1} value={category.id}>{category.name}</option>
+                        )
+                    })}
+                </select>
             </label>
             <button type="submit">Szűrés</button>
             <button onClick={reset}>Reset</button>

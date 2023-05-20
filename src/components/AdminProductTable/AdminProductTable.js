@@ -18,17 +18,30 @@ export default function AdminProductTable({children}) {
             const title = usp.get("title") ;
             const minimumPrice = usp.get("minimumPrice") || 0;
             const maximumPrice = usp.get("maximumPrice") || Number.MAX_SAFE_INTEGER;
+            const category = usp.get("category");
+            let titleFiltered;
+            let categoryFiltered;
 
             if (title !== null && title !== "") {
-                return(originalProducts.filter((product) => (
-                    product.name === title && Number(product.price) >= Number(minimumPrice) && Number(product.price) <= Number(maximumPrice)
-                )))
-            }
-            else {
-                return(originalProducts.filter((product) => (
+                titleFiltered = originalProducts.filter((product) => (
+                    product.name.toLowerCase().includes(title)))
+            } else titleFiltered = originalProducts;
+
+            if (category === "uncategorized") {
+                categoryFiltered = titleFiltered.filter((product) => (
+                    product.categoryId === "" || !product.categoryId
+                ))
+            } else if (category !== null) {
+                categoryFiltered = titleFiltered.filter((product) => (
+                    product.categoryId === category
+                ))
+            } else categoryFiltered = titleFiltered;
+
+            return (
+                categoryFiltered.filter((product) => (
                     Number(product.price) >= Number(minimumPrice) && Number(product.price) <= Number(maximumPrice)
-                )))
-            } 
+                ))
+            )
         })
         .then(json => {
             const sortBy = usp.get("sortBy");

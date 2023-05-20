@@ -4,6 +4,7 @@ import PasswordInput from "../components/PasswordInput/PasswordInput";
 import { UserContext } from "../contexts/userContext";
 import  userService from "../services/user-service";
 import { useNavigate } from "react-router-dom";
+import { ToastContext } from "../services/toastContext";
 
 
 export default function Login() {
@@ -12,7 +13,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [user, setUser] = useContext(UserContext);
     const navigate = useNavigate();
-    const [errorMsg,setErrorMsg] = useState("");
+    const {showToast,setShowToast}  = useContext(ToastContext);
     
     console.log("render")
     return (
@@ -25,7 +26,6 @@ export default function Login() {
                 Jelszó:
                 <PasswordInput value={password} getPassword={getPassword}/>
             </div>
-            <div>{errorMsg}</div>
             <div>
                 <button onClick={registrateButton}>Regisztráció</button>
                 <button onClick={login}>Belépés</button>
@@ -49,9 +49,18 @@ export default function Login() {
                 userService.getUserByID(authResp.localId)
                 .then(resp => setUser(resp))
                 navigate("/")
+                setShowToast({
+                    show: true,
+                    message: "Sikeres bejelentkezés",
+                    type: "success"
+                })
             }
         })
-        .catch(err => {setErrorMsg("Sikertelen bejelentkezés")})
+        .catch(err => {setShowToast({
+            show: true,
+            message: "Sikertelen bejelentkezés",
+            type: "error"
+        })})
     }
     function registrateButton(){
         navigate("/regisztracio");

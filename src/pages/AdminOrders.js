@@ -5,11 +5,6 @@ export default function AdminOrders() {
 
     return(
         <div> Megrendelések
-             
-            <AdminOrdersTable >
-                    <ProductNameSorter name="Rendezés Vásárló neve szerint"/>
-            </ AdminOrdersTable >
-                         
             <table>
                 <thead>
                     <tr>
@@ -21,6 +16,7 @@ export default function AdminOrders() {
                         <th>Vásárló neve</th>
                         <th>Megrendelés ID</th>
                         <th>Termékek</th>
+                        <th>Ár</th>
                         <th>Mennyiség</th>
                         <th>Megrendelés összege</th>
                     </tr>

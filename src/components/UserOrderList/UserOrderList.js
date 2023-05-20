@@ -26,46 +26,52 @@ export default function UserOrderList(props) {
     }, [usp])
 
     const ordersDisplay = orderDatas.filter(orderData => orderData.uid === props.user.id );
+    console.log(orderDatas)
     return (
         <>
-            {ordersDisplay.slice(pagerData.startIdx, pagerData.endIdx).map((order, idx) => {
-                    return (
-                        <table key= {idx}>
-                            <thead>
-                                <tr>
-                                    <th>Rendelésszám</th>
-                                    <th>Termékek</th>
-                                    <th>Mennyiség</th>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rendelésszám</th>
+                        <th>Termékek</th>
+                        <th>Mennyiség</th>
+                        <th>Dátum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {ordersDisplay.slice(pagerData.startIdx, pagerData.endIdx).map((order, idx) => {
+                        return (
+                                <tr key={idx}>
+                                    <td>{order.id}</td>
+                                    <td>{Object.values(order.termekek).map((prod, idx) => {
+                                        return (
+                                            <ul key={idx}>
+                                                <li>
+                                                    {prod.name}
+                                                </li>
+                                            </ul>
+                                        )
+                                    })}
+                                    </td>
+                                    <td>
+                                    {Object.values(order.termekek).map((prod, idx) => {
+                                        return (
+                                            <ul key={idx}>
+                                                <li>
+                                                    {prod.quantity}
+                                                </li>
+                                            </ul>
+                                        )
+                                    })}
+                                    </td>
+                                    <td>
+                                        {Intl.DateTimeFormat('HU', { dateStyle: 'long', timeStyle: 'medium',}).format(order.timestamp)}
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tr key={idx}>
-                                <td>{order.id}</td>
-                                <td>{Object.values(order.termekek).map((prod, idx) => {
-                                    return (
-                                        <tr key={idx}>
-                                            <td>
-                                                {prod.name}
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
-                                </td>
-                                <td>
-                                {Object.values(order.termekek).map((prod, idx) => {
-                                    return (
-                                        <tr key={idx}>
-                                            <td>
-                                                {prod.quantity}
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
-                                </td>
-                            </tr>
-                        </table>
-                    )
-                
-            })}
+                        )
+                    })}
+                </tbody>
+            </table>
             <Pager allProducts={ordersDisplay.length} itemsPerPage={pagerData.itemsPerPage}/>
         </>
     )

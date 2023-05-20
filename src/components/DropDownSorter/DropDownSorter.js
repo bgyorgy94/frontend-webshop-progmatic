@@ -1,28 +1,29 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 
 export default function DropDownSorter() {
     const [searchParam, setSearchParam] = useSearchParams();
     const sortBy = searchParam.get("sortBy");
     const direction = searchParam.get("direction");
-    const [dropdownValue, setDropdownValue] = useState(() => {
+    const [dropdownValue, setDropdownValue] = useState()
+
+    useEffect(() => {
         if (sortBy === "price") {
             if (direction === "asc") {
-                return "priceAsc"
+                setDropdownValue("priceAsc")
             } else if (direction === "desc") {
-                return "priceDesc"
+                setDropdownValue("priceDesc")
             }
         } else if (sortBy === "name") {
             if (direction === "asc") {
-                return "nameAsc"
+                setDropdownValue("nameAsc")
             } else if (direction === "desc") {
-                return "nameDesc"
+                setDropdownValue("nameDesc")
             }
         } else {
-            return "none"
+            setDropdownValue("none")
         }
-    }
-    )
+    }, [searchParam])
 
     return (
         <div>

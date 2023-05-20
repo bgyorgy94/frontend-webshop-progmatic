@@ -1,12 +1,23 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import productsService from "../services/products-service";
 import { ToastContext } from "../services/toastContext"
-
+import { app } from "../firebase/firebaseConfig"
+import {getDownloadURL, getStorage,ref, uploadBytes} from "firebase/storage"
+import categoryService from "../services/category-service";
 
 export default function AddProduct() {
     const {showToast,setShowToast}  = useContext(ToastContext);
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState("")
+    const [file,setFile] = useState(null);
+    const [uploadedUrl, setUploadedUrl] = useState(null);
+    const [category, setCategory] = useState("")
+    const [categoryList, setCategoryList] = useState([])
+
+    useEffect(() => {
+        categoryService.getAllCategories()
+        .then(json => setCategoryList(Object.values(json)))
+    }, [])
 
     return (
         <>
@@ -19,6 +30,18 @@ export default function AddProduct() {
             <p>
                 Termék ára:
                 <input type="number" onChange={handlePriceChange} value={price} />
+            </p>
+            <p>
+                Termék képe: 
+                <input type="file" name="image" onChange={fileChange} />
+            </p>
+            <p>
+                Termék kategóriája:
+                <select onChange={handleCategoryChange}>
+                    {categoryList.map((category, idx) => {
+                        return (<option key={idx} value={category.id}>{category.name}</option>)
+                    })}
+                </select>
             </p>
             <p>
                 <button>Termék hozzáadása</button>
@@ -35,25 +58,45 @@ export default function AddProduct() {
         let value = e.target.value;
         setPrice(value)
     }
+    function fileChange(e){
+        setFile(e.target.files[0])
+    }
+
+    function handleCategoryChange(e) {
+        setCategory(e.target.value)
+    }
 
     function handlerSubmit(e) {
         e.preventDefault()
-        console.log(title, price)
+                    
+        const storage = getStorage(app)
+        const fileRef = ref(storage, "images/"+file.name);
+        uploadBytes(fileRef,file)
+        .then( (uploadResult) => {
+            getDownloadURL(uploadResult?.ref)
+            .then(url => {            
+                setUploadedUrl(url);
+            })
+        })
+        
+        
         productsService.createProduct({
             name: title,
-            price: price
+            price: price,
+            url: uploadedUrl,
+            categoryId: category
         }).then(json => {
             setShowToast({
                 show:true,
                 message:`Sikeres termékfelvitel!`,
                 type:"success"
+            })
+            
         })
-        
-    })
-
-        
-        setTitle("");
-        setPrice("");
-    }
+    
+    
+    setTitle("");
+    setPrice("");
+}
 
 }

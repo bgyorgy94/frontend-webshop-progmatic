@@ -4,11 +4,13 @@ import CartList from "../components/CartList/CartList";
 import { CartContext } from "../contexts/cartContext";
 import orderService from "../services/order-service";
 import { UserContext } from "../contexts/userContext";
+import { ToastContext } from "../services/toastContext";
 
 export default function Cart() {
     const {cart, emptyCart} = useContext(CartContext)
     const [user] = useContext(UserContext)
     const navigate = useNavigate()
+    const {showToast,setShowToast}  = useContext(ToastContext);
 
     return (
         <>
@@ -28,7 +30,13 @@ export default function Cart() {
                         </thead>
                             <CartList />
                     </table>
-                    <button onClick={() => orderService.sendOrder(cart, user).then(() => emptyCart())}>Megrendelem</button>
+                    <button onClick={() => orderService.sendOrder(cart, user).then(() => {
+                        emptyCart()
+                        setShowToast({
+                            show:true,
+                            message:`A megrendelés elküldve`,
+                            type:"success"})
+                        })}>Megrendelem</button>
                 </>
             }
         </>

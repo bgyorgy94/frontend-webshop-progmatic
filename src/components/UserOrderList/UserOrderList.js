@@ -30,7 +30,7 @@ export default function UserOrderList(props) {
         <>
             {ordersDisplay.slice(pagerData.startIdx, pagerData.endIdx).map((order, idx) => {
                     return (
-                        <table>
+                        <table key= {idx}>
                             <thead>
                                 <tr>
                                     <th>Rendelésszám</th>

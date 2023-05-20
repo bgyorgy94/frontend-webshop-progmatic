@@ -26,7 +26,7 @@ export default function AdminOrdersTable({children}) {
         .then(json=> setProductDatas(Object.values(json)))
         
         
-    },[])
+    },[usp])
     
     return(
         <>
@@ -53,28 +53,30 @@ export default function AdminOrdersTable({children}) {
                                         .map(user => user.lastName + " " + user.firstName)
                                     }</td> 
                                     <td> {order.id}</td> 
-                                    <td> {
+                                    <td>
+                                        <ul>
+                                        {
                                         Object.entries(order.termekek).map((product,idx) =>{
                                             return(
-                                                <tr key={idx}>
-                                                    <td>
+                                                <li key={idx}>
                                                         {
                                                         productDatas.filter( prod => prod.id == product[0])
                                                         .map( filtered => filtered.name )
                                                         }
-                                                    </td>
-                                                </tr>
+                                                </li>
                                             )
                                         })
                                         }
+                                       </ul> 
                                     </td>
-                                    <td>{Object.entries(order.termekek).map((product,idx) =>{
+                                    <td>
+                                        <ul>
+                                        {Object.entries(order.termekek).map((product,idx) =>{
                                             return(
-                                                <tr key={idx}>
-                                                    <td>{product[1]}</td>
-                                                </tr>
+                                                <li key={idx}>{product[1]}</li>
                                             )
                                         })}
+                                        </ul>
                                     </td>
 
                                 </tr>

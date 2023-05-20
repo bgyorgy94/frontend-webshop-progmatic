@@ -21,6 +21,9 @@ import AdminCustomers from './pages/AdminCustomers';
 import AdminOrders from './pages/AdminOrders';
 import UserOrders from './pages/UserOrders';
 import AddCategory from './pages/AddCategory';
+import AdminCategories from './pages/AdminCategories';
+import AdminModifyCategories from './components/AdminModifyCategories/AdminModifyCategories';
+import AdminDeleteCategory from './components/AdminDeleteCategory.js/AdminDeleteCategory';
 
 const router = createBrowserRouter([
   {
@@ -88,8 +91,20 @@ const router = createBrowserRouter([
             element: <ModifyProduct />
           },
           {
-            path:"/admin/kategoriak/uj-kategoria",
+            path:"/admin/uj-kategoria",
             element: <AddCategory />
+          },
+          {
+            path:"/admin/kategoriak",
+            element: <AdminCategories />
+          },
+          {
+            path: "/admin/kategoriak/:id/modositas",
+            element: <AdminModifyCategories />
+          },
+          {
+            path: "/admin/kategoriak/:id/torles",
+            element: <AdminDeleteCategory />
           }
         ]
       }

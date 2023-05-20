@@ -4,14 +4,17 @@ import productsService from "../../services/products-service.js"
 import validation from "../../services/validation.js";
 import { useContext } from "react";
 import { ToastContext } from "../../services/toastContext.js";
+import categoryService from "../../services/category-service.js";
 
 export default function ModifyProduct() {
     const {id}= useParams();
     const [product, setProduct] = useState({
         id:"",
         name:"",
-        price:""
+        price:"",
+        categoryId: ""
     })
+    const [categoryList, setCategoryList] = useState([])
     const navigate=useNavigate();
     const {showToast,setShowToast}  = useContext(ToastContext);
 
@@ -20,7 +23,8 @@ export default function ModifyProduct() {
         .then(json=> setProduct({
             id: json.id,
             name: json.name,
-            price: json.price
+            price: json.price,
+            categoryId: json.categoryId
         }))
         .catch(err => {
             setShowToast({
@@ -31,6 +35,13 @@ export default function ModifyProduct() {
         })
     },[])
 
+    useEffect(() => {
+        categoryService.getAllCategories()
+        .then(json => setCategoryList(Object.values(json)))
+    }, [])
+
+    console.log(categoryList)
+    
     const [formData,setFormData] = useState({product});
 
     return(
@@ -51,13 +62,19 @@ export default function ModifyProduct() {
                 type="text" 
                 onChange={(e) => setFormData({...formData,price: e.target.value})}
             />
+
+            <p> Termék kategória: {categoryList.map((category => {
+                if (category.id === product.categoryId) return category.name
+            }))}</p> 
+            <select value={formData.categoryId} onChange={(e) => setFormData({...formData, categoryId: e.target.value})}>  
+                {categoryList.map((category, idx) => {
+                    return (<option key={idx} value={category.id} selected={category.id === product.categoryId ? true : false}>{category.name}</option>)
+                })}
+            </select>
             <p>
                 <button onClick={modifyProductButton}>módosít</button>
                 <button onClick={cancelButton}>mégsem</button>
-            
             </p>
-            
-
         </form>
 
     )

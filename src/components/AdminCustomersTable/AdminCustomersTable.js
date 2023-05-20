@@ -26,15 +26,13 @@ export default function AdminCustomersTable({children}) {
             }else{
                 setDisplayUsers(Object.values(json))
             }
-                    
-                })
+        })
     },[usp])
 
     const displayArr = (filter === null) ? 
         displayUsers : 
         (displayUsers.filter(user => user.firstName.toLowerCase().includes(filter) || user.lastName.toLowerCase().includes(filter)));
-    console.log(displayArr);
-
+    
     return(
         <>
             <table>

@@ -45,7 +45,7 @@ export default function AdminProductTable({children}) {
                         </tr>
                     </thead>
                 <tbody>
-                    {products.slice(pagerData[0], pagerData[1]).map((product, idx) => {
+                    {products.slice(pagerData.startIdx, pagerData.endIdx).map((product, idx) => {
                         return (
                             <tr key={idx}>
                                 <td>{product.name}</td>
@@ -55,7 +55,7 @@ export default function AdminProductTable({children}) {
                             </tr>)})}
                 </tbody>
             </table>
-            <Pager allProducts={products.length} itemsPerPage={pagerData[2]} />
+            <Pager allProducts={products.length} itemsPerPage={pagerData.itemsPerPage} />
         </>
     )
 }

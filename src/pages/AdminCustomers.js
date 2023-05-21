@@ -1,11 +1,11 @@
-import FilterUsers from "../components/FilterUsers/FilterUsers"
 import AdminCustomersTable from "../components/AdminCustomersTable/AdminCustomersTable"
+import Filter from "../components/Filter/Filter";
 import ProductNameSorter from "../components/ProductNameSorter/ProductNameSorter";
 
 export default function AdminCustomers() {
     return (
         <div>Vásárlók
-            <FilterUsers />
+            <Filter />
             <AdminCustomersTable>
                 <ProductNameSorter name="Rendezés név szerint"/>
             </AdminCustomersTable>

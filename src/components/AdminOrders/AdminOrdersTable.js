@@ -13,20 +13,35 @@ export default function AdminOrdersTable({children}) {
     const [userDatas,setUserDatas] = useState([]);
     const [usp] = useSearchParams();
     const pagerData = pagerService(usp);
+    const name = usp.get("title")
+
     let sum=0;
     useEffect( () => {
         orderService.getOrders()
-        .then(json=> setOrderDatas(Object.values(json)))
+        .then(json=> {
+            setOrderDatas(Object.values(json))
+        })
 
         userService.getUserDatas()
-        .then(json => setUserDatas(Object.values(json)))
-        
-        
+        .then(json => {
+            let originalUserDatas = Object.values(json)
+            let namesFiltered
+
+            if (name !== null) {
+                namesFiltered = originalUserDatas.filter((user) => (
+                    user.firstName.toLowerCase().includes(name) || user.lastName.toLowerCase().includes(name)
+                ))
+            } else namesFiltered = originalUserDatas
+
+            setUserDatas(namesFiltered)
+        })
     },[usp])
     
     return(
         <>
-            {orderDatas.slice(pagerData.startIdx, pagerData.endIdx).map( (order,idx) => {
+            {orderDatas.filter((order) => (
+                userDatas.map((user) => {return user.id}).includes(order.uid)
+            )).slice(pagerData.startIdx, pagerData.endIdx).map( (order,idx) => {
                 sum =0;
                 return(
                     <tr key={idx}>
@@ -68,7 +83,9 @@ export default function AdminOrdersTable({children}) {
                     </tr>
                 )})}
                 <tr>
-                    <Pager allProducts={orderDatas.length} itemsPerPage={pagerData.itemsPerPage} />
+                    <Pager allProducts={orderDatas.filter((order) => (
+                                            userDatas.map((user) => {return user.id}).includes(order.uid))).length}
+                    itemsPerPage={pagerData.itemsPerPage} />
                 </tr>
         </>
     )

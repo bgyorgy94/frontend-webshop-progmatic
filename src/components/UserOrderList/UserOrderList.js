@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Pager from "../Pager/Pager";
 import pagerService from "../../services/pager-service";
+import DateSorter from "../DateSorter/DateSorter";
+import IdSorter from "../IdSorter/IdSorter";
+import sortOrders from "../../services/sortOrders";
 
 export default function UserOrderList(props) {
 
@@ -16,13 +19,22 @@ export default function UserOrderList(props) {
 
     useEffect(() => {
         orderService.getOrders()
-            .then(json => setOrderDatas(Object.values(json)))
+            .then(json => {
+                const allOrders = Object.values(json);
+                const sortBy = usp.get("sortBy");
+                const direction = usp.get("direction");
+                if(!sortBy) setOrderDatas(allOrders)
+                else setOrderDatas(sortOrders(allOrders, sortBy, direction))
 
-        userService.getUserDatas()
-            .then(json => setUserDatas(Object.values(json)))
+    
+            
 
-        productsService.getAllProducts()
-            .then(json => setProductDatas(Object.values(json)))
+        // userService.getUserDatas()
+        //     .then(json => setUserDatas(Object.values(json)))
+
+        // productsService.getAllProducts()
+        //     .then(json => setProductDatas(Object.values(json)))
+        })
     }, [usp])
 
     const ordersDisplay = orderDatas.filter(orderData => orderData.uid === props.user.id);
@@ -31,10 +43,10 @@ export default function UserOrderList(props) {
             <table>
                 <thead>
                     <tr>
-                        <th>Rendelésszám</th>
+                        <th> <IdSorter title={"Rendelésszám"} /> </th>
                         <th>Termékek</th>
                         <th>Mennyiség</th>
-                        <th>Dátum</th>
+                        <th> <DateSorter title={"Dátum"}/> </th>
                     </tr>
                 </thead>
                 <tbody>

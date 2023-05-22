@@ -33,20 +33,20 @@ export default function Pager({ allProducts, itemsPerPage }) {
     }
   
   return (
-    <div>
-      {currentPage > 1 && <button  onClick={toPrevPage}> <FaAngleLeft /> </button>}
-      {currentPage == 1 || <button value= {1} onClick={toPageNum}> 1 </button>}
+    <div className="col-12 ">
+      {currentPage > 1 && <button type="button" class="btn btn-secondary" onClick={toPrevPage}> <FaAngleLeft /> </button>}
+      {currentPage == 1 || <button type="button" class="btn btn-secondary" value= {1} onClick={toPageNum}> 1 </button>}
       {pageStep.prev4 > 1  && <span> [...] </span> }
-      {pageStep.prev3 > 1 && <button value= {pageStep.prev3} onClick={toPageNum}> {pageStep.prev3} </button>}
-      {pageStep.prev2 > 1 && <button value= {pageStep.prev2} onClick={toPageNum}> {pageStep.prev2} </button>}
-      {pageStep.prev1 > 1 && <button value= {pageStep.prev1} onClick={toPageNum}> {pageStep.prev1} </button>} 
+      {pageStep.prev3 > 1 && <button type="button" class="btn btn-secondary" value= {pageStep.prev3} onClick={toPageNum}> {pageStep.prev3} </button>}
+      {pageStep.prev2 > 1 && <button type="button" class="btn btn-secondary" value= {pageStep.prev2} onClick={toPageNum}> {pageStep.prev2} </button>}
+      {pageStep.prev1 > 1 && <button type="button" class="btn btn-secondary" value= {pageStep.prev1} onClick={toPageNum}> {pageStep.prev1} </button>} 
       <span> {currentPage} </span>
-      {pageStep.next1 < totalPages && <button value= {pageStep.next1} onClick={toPageNum}> {pageStep.next1} </button>}
-      {pageStep.next2 < totalPages && <button value= {pageStep.next2} onClick={toPageNum}> {pageStep.next2} </button>}
-      {pageStep.next3 < totalPages && <button value= {pageStep.next3} onClick={toPageNum}> {pageStep.next3} </button>}
+      {pageStep.next1 < totalPages && <button type="button" class="btn btn-secondary" value= {pageStep.next1} onClick={toPageNum}> {pageStep.next1} </button>}
+      {pageStep.next2 < totalPages && <button type="button" class="btn btn-secondary" value= {pageStep.next2} onClick={toPageNum}> {pageStep.next2} </button>}
+      {pageStep.next3 < totalPages && <button type="button" class="btn btn-secondary" value= {pageStep.next3} onClick={toPageNum}> {pageStep.next3} </button>}
       {pageStep.next4 < totalPages && <span> [...] </span> }
-      {currentPage == totalPages || <button value= {totalPages} onClick={toPageNum}> {totalPages} </button>}
-      {currentPage < totalPages && <button onClick={toNextPage}> <FaAngleRight /> </button> }
+      {currentPage == totalPages || <button type="button" class="btn btn-secondary" value= {totalPages} onClick={toPageNum}> {totalPages} </button>}
+      {currentPage < totalPages && <button type="button" class="btn btn-secondary" onClick={toNextPage}> <FaAngleRight /> </button> }
     </div>
   );
 

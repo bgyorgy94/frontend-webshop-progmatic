@@ -64,8 +64,8 @@ export default function Filter() {
                         })}
                     </select>
                 </label>
-                <button type="submit">Szűrés</button>
-                <button onClick={reset}>Reset</button>
+                <button className="btn btn-secondary m-1" type="submit">Szűrés</button>
+                <button className="btn btn-secondary m-1" onClick={reset}>Reset</button>
             </form>
         )
     }

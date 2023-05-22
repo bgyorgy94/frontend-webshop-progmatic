@@ -5,11 +5,21 @@ import ProductNameSorter from "../components/ProductNameSorter/ProductNameSorter
 import ProductPriceSorter from "../components/ProductPriceSorter/ProductPriceSorter"
 
 export default function Products() {
-    return(
+    return (
         <>
-            <Filter />
-                <DropDownSorter />
-            <ProductList />
+            <div className="row align-items-start">
+                <div className="col-md-2">
+                    <div className="my-2">
+                        <DropDownSorter />
+                    </div>
+                    <div>
+                        <Filter />
+                    </div>
+                </div>
+                <div className="col-md-10 text-center">
+                    <ProductList />
+                </div>
+            </div>
         </>
     )
 }

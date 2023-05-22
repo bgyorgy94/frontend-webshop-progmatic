@@ -66,15 +66,15 @@ export default function ProductList() {
 
     return (
         <>
-            <ul>
+                <div className="row align-items-start">
                 {products.slice(pagerData.startIdx, pagerData.endIdx).map((product, idx) => {
                     return (
-                        <li key={idx}>
-                            <img src={product.url ? product.url : ""} />
-                            <p> Termék neve: {product.name} </p>
-                            <p> Ár: {product.price} </p>
+                        <div key={idx} className="col-md-4 text-center">
+                            <img className="img-fluid" src={product.url ? product.url : ""} />
+                            <p> {product.name} </p>
+                            <p> Ár: {product.price} Ft</p>
                             <p>
-                                <button onClick={() => {
+                                <button type="button" className="btn btn-primary" onClick={() => {
                                     user? addToCart(product.id) : navigate("/belepes")
                                     setShowToast({
                                         show:true,
@@ -84,11 +84,10 @@ export default function ProductList() {
                                     Kosárba
                                 </button>
                             </p>
-                        </li>
+                        </div>
                     )
                 })}
-
-            </ul>
+                </div>
             <Pager allProducts={products.length} itemsPerPage={pagerData.itemsPerPage}/>
         </>
     )

@@ -5,6 +5,7 @@ import { ToastContext } from "./services/toastContext";
 import Toast from "./components/Toast/Toast";
 import userService from "./services/user-service";
 import { UserContext } from "./contexts/userContext";
+import Footer from "./components/Footer/Footer";
 
 export default function Layout() {
     const [showToast,setShowToast] = useState({
@@ -33,9 +34,7 @@ export default function Layout() {
                         <Toast />
                 </main>
             </ToastContext.Provider>
-            <footer>
-                footer
-            </footer>
+            <Footer />
         </div>
     )
 }

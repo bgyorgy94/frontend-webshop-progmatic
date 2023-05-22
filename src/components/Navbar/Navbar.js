@@ -13,7 +13,7 @@ export default function Navbar() {
         <BootstrapNavbar bg="warning">
             <NavLink to="/">Home</NavLink>
             <NavLink to="/termekek">Termékek</NavLink>
-            <NavLink to="/admin">Admin</NavLink>
+            {user !== null && user.isAdmin ? <NavLink to="/admin">Admin</NavLink> : ""}
             <NavLink to="/kosar">Kosár ({<CartSum />})</NavLink>
             {user ? <DisplayUser /> : ""}
             {user ? "" : <NavLink to="/belepes">Belépés</NavLink>}

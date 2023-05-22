@@ -14,6 +14,7 @@ export default function AdminOrdersTable({children}) {
     const [usp] = useSearchParams();
     const pagerData = pagerService(usp);
     const name = usp.get("title")
+    const [sortedOrders,setSortedOrders] = useState([]);
 
     let sum=0;
     useEffect( () => {
@@ -34,12 +35,28 @@ export default function AdminOrdersTable({children}) {
             } else namesFiltered = originalUserDatas
 
             setUserDatas(namesFiltered)
+            
+            const direction = usp.get("direction");
+        orderService.getOrders()
+        .then(json => {
+            direction == null ? 
+            setSortedOrders(Object.values(json)) 
+            : 
+            setSortedOrders( direction === "asc" ? 
+            orderDatas.sort((a, b) => (userDatas.filter(user=> user.id == a.uid)[0].lastName> userDatas.filter(user=> user.id == b.uid)[0].lastName) ? 1 : -1)
+            :
+            orderDatas.sort((a, b) => (userDatas.filter(user=> user.id == a.uid)[0].lastName> userDatas.filter(user=> user.id == b.uid)[0].lastName) ? -1 : 1)
+            )  
+        })
         })
     },[usp])
+    console.log(usp.get("direction"))
+    
+
     
     return(
         <>
-            {orderDatas.filter((order) => (
+            {sortedOrders.filter((order) => (
                 userDatas.map((user) => {return user.id}).includes(order.uid)
             )).slice(pagerData.startIdx, pagerData.endIdx).map( (order,idx) => {
                 sum =0;

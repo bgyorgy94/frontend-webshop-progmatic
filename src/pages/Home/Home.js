@@ -15,7 +15,7 @@ export default function Home() {
                 </div>
                 <Row lg={10}>
 
-                    <Image src={cover} alt="cover dogs"  className={objectFit: "cover"  height= {550}} ></Image>
+                    <Image src={cover} alt="cover dogs"  height= {550} ></Image>
                 </Row>
                 <Row>
 

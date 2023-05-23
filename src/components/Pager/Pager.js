@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa"; 
+import Pagination from 'react-bootstrap/Pagination';
 
 export default function Pager({ allProducts, itemsPerPage }) {
 
@@ -27,26 +28,29 @@ export default function Pager({ allProducts, itemsPerPage }) {
     setSearchParam(searchParam);
   }
 
-  function toPageNum(e)  {
-      if(currentPage >= 1 && currentPage <= totalPages) searchParam.set("page", e.target.value)
+  function toPageNum(value)  {
+    console.log(value);
+      if(currentPage >= 1 && currentPage <= totalPages) searchParam.set("page", value)
       setSearchParam(searchParam)
     }
   
   return (
-    <div className="col-12 ">
-      {currentPage > 1 && <button type="button" class="btn btn-secondary" onClick={toPrevPage}> <FaAngleLeft /> </button>}
-      {currentPage == 1 || <button type="button" class="btn btn-secondary" value= {1} onClick={toPageNum}> 1 </button>}
-      {pageStep.prev4 > 1  && <span> [...] </span> }
-      {pageStep.prev3 > 1 && <button type="button" class="btn btn-secondary" value= {pageStep.prev3} onClick={toPageNum}> {pageStep.prev3} </button>}
-      {pageStep.prev2 > 1 && <button type="button" class="btn btn-secondary" value= {pageStep.prev2} onClick={toPageNum}> {pageStep.prev2} </button>}
-      {pageStep.prev1 > 1 && <button type="button" class="btn btn-secondary" value= {pageStep.prev1} onClick={toPageNum}> {pageStep.prev1} </button>} 
-      <span> {currentPage} </span>
-      {pageStep.next1 < totalPages && <button type="button" class="btn btn-secondary" value= {pageStep.next1} onClick={toPageNum}> {pageStep.next1} </button>}
-      {pageStep.next2 < totalPages && <button type="button" class="btn btn-secondary" value= {pageStep.next2} onClick={toPageNum}> {pageStep.next2} </button>}
-      {pageStep.next3 < totalPages && <button type="button" class="btn btn-secondary" value= {pageStep.next3} onClick={toPageNum}> {pageStep.next3} </button>}
-      {pageStep.next4 < totalPages && <span> [...] </span> }
-      {currentPage == totalPages || <button type="button" class="btn btn-secondary" value= {totalPages} onClick={toPageNum}> {totalPages} </button>}
-      {currentPage < totalPages && <button type="button" class="btn btn-secondary" onClick={toNextPage}> <FaAngleRight /> </button> }
+    <div className="col-12 justify-content-center">
+        <Pagination className="justify-content-center">
+      {currentPage > 1 && <Pagination.Prev onClick={toPrevPage} />}
+      {currentPage == 1 || <Pagination.Item onClick={() => toPageNum(1)}>1</Pagination.Item>}
+      {pageStep.prev4 > 1  && <Pagination.Ellipsis disabled />}
+      {pageStep.prev3 > 1 && <Pagination.Item onClick={() => toPageNum(pageStep.prev3)}>{pageStep.prev3}</Pagination.Item>}
+      {pageStep.prev2 > 1 && <Pagination.Item onClick={() => toPageNum(pageStep.prev2)}>{pageStep.prev2}</Pagination.Item>}
+      {pageStep.prev1 > 1 && <Pagination.Item onClick={() => toPageNum(pageStep.prev1)}>{pageStep.prev1}</Pagination.Item>}
+      <Pagination.Item active>{currentPage}</Pagination.Item>
+      {pageStep.next1 < totalPages && <Pagination.Item onClick={() => toPageNum(pageStep.next1)}>{pageStep.next1}</Pagination.Item>}
+      {pageStep.next2 < totalPages && <Pagination.Item onClick={() => toPageNum(pageStep.next2)}>{pageStep.next2}</Pagination.Item>}
+      {pageStep.next3 < totalPages && <Pagination.Item onClick={() => toPageNum(pageStep.next3)}>{pageStep.next3}</Pagination.Item>}
+      {pageStep.next4 < totalPages && <Pagination.Ellipsis disabled />}
+      {currentPage == totalPages || <Pagination.Item onClick={() => toPageNum(totalPages)}>{totalPages}</Pagination.Item>}
+      {currentPage < totalPages && <Pagination.Next onClick={toNextPage} />}
+      </Pagination>
     </div>
   );
 

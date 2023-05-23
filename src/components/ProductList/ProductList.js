@@ -69,11 +69,12 @@ export default function ProductList() {
                 <div className="row align-items-start">
                 {products.slice(pagerData.startIdx, pagerData.endIdx).map((product, idx) => {
                     return (
-                        <div key={idx} className="col-md-4 text-center">
-                            <img className="img-fluid" src={product.url ? product.url : ""} />
-                            <p> {product.name} </p>
-                            <p> Ár: {product.price} Ft</p>
-                            <p>
+                        <div key={idx} className="col-md-4">
+                            <div className="card my-2">
+                            <img className="card-img-top" src={product.url ? product.url : ""} />
+                            <div className="card-body">
+                            <h5 className="card-title">{product.name}</h5>
+                            <h6 className="cart-subtitle"> Ár: {product.price} Ft</h6>
                                 <button type="button" className="btn btn-primary" onClick={() => {
                                     user? addToCart(product.id) : navigate("/belepes")
                                     setShowToast({
@@ -83,7 +84,8 @@ export default function ProductList() {
                                     }}>
                                     Kosárba
                                 </button>
-                            </p>
+                            </div>
+                            </div>
                         </div>
                     )
                 })}

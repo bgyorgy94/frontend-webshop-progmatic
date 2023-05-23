@@ -6,7 +6,7 @@ import ProductPriceSorter from "../components/ProductPriceSorter/ProductPriceSor
 
 export default function Products() {
     return (
-        <>
+        <div className="container">
             <div className="row align-items-start">
                 <div className="col-md-2">
                     <div className="my-2">
@@ -16,10 +16,10 @@ export default function Products() {
                         <Filter />
                     </div>
                 </div>
-                <div className="col-md-10 text-center">
+                <div className="col-md-10">
                     <ProductList />
                 </div>
             </div>
-        </>
+        </div>
     )
 }

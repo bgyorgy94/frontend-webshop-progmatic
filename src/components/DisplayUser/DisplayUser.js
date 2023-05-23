@@ -3,6 +3,7 @@ import { UserContext } from "../../contexts/userContext"
 import { ToastContext } from "../../services/toastContext";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "../../contexts/cartContext";
+import { NavDropdown } from "react-bootstrap";
 
 export default function DisplayUser() {
 
@@ -15,10 +16,11 @@ export default function DisplayUser() {
     return (
         <>
             {user ? <>
-                        <span>{user.lastName} {user.firstName} {user.isAdmin ? "(admin)" : ""}</span>
-                        <NavLink to="/profil">Profil</NavLink>
-                        <NavLink to="/megrendelesek">Rendeléseim</NavLink>
-                        <button onClick={logout}>Kijelentkezés</button>
+                        <NavDropdown title={<span>{user.lastName} {user.firstName} {user.isAdmin ? "(admin)" : ""}</span>}>
+                            <NavDropdown.Item as={NavLink} to="/profil">Profil</NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/megrendelesek">Rendeléseim</NavDropdown.Item>
+                            <NavDropdown.Item><button onClick={logout}>Kijelentkezés</button></NavDropdown.Item>
+                        </NavDropdown>
                     </>
                     : 
                     <span>{"Nem vagy bejelentkezve"}</span>}

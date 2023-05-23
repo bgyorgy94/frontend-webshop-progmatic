@@ -1,5 +1,4 @@
 import cover from "../../pictures/coverdogs.jpg"
-import "../Home/home.scss"
 import {Col, Container, Image, Row } from "react-bootstrap"
 
 
@@ -37,9 +36,6 @@ export default function Home() {
                     </Col>
                     <Col></Col>
                 </Row>
-                   
-
-
             </Container>
                
          

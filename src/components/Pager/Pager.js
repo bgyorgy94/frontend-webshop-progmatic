@@ -48,8 +48,8 @@ export default function Pager({ allProducts, itemsPerPage }) {
       {pageStep.next2 < totalPages && <Pagination.Item onClick={() => toPageNum(pageStep.next2)}>{pageStep.next2}</Pagination.Item>}
       {pageStep.next3 < totalPages && <Pagination.Item onClick={() => toPageNum(pageStep.next3)}>{pageStep.next3}</Pagination.Item>}
       {pageStep.next4 < totalPages && <Pagination.Ellipsis disabled />}
-      {currentPage == totalPages || <Pagination.Item onClick={() => toPageNum(totalPages)}>{totalPages}</Pagination.Item>}
-      {currentPage < totalPages && <Pagination.Next onClick={toNextPage} />}
+      {currentPage == totalPages || totalPages > 1 && <Pagination.Item onClick={() => toPageNum(totalPages)}>{totalPages}</Pagination.Item>}
+      {currentPage < totalPages && totalPages > 1 && <Pagination.Next onClick={toNextPage} />}
       </Pagination>
     </div>
   );

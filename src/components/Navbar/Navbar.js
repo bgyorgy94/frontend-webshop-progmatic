@@ -15,7 +15,7 @@ export default function Navbar() {
             <Container>
                     <Nav.Link as={NavLink} to="/">Home</Nav.Link>
                     <Nav.Link as={NavLink} to="/termekek">Termékek</Nav.Link>
-                    {user !== null && user.isAdmin ? <Nav.Link as={NavLink} to="/admin">Admin</Nav.Link> : ""}
+                    {user !== null && user.isAdmin ? <Nav.Link as={NavLink} to="/admin/termekek">Admin</Nav.Link> : ""}
                     <Nav.Link as={NavLink} to="/kosar">Kosár ({<CartSum />})</Nav.Link>
                     {user ? <DisplayUser /> : ""}
                     {user ? "" : <Nav.Link as={NavLink} to="/belepes">Belépés</Nav.Link>}

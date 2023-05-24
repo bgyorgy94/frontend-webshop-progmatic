@@ -8,6 +8,8 @@ import pagerService from "../../services/pager-service";
 import DateSorter from "../DateSorter/DateSorter";
 import IdSorter from "../IdSorter/IdSorter";
 import sortOrders from "../../services/sortOrders";
+import Table from 'react-bootstrap/Table';
+import "../UserOrderList/userOrderList.css"
 
 export default function UserOrderList(props) {
 
@@ -40,7 +42,7 @@ export default function UserOrderList(props) {
     const ordersDisplay = orderDatas.filter(orderData => orderData.uid === props.user.id);
     return (
         <>
-            <table>
+            <Table responsive striped bordered hover>
                 <thead>
                     <tr>
                         <th> <IdSorter title={"Rendelésszám"} /> </th>
@@ -83,7 +85,7 @@ export default function UserOrderList(props) {
                         )
                     })}
                 </tbody>
-            </table>
+            </Table>
             <Pager allProducts={ordersDisplay.length} itemsPerPage={pagerData.itemsPerPage} />
         </>
     )

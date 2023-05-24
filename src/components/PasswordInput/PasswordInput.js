@@ -8,7 +8,14 @@ export default function PasswordInput(props) {
     }, [password])
 
     return(
-        <input type="password" value={password} onChange={typePassword}></input>
+        <div className="col-md-6 mx-auto p-2"> 
+            <div className="form-floating"> 
+                <input type="password" value={password} onChange={typePassword}
+                className="form-control" id="floatingPassword" placeholder="Password"
+                ></input>
+                <label for="floatingPassword">Password</label>
+            </div>
+        </div>
     )
 
     function typePassword(e) {

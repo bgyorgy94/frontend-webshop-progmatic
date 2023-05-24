@@ -18,18 +18,17 @@ export default function Login() {
     console.log("render")
     return (
         <>
-            <div>
-                E-mail:
+        <div className=" mx-auto container text-center"> 
+            <h1>Belépés</h1>
                 <EmailInput value={email} getEmail={getEmail}/>
-            </div>
-            <div>
-                Jelszó:
                 <PasswordInput value={password} getPassword={getPassword}/>
+            <div className =" row mx-auto p-2 col-md-6 container text-center">
+                <div className="row gap-3">
+                <button className= "btn btn-outline-success col" onClick={registrateButton}>Regisztráció</button>
+                <button className="btn btn-outline-secondary col" onClick={login}>Belépés</button>
+                </div>
             </div>
-            <div>
-                <button onClick={registrateButton}>Regisztráció</button>
-                <button onClick={login}>Belépés</button>
-            </div>
+        </div>
         </>
     )
 

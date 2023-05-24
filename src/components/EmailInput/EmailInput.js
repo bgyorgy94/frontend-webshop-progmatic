@@ -10,10 +10,16 @@ export default function EmailInput(props) {
     }, [email])
 
     return (
-        <>
-            <input type="email" value={email} onChange={typeEmail} onBlur={validateEmail}></input>
-            {invalidEmail && <span id="invalid-email-message">Az e-mail cím nem megfelelő</span>}
-        </>
+        <div className="col-md-6 mx-auto p-2">
+            <div className=" form-floating mb-3 has-validation"> 
+                <input type="email" value={email} onChange={typeEmail} onBlur={validateEmail}
+                className= {`form-control ${invalidEmail && "is-invalid"}`} placeholder="name@example.com"
+                id="floatingInput"
+                ></input>
+                <label for="floatingInput">Email address</label>
+            </div>
+            {invalidEmail && <div id="invalid-email-message">Az e-mail cím nem megfelelő</div>}                    
+        </div>
     )
 
     function typeEmail(e) {
@@ -27,6 +33,7 @@ export default function EmailInput(props) {
             setInvalidEmail(false)
         }
     }
+
 
 
 }

@@ -35,6 +35,8 @@ export default function Pager({ allProducts, itemsPerPage }) {
     }
   
   return (
+    (
+      totalPages > 1 &&
     <div className="col-12 justify-content-center">
         <Pagination className="justify-content-center">
       {currentPage > 1 && <Pagination.Prev onClick={toPrevPage} />}
@@ -52,6 +54,7 @@ export default function Pager({ allProducts, itemsPerPage }) {
       {currentPage < totalPages && totalPages > 1 && <Pagination.Next onClick={toNextPage} />}
       </Pagination>
     </div>
+    )
   );
 
 

@@ -6,6 +6,8 @@ import sortProducts from "../../services/sortProducts";
 import { useSearchParams } from "react-router-dom";
 import Pager from "../Pager/Pager";
 import pagerService from "../../services/pager-service";
+import Table from 'react-bootstrap/Table';
+import "../UserOrderList/userOrderList.css"
 
 export default function AdminOrdersTable({children}) {
 
@@ -56,6 +58,18 @@ export default function AdminOrdersTable({children}) {
     
     return(
         <>
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <th>Vásárló neve</th>
+                    <th>Megrendelés ID</th>
+                    <th>Termékek</th>
+                    <th>Ár</th>
+                    <th>Mennyiség</th>
+                    <th>Megrendelés összege</th>
+                </tr>
+            </thead>
+            <tbody>
             {sortedOrders.filter((order) => (
                 userDatas.map((user) => {return user.id}).includes(order.uid)
             )).slice(pagerData.startIdx, pagerData.endIdx).map( (order,idx) => {
@@ -99,11 +113,13 @@ export default function AdminOrdersTable({children}) {
                         <td>{sum}</td>
                     </tr>
                 )})}
-                <tr>
+                </tbody>
+        </Table>
+                <div>
                     <Pager allProducts={orderDatas.filter((order) => (
                                             userDatas.map((user) => {return user.id}).includes(order.uid))).length}
                     itemsPerPage={pagerData.itemsPerPage} />
-                </tr>
+                </div>
         </>
     )
 }

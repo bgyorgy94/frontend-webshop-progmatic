@@ -74,8 +74,8 @@ export default function Filter() {
         return (
             <form onSubmit={search}>
                 <input type="text" name="title" placeholder="Keresés név alapján" value={filter.title} onChange={handleChange}/>
-                <button type="submit">Szűrés</button>
-                <button onClick={reset}>Reset</button>
+                <button type="submit" className="btn btn-secondary m-1">Szűrés</button>
+                <button onClick={reset} className="btn btn-secondary m-1">Reset</button>
             </form>
         )
     }

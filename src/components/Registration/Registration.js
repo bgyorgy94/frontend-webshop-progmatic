@@ -20,7 +20,7 @@ export default function Registration () {
     const [users,setUsers] = useState([]);
     return(
         <div className=" mx-auto container text-center">
-            <h1>Regisztráció</h1>
+            <h1>Új fiók létrehozása</h1>
             <div className=" container-sm"> 
                 <form>
                     <div className="row g-2">
@@ -86,7 +86,7 @@ export default function Registration () {
                     </div>
                     <button 
                     type="button" 
-                    className="btn btn-outline-success"
+                    className="btn btn-outline-primary"
                     onClick={registerButton}
                     >Regisztráció</button>
                 </form>
@@ -122,7 +122,7 @@ export default function Registration () {
             .then(registerResp => {
                if(registerResp.error) {
                    console.log(registerResp)
-                   setErrorMsg("Már létezik regisztráció ezzel az email címmel")
+                   setErrorMsg("Nem megfelelő email cím")
                }
                if(!registerResp.error) {
                    userService.createUser(registerResp.localId,formData)

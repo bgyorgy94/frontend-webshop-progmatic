@@ -5,6 +5,7 @@ import { UserContext } from "../contexts/userContext";
 import  userService from "../services/user-service";
 import { useNavigate } from "react-router-dom";
 import { ToastContext } from "../services/toastContext";
+import { NavLink } from "react-router-dom";
 
 
 export default function Login() {
@@ -24,8 +25,10 @@ export default function Login() {
                 <PasswordInput value={password} getPassword={getPassword}/>
             <div className =" row mx-auto p-2 col-md-6 container text-center">
                 <div className="row gap-3">
-                <button className= "btn btn-outline-success col" onClick={registrateButton}>Regisztráció</button>
-                <button className="btn btn-outline-secondary col" onClick={login}>Belépés</button>
+                <button className="btn btn-outline-primary col" onClick={login}>Belépés</button>
+                <NavLink to="/regisztracio">
+                Ha még nincs fiókja, ide kattintva létrehozhat egyet.
+                </NavLink>
                 </div>
             </div>
         </div>
@@ -60,8 +63,5 @@ export default function Login() {
             message: "Sikertelen bejelentkezés",
             type: "error"
         })})
-    }
-    function registrateButton(){
-        navigate("/regisztracio");
     }
 }

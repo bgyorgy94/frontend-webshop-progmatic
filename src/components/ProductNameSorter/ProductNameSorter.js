@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { FaSortUp, FaSortDown } from 'react-icons/fa'
+import { FaSortUp, FaSortDown, FaSort } from 'react-icons/fa'
 
 export default function ProductNameSorter(props) {
     const [searchParam, setSearchParam] = useSearchParams();
@@ -13,11 +13,12 @@ export default function ProductNameSorter(props) {
     const icons = {
         asc: <FaSortUp />,
         desc: <FaSortDown />,
+        none: <FaSort />
     }
 
     return (
         <>
-            <span onClick={handleClick}> {props.name} {icons[direction]}</span>
+            <span onClick={handleClick}> {props.name} {(direction && icons[direction]) || icons["none"]}</span>
         </>
     )
 

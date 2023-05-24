@@ -1,4 +1,4 @@
-import { FaSortDown, FaSortUp } from "react-icons/fa";
+import { FaSort, FaSortDown, FaSortUp } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 
 export default function ProductPriceSorter() {
@@ -13,11 +13,12 @@ export default function ProductPriceSorter() {
     const icons = {
         asc: <FaSortUp />,
         desc: <FaSortDown />,
+        none: <FaSort />
     }
 
     return (
         <>
-            <span onClick={handleClick}>Termék ára {icons[direction]}</span>
+            <span onClick={handleClick}>Termék ára {(direction && icons[direction]) || icons["none"]}</span>
         </>
     )
 

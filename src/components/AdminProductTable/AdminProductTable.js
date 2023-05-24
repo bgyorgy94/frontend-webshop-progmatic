@@ -51,20 +51,20 @@ export default function AdminProductTable({children}) {
 
     return (
         <>
-            <table>
+            <table className="table table-hover">
                     <thead>
                         <tr>
-                            <th> {children}</th>
+                            {children}
                         </tr>
                     </thead>
                 <tbody>
                     {products.slice(pagerData.startIdx, pagerData.endIdx).map((product, idx) => {
                         return (
                             <tr key={idx}>
-                                <td>{product.name}</td>
-                                <td>{product.price}</td>
-                                <td><Link to={`/admin/termekek/${product.id}/modositas`}>Módosítás</Link></td>
-                                <td><Link to={`/admin/termekek/${product.id}/torles`}>Törlés</Link></td>
+                                <td className="align-middle">{product.name}</td>
+                                <td className="text-end w-auto align-middle">{product.price} Ft</td>
+                                <td className="w-auto"><Link className="btn btn-primary mx-1" to={`/admin/termekek/${product.id}/modositas`}>Módosítás</Link>
+                                <Link className="btn btn-danger mx-1" to={`/admin/termekek/${product.id}/torles`}>Törlés</Link></td>
                             </tr>)})}
                 </tbody>
             </table>

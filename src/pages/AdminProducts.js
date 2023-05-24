@@ -5,11 +5,16 @@ import ProductPriceSorter from "../components/ProductPriceSorter/ProductPriceSor
 
 export default function AdminProducts() {
     return (
-        <div>Admin Products
+        <div className="container">Admin Products
             <Filter />
             <AdminProductTable >
-                <ProductNameSorter name="Termék neve"/>
-		        <ProductPriceSorter />
+                <th>
+                    <ProductNameSorter name="Termék neve" />
+                </th>
+                <th className="text-end">
+                    <ProductPriceSorter />
+                </th>
+                <th />
             </AdminProductTable >
         </div>
     )

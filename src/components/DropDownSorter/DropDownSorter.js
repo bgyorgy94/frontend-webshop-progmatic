@@ -26,17 +26,15 @@ export default function DropDownSorter() {
     }, [searchParam])
 
     return (
-        <div>
-            <label>
-                Rendezés:
-                <select value={dropdownValue} onChange={dropdownHandler}>
-                    <option value={"none"}></option>
+        <div className="form-floating">
+                <select value={dropdownValue} onChange={dropdownHandler} className="form-select" id="floatingSelectGrid">
+                    <option selected value={"none"}></option>
                     <option value={"priceAsc"}>Ár szerint növekvő</option>
                     <option value={"priceDesc"}>Ár szerint csökkenő</option>
                     <option value={"nameAsc"}>Név szerint növekvő</option>
                     <option value={"nameDesc"}>Név szerint csökkenő</option>
                 </select>
-            </label>
+                <label for="floatingSelectGrid">Rendezés</label>
         </div>
     )
     function dropdownHandler(e) {

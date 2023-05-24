@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useLocation, useSearchParams } from "react-router-dom";
 import categoryService from "../../services/category-service";
-
+import "./filter.css"
 const initFilter = {
     title: "",
     minimumPrice: "",
@@ -43,19 +43,28 @@ export default function Filter() {
     if (location.pathname === "/termekek" || location.pathname == "/admin/termekek") {
         return (
             <form onSubmit={search}>
-                <input type="text" name="title" placeholder="Keresés név alapján" value={filter.title} onChange={handleChange}/>
-                <label>
-                    Minimum ár:
-                    <input type="number" name="minimumPrice" min={0} value={filter.minimumPrice} onChange={handleChange}/>
-                </label>
-                <label>
-                    Maximum ár:
-                    <input type="number" name="maximumPrice" value={filter.maximumPrice} onChange={handleChange}/>
-                </label>
-                <label>
-                    Kategória:
-                    <select name="category" value={filter.category} onChange={handleChange}>
-                        <option key={-1} value={""}>---</option>
+                <div className="input-group">
+                    <input type="text" className="form-control " name="title" id="example-search-input" placeholder="Keresés" value={filter.title} onChange={handleChange} aria-describedby="button-addon2" aria-label="Keresés név alapján"/>
+                        <span className="input-group-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </span>
+                </div>
+                <div class="form-floating mt-2">
+                    <input type="number" name="minimumPrice" min={0} value={filter.minimumPrice} onChange={handleChange} className="form-control " placeholder="Minimum ár" id="floatingMinPrice"/>
+                    <label for="floatingMinPrice">Minimum ár</label>
+                </div>
+                <div class="form-floating mt-2">
+                    <input type="number" name="maximumPrice" min={0} value={filter.maximumPrice} onChange={handleChange} className="form-control" placeholder="Maximum ár" id="floatingMaxPrice"/>
+                    <label for="floatingMaxPrice">Maximum ár</label>
+                </div>
+
+
+                
+                <div className="form-floating mt-2">
+                    <select name="category" value={filter.category} onChange={handleChange} class="form-select" id="floatingSelect" aria-label="Kategória">
+                        <option key={-1} value={""}></option>
                         <option key={0} value={"uncategorized"}>besorolatlan</option>
                         {categoryList.map((category, idx) => {
                             return (
@@ -63,9 +72,13 @@ export default function Filter() {
                             )
                         })}
                     </select>
-                </label>
-                <button className="btn btn-secondary m-1" type="submit">Szűrés</button>
-                <button className="btn btn-secondary m-1" onClick={reset}>Reset</button>
+                    <label for="floatingSelect">Kategória</label>
+                </div>  
+                <div className=" d-flex align-items-center justify-content-center flex-wrap">
+
+                <button className="btn btn-outline-secondary m-1" type="submit">Szűrés</button>
+                <button className="btn btn-outline-secondary m-1 " onClick={reset}>Reset</button>
+                </div>
             </form>
         )
     }

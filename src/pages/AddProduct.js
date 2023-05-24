@@ -70,16 +70,17 @@ export default function AddProduct() {
     function handlerSubmit(e) {
         e.preventDefault()
                     
-        // const storage = getStorage(app)
-        // const fileRef = ref(storage, "images/"+file.name);
-        // uploadBytes(fileRef,file)
-        // .then( (uploadResult) => {
-        //     getDownloadURL(uploadResult?.ref)
-        //     .then(url => {            
-        //         setUploadedUrl(url);
-        //     })
-        // })
-        
+        const storage = getStorage(app)
+        const fileRef = ref(storage, "images/"+file.name);
+        uploadBytes(fileRef,file)
+        .then( (uploadResult) => {
+             getDownloadURL(uploadResult?.ref)
+             .then(url => {            
+                 setUploadedUrl(url);
+                })
+            })
+            
+        console.log(uploadedUrl)
         
         productsService.createProduct({
             name: title,

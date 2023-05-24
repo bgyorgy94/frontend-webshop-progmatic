@@ -1,13 +1,14 @@
 import AdminOrdersTable from "../components/AdminOrders/AdminOrdersTable"
 import Filter from "../components/Filter/Filter"
 import ProductNameSorter from "../components/ProductNameSorter/ProductNameSorter"
+import Table from 'react-bootstrap/Table';
 
 export default function AdminOrders() {
 
     return(
         <div> Megrendelések
             <Filter />
-            <table>
+            <Table responsive striped bordered hover>
                 <thead>
                     <tr>
                         <th>
@@ -26,7 +27,7 @@ export default function AdminOrders() {
                 <tbody>
                     <AdminOrdersTable />
                 </tbody>
-            </table>
+            </Table>
         </div>
     )
 }

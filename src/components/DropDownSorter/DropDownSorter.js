@@ -28,7 +28,7 @@ export default function DropDownSorter() {
     return (
         <div className="form-floating">
                 <select value={dropdownValue} onChange={dropdownHandler} className="form-select" id="floatingSelectGrid">
-                    <option selected value={"none"}></option>
+                    <option selected value={"none"}>Alapértelmezett</option>
                     <option value={"priceAsc"}>Ár szerint növekvő</option>
                     <option value={"priceDesc"}>Ár szerint csökkenő</option>
                     <option value={"nameAsc"}>Név szerint növekvő</option>

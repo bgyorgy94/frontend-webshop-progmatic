@@ -64,7 +64,7 @@ export default function Filter() {
                 
                 <div className="form-floating mt-2">
                     <select name="category" value={filter.category} onChange={handleChange} class="form-select" id="floatingSelect" aria-label="Kategória">
-                        <option key={-1} value={""}></option>
+                        <option key={-1} value={""}>Összes</option>
                         <option key={0} value={"uncategorized"}>besorolatlan</option>
                         {categoryList.map((category, idx) => {
                             return (

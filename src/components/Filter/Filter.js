@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import categoryService from "../../services/category-service";
 import "./filter.css"
 const initFilter = {
@@ -9,12 +9,11 @@ const initFilter = {
     category: ""
 };
 
-export default function Filter() {
+export default function Filter(props) {
 
     const [usp, setUsp] = useSearchParams();
     const [filter, setFilter] = useState(initFilter);
     const [categoryList, setCategoryList] = useState([]);
-    const location = useLocation();
 
     useEffect(() => {
         categoryService.getAllCategories()
@@ -40,9 +39,9 @@ export default function Filter() {
         setUsp(o);
     }
 
-    if (location.pathname === "/termekek" || location.pathname == "/admin/termekek") {
         return (
             <form onSubmit={search}>
+                {props.type.includes("title") ? (
                 <div className="input-group">
                     <input type="text" className="form-control " name="title" id="example-search-input" placeholder="Keresés" value={filter.title} onChange={handleChange} aria-describedby="button-addon2" aria-label="Keresés név alapján"/>
                         <span className="input-group-text">
@@ -50,7 +49,9 @@ export default function Filter() {
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                             </svg>
                         </span>
-                </div>
+                </div>) : ""}
+                {props.type.includes("price") ? (
+                <>
                 <div class="form-floating mt-2">
                     <input type="number" name="minimumPrice" min={0} value={filter.minimumPrice} onChange={handleChange} className="form-control " placeholder="Minimum ár" id="floatingMinPrice"/>
                     <label for="floatingMinPrice">Minimum ár</label>
@@ -59,12 +60,11 @@ export default function Filter() {
                     <input type="number" name="maximumPrice" min={0} value={filter.maximumPrice} onChange={handleChange} className="form-control" placeholder="Maximum ár" id="floatingMaxPrice"/>
                     <label for="floatingMaxPrice">Maximum ár</label>
                 </div>
-
-
-                
+                </>) : ""}
+                {props.type.includes("category") ? (
                 <div className="form-floating mt-2">
                     <select name="category" value={filter.category} onChange={handleChange} class="form-select" id="floatingSelect" aria-label="Kategória">
-                        <option key={-1} value={""}></option>
+                        <option key={-1} value={""}>Összes</option>
                         <option key={0} value={"uncategorized"}>besorolatlan</option>
                         {categoryList.map((category, idx) => {
                             return (
@@ -73,7 +73,7 @@ export default function Filter() {
                         })}
                     </select>
                     <label for="floatingSelect">Kategória</label>
-                </div>  
+                </div>) : ""}
                 <div className=" d-flex align-items-center justify-content-center flex-wrap">
 
                 <button className="btn btn-outline-secondary m-1" type="submit">Szűrés</button>
@@ -82,14 +82,3 @@ export default function Filter() {
             </form>
         )
     }
-    
-    if (location.pathname === "/admin/vasarlok" || location.pathname === "/admin/megrendelesek") {
-        return (
-            <form onSubmit={search}>
-                <input type="text" name="title" placeholder="Keresés név alapján" value={filter.title} onChange={handleChange}/>
-                <button type="submit" className="btn btn-secondary m-1">Szűrés</button>
-                <button onClick={reset} className="btn btn-secondary m-1">Reset</button>
-            </form>
-        )
-    }
-}

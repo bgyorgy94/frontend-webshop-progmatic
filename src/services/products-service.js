@@ -27,12 +27,6 @@ function createProduct(product) {
                     id:`${json.name}`
                 })
             })
-            .then(res => {
-                if(res.ok){
-                    return res.json()
-                }
-                throw new Error('Hiba történt')
-            })
             })
         )   
     }

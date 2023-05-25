@@ -13,7 +13,7 @@ export default function Products() {
                         <DropDownSorter />
                     </div>
                     <div>
-                        <Filter />
+                        <Filter type="title price category" />
                     </div>
                 </div>
                 <div className="col-md-10">

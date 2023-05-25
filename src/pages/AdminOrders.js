@@ -51,7 +51,7 @@ export default function AdminOrders() {
   return (
     <Container>
       Megrendelések
-      <Filter/>
+      <Filter type="title"/>
       <AdminOrdersTable orders={filteredOrders.slice(startIdx, endIdx)}/>
       <Pager
         allProducts={filteredOrders.length}

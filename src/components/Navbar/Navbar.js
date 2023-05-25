@@ -7,6 +7,7 @@ import { Navbar as BootstrapNavbar, Container, Nav } from "react-bootstrap";
 import "../Navbar/navbar.scss"
 import { Cart } from 'react-bootstrap-icons';
 import Button from 'react-bootstrap/Button';
+import logo from '../../pictures/pupwear.png'
 
 
 export default function Navbar() {
@@ -15,9 +16,9 @@ export default function Navbar() {
     return (
         <BootstrapNavbar sticky="top" className="navbar">
             <Container>
-                    <div className="d-inline-flex navbar-left">
-                    <Nav.Link as={NavLink} to="/">Home</Nav.Link>
-                    <Nav.Link as={NavLink} to="/termekek">Termékek</Nav.Link>
+                    <div className="d-inline-flex navbar-left align-items-center">
+                    <Nav.Link as={NavLink} to="/"><img src={logo} style={{position: "relative", overflow: "auto", width: "10rem",}}></img></Nav.Link>
+                    <Nav.Link as={NavLink} to="/termekek"><span className="align-bottom">Termékek</span></Nav.Link>
                     {user !== null && user.isAdmin ? <Nav.Link as={NavLink} to="/admin/termekek">Admin</Nav.Link> : ""}
                     </div>
                     <div className="d-inline-flex navbar-right">

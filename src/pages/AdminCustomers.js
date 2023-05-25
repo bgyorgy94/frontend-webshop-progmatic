@@ -5,7 +5,7 @@ import ProductNameSorter from "../components/ProductNameSorter/ProductNameSorter
 export default function AdminCustomers() {
     return (
         <div>Vásárlók
-            <Filter />
+            <Filter type="title"/>
             <AdminCustomersTable>
                 <ProductNameSorter name="Rendezés név szerint"/>
             </AdminCustomersTable>

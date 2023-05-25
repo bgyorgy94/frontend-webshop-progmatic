@@ -76,26 +76,31 @@ export default function AddProduct() {
         .then( (uploadResult) => {
              getDownloadURL(uploadResult?.ref)
              .then(url => {            
-                 setUploadedUrl(url);
+                 productsService.createProduct({
+                     name: title,
+                     price: price,
+                     url: url,
+                     categoryId: category
+                 })
+                .then(res => {
+                    if(res.ok){
+                        setShowToast({
+                            show:true,
+                            message:`Sikeres termékfelvitel`,
+                            type:"success"})
+                        return(res.json()) 
+                    }
+                    throw new Error('Hiba történt')            
+                })
+                .catch(err => {
+                    setShowToast({
+                        show:true,
+                        message:`Hiba történt: ${err}`,
+                        type:"error"})
                 })
             })
-            
-        console.log(uploadedUrl)
-        
-        productsService.createProduct({
-            name: title,
-            price: price,
-            url: uploadedUrl,
-            categoryId: category
-        }).then(json => {
-            setShowToast({
-                show:true,
-                message:`Sikeres termékfelvitel!`,
-                type:"success"
-            })
-            
         })
-    
+        
     
     setTitle("");
     setPrice("");

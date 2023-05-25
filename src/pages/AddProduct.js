@@ -20,35 +20,39 @@ export default function AddProduct() {
     }, [])
 
     return (
-        <>
-        <div>Új termék hozzáadása:</div>
-        <form onSubmit={handlerSubmit}>
-            <p>
-                Termék neve:
-                <input type="text" onChange={handleTitleChange} value={title} />
-            </p>
-            <p>
-                Termék ára:
-                <input type="number" onChange={handlePriceChange} value={price} />
-            </p>
-            <p>
-                Termék képe: 
-                <input type="file" name="image" onChange={fileChange} />
-            </p>
-            <p>
-                Termék kategóriája:
-                <select defaultValue={""} onChange={handleCategoryChange}>
-                    <option key={0} value={""}>---</option>
-                    {categoryList.map((category, idx) => {
-                        return (<option key={idx+1} value={category.id}>{category.name}</option>)
-                    })}
-                </select>
-            </p>
-            <p>
-                <button>Termék hozzáadása</button>
-            </p>
-        </form>
-        </>
+        <div className="container mt-3">
+            <div className="row  text-center">
+                <h1>Új termék létrehozása</h1>
+            </div>
+            <div className=" input-group row">
+                <form onSubmit={handlerSubmit}>
+                    <div className="form-floating mt-2">
+                        <input type="text" onChange={handleTitleChange} value={title} name="floatingName" className="form-control " placeholder="Termék neve" id="floatingName"/>
+                        <label for="floatingName">Termék neve</label>
+                    </div>
+                    <div className="form-floating mt-2">
+                        <input type="number" onChange={handlePriceChange} value={price} name="floatingPrice" className="form-control " placeholder="Termék ára" id="floatingPrice"/>
+                        <label for="floatingPrice">Termék ára</label>
+                    </div>
+                    <div classNsme="mt-2">
+                        <label for="formFile" class="form-label">Termék képe:</label>
+                        <input type="file" name="formFile" id="formFile" className="form-control"onChange={fileChange} />
+                    </div>
+                    <div className="form-floating mt-2">
+                        <select defaultValue={""} onChange={handleCategoryChange} name="category" class="form-select" id="floatingSelect" aria-label="Kategória">
+                            <option key={0} value={""}>---</option>
+                            {categoryList.map((category, idx) => {
+                                return (<option key={idx+1} value={category.id}>{category.name}</option>)
+                            })}
+                        </select>
+                        <label for="floatingSelect">Kategória</label>
+                    </div>
+                    <div className=" d-flex align-items-center justify-content-center flex-wrap">
+                        <button className="btn btn-outline-secondary m-1">Termék létrehozása</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     )
 
     function handleTitleChange(e) {

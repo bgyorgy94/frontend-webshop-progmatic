@@ -56,7 +56,7 @@ export default function Filter(props) {
                     <input type="number" name="minimumPrice" min={0} value={filter.minimumPrice} onChange={handleChange} className="form-control " placeholder="Minimum ár" id="floatingMinPrice"/>
                     <label for="floatingMinPrice">Minimum ár</label>
                 </div>
-                <div class="form-floating mt-2">
+                <div className="form-floating mt-2">
                     <input type="number" name="maximumPrice" min={0} value={filter.maximumPrice} onChange={handleChange} className="form-control" placeholder="Maximum ár" id="floatingMaxPrice"/>
                     <label for="floatingMaxPrice">Maximum ár</label>
                 </div>

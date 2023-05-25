@@ -13,19 +13,27 @@ export default function AdminCategoryList() {
     }, []);
 
     return (
-        <>
-            <h2>Kategóriák</h2>
-            <table>
+        <div className="container mt-3 col-lg-5 col-md-6 col-sm-8">
+            <div className="row  text-center">
+                <h2>Kategóriák</h2>
+            </div>
+            <table className="table responsive striped bordered hover">
+                <tbody>
                 {categories.map((category, idx) => {
                     return (
                         <tr key={idx}>
-                            <td>{category.name}</td>
-                            <td><Link to={`/admin/kategoriak/${category.id}/modositas`}>Módosítás</Link></td>
-                            <td><Link to={`/admin/kategoriak/${category.id}/torles`}>Törlés</Link></td>
+                            <td className="align-middle">{category.name}</td>
+                            <td className="text-end w-3">
+                                <div className="btn-group">
+                                    <Link to={`/admin/kategoriak/${category.id}/modositas`} className="btn btn-outline-primary">Módosítás</Link>
+                                    <Link to={`/admin/kategoriak/${category.id}/torles`} className="btn btn-danger">Törlés</Link>
+                                </div>
+                            </td>
                         </tr>
                     )
                 })}
+                </tbody>
             </table>
-        </>
+        </div>
     )
 }

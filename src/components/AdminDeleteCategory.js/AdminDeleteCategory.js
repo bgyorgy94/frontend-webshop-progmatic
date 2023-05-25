@@ -13,11 +13,17 @@ export default function AdminDeleteCategory() {
     }, [])
 
     return (
-        <div>
-            <h2>Biztosan törli a kategóriát?</h2>
-            <p>{categoryName}</p>
-            <button onClick={deleteHandler}>Törlés</button>
-            <button onClick={() => navigate("/admin/kategoriak")}>Mégsem</button>
+        <div className="container mt-3 col-lg-6 col-md-8 col-sm-10">
+            <div className="row  text-center">
+                <h2>Biztosan törli a kategóriát?</h2>
+            </div>
+            <div className="row  text-center">
+                <p>{categoryName}</p>
+                <div className=" d-flex align-items-center justify-content-center flex-wrap">
+                    <button onClick={deleteHandler} className="btn btn-outline-secondary m-1">Törlés</button>
+                    <button onClick={() => navigate("/admin/kategoriak")} className="btn btn-outline-secondary m-1">Mégsem</button>
+                </div>
+            </div>
         </div>
     )
 

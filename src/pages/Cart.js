@@ -5,6 +5,8 @@ import { CartContext } from "../contexts/cartContext";
 import orderService from "../services/order-service";
 import { UserContext } from "../contexts/userContext";
 import { ToastContext } from "../services/toastContext";
+import dogWithCart from "../pictures/dog-with-cart.png";
+import {Col, Container, Image, Row } from "react-bootstrap";
 
 export default function Cart() {
     const {cart, emptyCart} = useContext(CartContext)
@@ -13,32 +15,41 @@ export default function Cart() {
     const {showToast,setShowToast}  = useContext(ToastContext);
 
     return (
-        <>
+        <div className="container">
             {Object.keys(cart).length === 0 ?
-                <>A kosár üres</>
+            <div>
+                <h3 className="text-center">A kosár üres</h3>
+                <div>
+                <Image src={dogWithCart} className="img-fluid" alt="empty cart"></Image>
+                </div>
+            </div>
                 :
                 <>
-                    <p>Kosár:</p>
-                    <table>
+                    <h2>A kosár tartalma:</h2>
+                    <table className="table table-hover">
                         <thead>
                             <tr>
+                                <th className="d-none d-sm-table-cell"/>
                                 <th>Termék neve</th>
-                                <th>Termék ára</th>
-                                <th>Mennyiség</th>
-                                <th>Összesen</th>
+                                <th className="text-end">Termék ára</th>
+                                <th className="text-end">Mennyiség</th>
+                                <th className="text-end d-none d-md-table-cell">Összesen</th>
+                                <th />
                             </tr>
                         </thead>
                             <CartList />
                     </table>
-                    <button onClick={() => orderService.sendOrder(cart, user).then(() => {
+                    <div className="text-end d-grid px-4">
+                    <button className="btn btn-outline-success" onClick={() => orderService.sendOrder(cart, user).then(() => {
                         emptyCart()
                         setShowToast({
                             show:true,
                             message:`A megrendelés elküldve`,
                             type:"success"})
                         })}>Megrendelem</button>
+                        </div>
                 </>
             }
-        </>
+        </div>
     )
 }

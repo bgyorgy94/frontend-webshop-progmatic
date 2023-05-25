@@ -1,5 +1,4 @@
 import { useSearchParams } from "react-router-dom";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa"; 
 import Pagination from 'react-bootstrap/Pagination';
 
 export default function Pager({ allProducts, itemsPerPage }) {
@@ -33,25 +32,25 @@ export default function Pager({ allProducts, itemsPerPage }) {
       if(currentPage >= 1 && currentPage <= totalPages) searchParam.set("page", value)
       setSearchParam(searchParam)
     }
-  
+
   return (
     (
       totalPages > 1 &&
     <div className="col-12 justify-content-center">
         <Pagination className="justify-content-center">
-      {currentPage > 1 && <Pagination.Prev onClick={toPrevPage} />}
-      {currentPage == 1 || <Pagination.Item onClick={() => toPageNum(1)}>1</Pagination.Item>}
+      {currentPage > 1 && <Pagination.Prev  key={'prev'} onClick={toPrevPage} />}
+      {currentPage == 1 || <Pagination.Item key={1} onClick={() => toPageNum(1)}>1</Pagination.Item>}
       {pageStep.prev4 > 1  && <Pagination.Ellipsis disabled />}
-      {pageStep.prev3 > 1 && <Pagination.Item onClick={() => toPageNum(pageStep.prev3)}>{pageStep.prev3}</Pagination.Item>}
-      {pageStep.prev2 > 1 && <Pagination.Item onClick={() => toPageNum(pageStep.prev2)}>{pageStep.prev2}</Pagination.Item>}
-      {pageStep.prev1 > 1 && <Pagination.Item onClick={() => toPageNum(pageStep.prev1)}>{pageStep.prev1}</Pagination.Item>}
+      {pageStep.prev3 > 1 && <Pagination.Item key={pageStep.prev3} onClick={() => toPageNum(pageStep.prev3)}>{pageStep.prev3}</Pagination.Item>}
+      {pageStep.prev2 > 1 && <Pagination.Item key={pageStep.prev2} onClick={() => toPageNum(pageStep.prev2)}>{pageStep.prev2}</Pagination.Item>}
+      {pageStep.prev1 > 1 && <Pagination.Item key={pageStep.prev1} onClick={() => toPageNum(pageStep.prev1)}>{pageStep.prev1}</Pagination.Item>}
       <Pagination.Item active>{currentPage}</Pagination.Item>
-      {pageStep.next1 < totalPages && <Pagination.Item onClick={() => toPageNum(pageStep.next1)}>{pageStep.next1}</Pagination.Item>}
-      {pageStep.next2 < totalPages && <Pagination.Item onClick={() => toPageNum(pageStep.next2)}>{pageStep.next2}</Pagination.Item>}
-      {pageStep.next3 < totalPages && <Pagination.Item onClick={() => toPageNum(pageStep.next3)}>{pageStep.next3}</Pagination.Item>}
+      {pageStep.next1 < totalPages && <Pagination.Item key={pageStep.next1} onClick={() => toPageNum(pageStep.next1)}>{pageStep.next1}</Pagination.Item>}
+      {pageStep.next2 < totalPages && <Pagination.Item key={pageStep.next2} onClick={() => toPageNum(pageStep.next2)}>{pageStep.next2}</Pagination.Item>}
+      {pageStep.next3 < totalPages && <Pagination.Item key={pageStep.next3} onClick={() => toPageNum(pageStep.next3)}>{pageStep.next3}</Pagination.Item>}
       {pageStep.next4 < totalPages && <Pagination.Ellipsis disabled />}
       {currentPage == totalPages || totalPages > 1 && <Pagination.Item onClick={() => toPageNum(totalPages)}>{totalPages}</Pagination.Item>}
-      {currentPage < totalPages && totalPages > 1 && <Pagination.Next onClick={toNextPage} />}
+      {currentPage < totalPages && totalPages > 1 && <Pagination.Next key={'next'} onClick={toNextPage} />}
       </Pagination>
     </div>
     )

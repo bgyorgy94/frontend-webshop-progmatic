@@ -49,10 +49,12 @@ export default function AdminOrders() {
   }, [direction, sortBy, filteredOrders])
 
   return (
-    <Container>
-      Megrendelések
-      <Filter type="title"/>
-      <AdminOrdersTable orders={filteredOrders.slice(startIdx, endIdx)}/>
+    <Container className="mt-3">
+      <div className="row text-center">
+        <h2>Megrendelések</h2>
+      </div>
+      <Filter type="title" />
+      <AdminOrdersTable orders={filteredOrders.slice(startIdx, endIdx)} />
       <Pager
         allProducts={filteredOrders.length}
         itemsPerPage={itemsPerPage}

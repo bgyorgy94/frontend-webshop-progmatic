@@ -4,10 +4,13 @@ import ProductNameSorter from "../components/ProductNameSorter/ProductNameSorter
 
 export default function AdminCustomers() {
     return (
-        <div>Vásárlók
+        <div className="container mt-3">
+            <div className="row text-center">
+            <h2>Vásárlók</h2>
+            </div>
             <Filter type="title"/>
             <AdminCustomersTable>
-                <ProductNameSorter name="Rendezés név szerint"/>
+                
             </AdminCustomersTable>
         </div>
     )

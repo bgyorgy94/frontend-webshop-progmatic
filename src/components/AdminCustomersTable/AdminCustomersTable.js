@@ -4,6 +4,7 @@ import sortProducts from "../../services/sortProducts";
 import { useSearchParams } from "react-router-dom";
 import pagerService from "../../services/pager-service";
 import Pager from "../Pager/Pager";
+import ProductNameSorter from "../ProductNameSorter/ProductNameSorter";
 
 export default function AdminCustomersTable({children}) {
     const [displayUsers,setDisplayUsers] = useState([])
@@ -35,10 +36,13 @@ export default function AdminCustomersTable({children}) {
     
     return(
         <>
-            <table>
+            <table className="table table-hover">
                 <thead>
                     <tr> 
-                        <th> {children} </th>
+                        <th><ProductNameSorter name="Név"/></th>
+                        <th>E-mail cím</th>
+                        <th>Azonosító</th>
+                        <th>Admin</th>
                     </tr> 
                 </thead>
                 <tbody>

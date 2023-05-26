@@ -41,7 +41,7 @@ export default function UserOrderList(props) {
 
     const ordersDisplay = orderDatas.filter(orderData => orderData.uid === props.user.id);
     return (
-        <>
+        <div>
             <Table responsive striped bordered hover>
                 <thead>
                     <tr>
@@ -87,6 +87,6 @@ export default function UserOrderList(props) {
                 </tbody>
             </Table>
             <Pager allProducts={ordersDisplay.length} itemsPerPage={pagerData.itemsPerPage} />
-        </>
+        </div>
     )
 }

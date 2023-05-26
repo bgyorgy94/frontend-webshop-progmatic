@@ -3,6 +3,7 @@ import { CartContext } from "../../contexts/cartContext";
 import { UserContext } from "../../contexts/userContext";
 import productsService from "../../services/products-service";
 import { ToastContext } from "../../services/toastContext";
+import numberGrouper from "../../services/numberGrouper";
 export default function CartList() {
     const [user] = useContext(UserContext);
     const { cart, deleteFromCart } = useContext(CartContext);
@@ -22,9 +23,9 @@ export default function CartList() {
                     <tr key={product.id}>
                         <td className="d-none d-sm-table-cell"><img className="img-thumbnail" src={product.url}></img></td>
                         <td className="align-middle">{product.name}</td>
-                        <td className="align-middle text-end">{product.price} Ft</td>
+                        <td className="align-middle text-end">{numberGrouper(product.price)} Ft</td>
                         <td className="align-middle text-end">{cart[product.id]}</td>
-                        <td className="align-middle text-end d-none d-md-table-cell">{(cart[product.id] * product.price) + "Ft" || "-"}</td>
+                        <td className="align-middle text-end d-none d-md-table-cell">{(numberGrouper(cart[product.id] * product.price)) + " Ft" || "-"}</td>
                         <td className="align-middle"><button className="btn btn-outline-danger" onClick={() => {
                             deleteFromCart(product.id)
                             setShowToast({
@@ -45,7 +46,7 @@ export default function CartList() {
         <td />
         <td className="d-none d-md-table-cell"/>
         <td className="text-end fw-bold">
-            {sumPrice + " Ft" || ""}
+            {numberGrouper(sumPrice) + " Ft" || ""}
         </td>
         <td />
     </tr>

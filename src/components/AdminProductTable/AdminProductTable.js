@@ -6,6 +6,7 @@ import pagerService from "../../services/pager-service";
 import Pager from "../Pager/Pager";
 import ProductNameSorter from "../ProductNameSorter/ProductNameSorter";
 import ProductPriceSorter from "../ProductPriceSorter/ProductPriceSorter";
+import numberGrouper from "../../services/numberGrouper";
 
 export default function AdminProductTable() {
   const [products, setProducts] = useState([]);
@@ -70,7 +71,7 @@ export default function AdminProductTable() {
           return (
             <tr key={idx}>
               <td className="align-middle">{product.name}</td>
-              <td className="text-end w-auto align-middle">{product.price} Ft</td>
+              <td className="text-end w-auto align-middle">{numberGrouper(product.price)} Ft</td>
               <td className="text-end w-1">
                 <div className="btn-group">
                   <Link className="btn btn-outline-primary"

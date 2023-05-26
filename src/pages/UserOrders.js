@@ -9,10 +9,12 @@ export default function UserOrders() {
     return (
         <>
         { user &&
-            <>
+            <div className="container">
+                <div className="row text-center">
                 <h2>Rendeléseim:</h2>
+                </div>
                 <UserOrderList user={user}/>
-            </>
+            </div>
         }
         </>
     )

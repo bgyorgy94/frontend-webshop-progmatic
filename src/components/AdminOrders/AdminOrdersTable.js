@@ -1,3 +1,4 @@
+import numberGrouper from "../../services/numberGrouper";
 import ProductNameSorter from "../ProductNameSorter/ProductNameSorter";
 import Table from "react-bootstrap/Table";
 
@@ -5,13 +6,8 @@ export default function AdminOrdersTable({orders}) {
     return (
       <Table responsive striped bordered hover>
           <thead>
-          <tr>
-              <th>
-                  <ProductNameSorter name="Rendezés Vásárló neve szerint"/>
-              </th>
-          </tr>
-          <tr>
-              <th>Vásárló neve</th>
+          <tr className="text-center">
+              <th><ProductNameSorter name="Vásárló neve"/></th>
               <th>Megrendelés ID</th>
               <th>Termékek</th>
               <th>Ár</th>
@@ -34,17 +30,17 @@ export default function AdminOrdersTable({orders}) {
                         )}
                     </ul>
                 </td>
-                <td>
+                <td className="text-end">
                     <ul>
                         {Object.values(order.termekek).map((product) => (
                             <li key={product.id}>
-                                {product.price}
+                                {numberGrouper(product.price) + " Ft"}
                             </li>
                           )
                         )}
                     </ul>
                 </td>
-                <td>
+                <td className="text-center">
                     <ul>
                         {Object.values(order.termekek).map((product) => (
                             <li key={product.id}>
@@ -54,10 +50,10 @@ export default function AdminOrdersTable({orders}) {
                         )}
                     </ul>
                 </td>
-                <td>
-                    {Object.values(order.termekek).reduce((sum, product) => (
+                <td className="text-end">
+                    {numberGrouper(Object.values(order.termekek).reduce((sum, product) => (
                       sum + product.price * product.quantity
-                    ), 0)}
+                    ), 0)) + " Ft"}
                 </td>
             </tr>
           ))}

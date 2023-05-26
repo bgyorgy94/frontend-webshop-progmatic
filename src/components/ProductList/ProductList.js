@@ -8,6 +8,7 @@ import pagerService from "../../services/pager-service";
 import { UserContext } from "../../contexts/userContext";
 import { ToastContext } from "../../services/toastContext";
 import "./ProductList.css"
+import numberGrouper from "../../services/numberGrouper";
 export default function ProductList() {
 
     const [products, setProducts] = useState([]);
@@ -74,7 +75,7 @@ export default function ProductList() {
                             <img className="card-img-top" src={product.url ? product.url : ""} />
                             <div className="card-body">
                             <h5 className="card-title">{product.name}</h5>
-                            <h6 className="cart-subtitle"> Ár: {product.price} Ft</h6>
+                            <h6 className="cart-subtitle"> Ár: {numberGrouper(product.price)} Ft</h6>
                                 <button type="button" className="btn btn-primary" onClick={() => {
                                     user? addToCart(product.id) : navigate("/belepes")
                                     setShowToast({

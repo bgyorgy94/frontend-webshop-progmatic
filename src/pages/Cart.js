@@ -18,8 +18,8 @@ export default function Cart() {
         <div className="container">
             {Object.keys(cart).length === 0 ?
             <div>
-                <h3 className="text-center">A kosár üres</h3>
-                <div>
+                <h2 className="text-center">A kosár üres</h2>
+                <div className="text-center">
                 <Image src={dogWithCart} className="img-fluid" alt="empty cart"></Image>
                 </div>
             </div>

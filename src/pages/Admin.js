@@ -12,7 +12,7 @@ export default function Admin() {
     return (
         <div>
             <ul className="nav nav-tabs">
-                <li class="nav-item">
+                <li className="nav-item">
                     <NavLink className="nav-link" to="/admin/termekek">Termékek</NavLink>
                 </li>
                 <li>

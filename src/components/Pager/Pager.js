@@ -28,7 +28,6 @@ export default function Pager({ allProducts, itemsPerPage }) {
   }
 
   function toPageNum(value)  {
-    console.log(value);
       if(currentPage >= 1 && currentPage <= totalPages) searchParam.set("page", value)
       setSearchParam(searchParam)
     }

@@ -88,7 +88,7 @@ export default function ModifyProduct() {
                 </div>
 
                 <div className="form-floating mt-2">
-                    <select name="category" class="form-select" id="floatingSelect" aria-label="Kategória"
+                    <select name="category" className="form-select" id="floatingSelect" aria-label="Kategória"
                         value={formData.categoryId} onChange={(e) => setFormData({...formData, categoryId: e.target.value})}>
                         {categoryList.map((category, idx) => {
                         return (<option key={idx+1} value={category.id} selected={category.id === product.categoryId ? true : false}>{category.name}</option>)

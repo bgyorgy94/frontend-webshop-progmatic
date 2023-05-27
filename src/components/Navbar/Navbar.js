@@ -15,22 +15,16 @@ export default function Navbar() {
     return (
         <BootstrapNavbar sticky="top" expand="md">
             <Container>
-                <Nav.Link as={NavLink} to="/"><img src={logo} style={{ position: "relative", overflow: "auto", width: "10rem", }}></img></Nav.Link>
-                <BootstrapNavbar.Toggle />
-                <BootstrapNavbar.Collapse >
-                    <Nav className="me-auto">
-                        <Nav.Link as={NavLink} to="/termekek"><span className="align-bottom">Termékek</span></Nav.Link>
-                        {user !== null && user.isAdmin ? <Nav.Link as={NavLink} to="/admin/termekek">Admin</Nav.Link> : ""}
-                    </Nav>
-                    <Nav>
-                        <Nav.Link as={NavLink} to="/kosar" className="btn btn-outlined-primary btn-lg text-start">
-                            <Cart size="1.3rem"/>
-                            <Badge bg="danger"><CartSum /></Badge> 
-                        </Nav.Link>
-                        {user ? <DisplayUser /> : ""}
-                        {user ? "" : <Nav.Link as={NavLink} to="/belepes">Belépés</Nav.Link>}
-                    </Nav>
-                </BootstrapNavbar.Collapse>
+                    <div className="d-inline-flex navbar-left align-items-center">
+                    <Nav.Link as={NavLink} to="/"><img src={logo} style={{position: "relative", overflow: "auto", width: "10rem",}}></img></Nav.Link>
+                    <Nav.Link as={NavLink} to="/termekek"><span className="align-bottom">Termékek</span></Nav.Link>
+                    {user !== null && user.isAdmin ? <Nav.Link as={NavLink} to="/admin/termekek">Admin</Nav.Link> : ""}
+                    </div>
+                    <div className="d-inline-flex navbar-right">
+                    <Nav.Link as={NavLink} to="/kosar"><Button type="button" className="btn btn-outline-primary"><Cart />{<CartSum />}</Button></Nav.Link>
+                    {user ? <DisplayUser /> : ""}
+                    {user ? "" : <Nav.Link as={NavLink} to="/belepes">Belépés</Nav.Link>}
+                    </div>
             </Container>
         </BootstrapNavbar>
     )

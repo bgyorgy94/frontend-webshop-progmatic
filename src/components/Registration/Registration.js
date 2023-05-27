@@ -116,7 +116,6 @@ export default function Registration () {
             setPasswordError("A jelszónak legalább 4 karakternek kell lennie")
             setValid(false)
         }
-        console.log(valid);
         if(valid){
             userService.registration(formData.email, formData.password)
             .then(registerResp => {

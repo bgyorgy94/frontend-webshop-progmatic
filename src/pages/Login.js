@@ -16,7 +16,7 @@ export default function Login() {
     const navigate = useNavigate();
     const {showToast,setShowToast}  = useContext(ToastContext);
     
-    console.log("render")
+
     return (
         <>
         <div className=" mx-auto container text-center"> 

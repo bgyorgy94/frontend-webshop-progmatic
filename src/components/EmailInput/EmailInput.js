@@ -16,7 +16,7 @@ export default function EmailInput(props) {
                 className= {`form-control ${invalidEmail && "is-invalid"}`} placeholder="name@example.com"
                 id="floatingInput"
                 ></input>
-                <label for="floatingInput">Email address</label>
+                <label htmlFor="floatingInput">Email address</label>
             </div>
             {invalidEmail && <div id="invalid-email-message">Az e-mail cím nem megfelelő</div>}                    
         </div>

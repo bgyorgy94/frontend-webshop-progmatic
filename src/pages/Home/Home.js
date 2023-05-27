@@ -1,8 +1,9 @@
-import ProductList from "../../components/ProductList/ProductList"
 import cover from "../../pictures/coverdogs.jpg"
-import {Carousel, Col, Container, Image, Row } from "react-bootstrap"
-// import "../Home/home.scss"
+import {Col} from "react-bootstrap"
+import {Link} from "react-router-dom"
+
 import HomePageCarousel from "../../components/HomePageCarousel/HomePageCarousel"
+import React from "react"
 
 
  
@@ -42,9 +43,13 @@ export default function Home() {
                 </section>
                     <Col md={2}></Col>
               
-         <div className= "container col-md-6" >
+         <div className= "container col-md-6 my-5" >
             <h2> Legkeresettebb termékeink </h2>
             <HomePageCarousel   />
+            <div style={{textAlign: "right"}}>
+                <Link to="/termekek" className="link-opacity-25-hover" > ugrás az összes termékhez </Link>
+
+            </div>
          </div>
  
         </>

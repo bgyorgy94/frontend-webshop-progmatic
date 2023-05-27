@@ -52,7 +52,7 @@
             ]
           return (
             <Carousel >
-              <Carousel.Item interval={1000} >
+              <Carousel.Item interval={4200} >
                 <img
                   className="d-block w-100"
                   src={carouselPictures[0]}
@@ -65,7 +65,7 @@
                   <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                 </Carousel.Caption>
               </Carousel.Item>
-              <Carousel.Item interval={500}>
+              <Carousel.Item interval={2600}>
                 <img
                   className="d-block w-100"
                   src={carouselPictures[1]}

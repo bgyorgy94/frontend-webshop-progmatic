@@ -76,7 +76,7 @@ export default function Filter(props) {
                     </select>
                     <label for="floatingSelect">Kategória</label>
                 </div>) : ""}
-                <div className=" d-flex justify-content-center flex-wrap gap-1 mt-2">
+                <div className=" d-flex justify-content-center flex-wrap gap-1 mt-2 mb-2">
                     <button className="btn btn-outline-secondary flex-start flex-fill" type="submit">Szűrés</button>
                     <button className="btn btn-outline-secondary flex-end flex-fill" onClick={reset}>Reset</button>
                 </div>

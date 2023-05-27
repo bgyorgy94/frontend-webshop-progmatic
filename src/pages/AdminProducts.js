@@ -7,8 +7,9 @@ export default function AdminProducts() {
             <div className="row text-center">
                 <h2>Termékek</h2>
             </div>
-            Admin Products
-            <Filter type="title price category" />
+            <div className=" row justify-content-center">
+                <Filter type="title price category" />
+            </div>
             <AdminProductTable />
         </div>
     )

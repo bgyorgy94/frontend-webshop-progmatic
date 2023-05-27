@@ -40,9 +40,9 @@ export default function Filter(props) {
     }
 
         return (
-            <form onSubmit={search}>
+            <form onSubmit={search} className="col-6">
                 {props.type.includes("title") ? (
-                <div className="input-group">
+                <div className="input-group justify-content-center">
                     <input type="text" className="form-control " name="title" id="example-search-input" placeholder="Keresés" value={filter.title} onChange={handleChange} aria-describedby="button-addon2" aria-label="Keresés név alapján"/>
                         <span className="input-group-text">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -52,17 +52,19 @@ export default function Filter(props) {
                 </div>) : ""}
                 {props.type.includes("price") ? (
                 <>
-                <div class="form-floating mt-2">
-                    <input type="number" name="minimumPrice" min={0} value={filter.minimumPrice} onChange={handleChange} className="form-control " placeholder="Minimum ár" id="floatingMinPrice"/>
-                    <label for="floatingMinPrice">Minimum ár</label>
-                </div>
-                <div className="form-floating mt-2">
-                    <input type="number" name="maximumPrice" min={0} value={filter.maximumPrice} onChange={handleChange} className="form-control" placeholder="Maximum ár" id="floatingMaxPrice"/>
-                    <label for="floatingMaxPrice">Maximum ár</label>
+                <div className="d-flex justify-content-evenly flex-wrap" >
+                    <div className=" flex-fill form-floating me-1 mt-2">
+                        <input type="number" name="minimumPrice" min={0} value={filter.minimumPrice} onChange={handleChange} className="form-control " placeholder="Minimum ár" id="floatingMinPrice"/>
+                        <label for="floatingMinPrice">Minimum ár</label>
+                    </div>
+                    <div className=" flex-fill form-floating ms-1 mt-2">
+                        <input type="number" name="maximumPrice" min={0} value={filter.maximumPrice} onChange={handleChange} className="form-control" placeholder="Maximum ár" id="floatingMaxPrice"/>
+                        <label for="floatingMaxPrice">Maximum ár</label>
+                    </div>
                 </div>
                 </>) : ""}
                 {props.type.includes("category") ? (
-                <div className="form-floating mt-2">
+                <div className="form-floating mt-2 justify-content-center">
                     <select name="category" value={filter.category} onChange={handleChange} class="form-select" id="floatingSelect" aria-label="Kategória">
                         <option key={-1} value={""}>Összes</option>
                         <option key={0} value={"uncategorized"}>besorolatlan</option>
@@ -74,10 +76,9 @@ export default function Filter(props) {
                     </select>
                     <label for="floatingSelect">Kategória</label>
                 </div>) : ""}
-                <div className=" d-flex align-items-center justify-content-center flex-wrap">
-
-                <button className="btn btn-outline-secondary m-1" type="submit">Szűrés</button>
-                <button className="btn btn-outline-secondary m-1 " onClick={reset}>Reset</button>
+                <div className=" d-flex justify-content-center">
+                    <button className="btn btn-outline-secondary m-1 flex-start" type="submit">Szűrés</button>
+                    <button className="btn btn-outline-secondary m-1 flex-end" onClick={reset}>Reset</button>
                 </div>
             </form>
         )

@@ -7,7 +7,6 @@ import Pager from "../Pager/Pager";
 import pagerService from "../../services/pager-service";
 import { UserContext } from "../../contexts/userContext";
 import { ToastContext } from "../../services/toastContext";
-import "./ProductList.css"
 import numberGrouper from "../../services/numberGrouper";
 export default function ProductList() {
 
@@ -72,7 +71,7 @@ export default function ProductList() {
                     return (
                         <div key={idx} className="col-md-4">
                             <div className="card my-2">
-                            <img className="card-img-top product-card-img" src={product.url ? product.url : ""} />
+                            <img className="card-img-top" src={product.url ? product.url : ""} />
                             <div className="card-body">
                             <h5 className="card-title">{product.name}</h5>
                             <h6 className="cart-subtitle"> Ár: {numberGrouper(product.price)} Ft</h6>

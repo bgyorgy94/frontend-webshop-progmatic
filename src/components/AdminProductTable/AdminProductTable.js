@@ -17,7 +17,7 @@ export default function AdminProductTable() {
     productsService.getAllProducts()
       .then(json => {
         const originalProducts = (Object.values(json))
-        const title = usp.get("title");
+        const title = usp.get("item");
         const minimumPrice = usp.get("minimumPrice") || 0;
         const maximumPrice = usp.get("maximumPrice") || Number.MAX_SAFE_INTEGER;
         const category = usp.get("category");

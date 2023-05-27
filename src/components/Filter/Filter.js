@@ -6,7 +6,8 @@ const initFilter = {
     title: "",
     minimumPrice: "",
     maximumPrice: "",
-    category: ""
+    category: "",
+    item: ""
 };
 
 export default function Filter(props) {
@@ -43,13 +44,17 @@ export default function Filter(props) {
             <form onSubmit={search}>
                 {props.type.includes("title") ? (
                 <div className="input-group justify-content-center">
-                    <input type="text" className="form-control " name="title" id="example-search-input" placeholder="Keresés" value={filter.title} onChange={handleChange} aria-describedby="button-addon2" aria-label="Keresés név alapján"/>
+                    <input type="text" className="form-control " name="title" id="example-search-input" placeholder="Név" value={filter.title} onChange={handleChange} aria-describedby="button-addon2" aria-label="Keresés név alapján"/>
                         <span className="input-group-text">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                             </svg>
                         </span>
                 </div>) : ""}
+                {props.type.includes("item") ? (
+                    <div className="input-group">
+                        <input type="text" className="form-control " name="item" id="example-search-input" placeholder="Termék" value={filter.item} onChange={handleChange} aria-describedby="button-addon2" aria-label="Keresés termék alapján"/>
+                    </div>) : ""}
                 {props.type.includes("price") ? (
                 <>
                 <div className="d-flex flex-wrap justify-content-between gap-2 mt-2" >

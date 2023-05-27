@@ -14,28 +14,29 @@ import "../UserOrderList/userOrderList.css"
 export default function UserOrderList(props) {
 
     const [orderDatas, setOrderDatas] = useState([]);
-    const [userDatas, setUserDatas] = useState([]);
-    const [productDatas, setProductDatas] = useState([]);
     const [usp] = useSearchParams();
     const pagerData = pagerService(usp);
+    const item = usp.get("item");
 
     useEffect(() => {
         orderService.getOrders()
             .then(json => {
                 const allOrders = Object.values(json);
+                const userOrders = allOrders.filter((orderData) => orderData.uid === props.user.id);
+                const userOrdersWithProductNames = userOrders.map(order => ({
+                    ...order,
+                    productsName: `${Object.values(order.termekek).map(items => items.name)}`
+                }))
+                let filteredOrders;
+                if(item) {
+                    filteredOrders = userOrdersWithProductNames.filter((order) => order.productsName.toLowerCase().includes(item.toLowerCase()))
+                } else {
+                    filteredOrders = userOrders;
+                }
                 const sortBy = usp.get("sortBy");
                 const direction = usp.get("direction");
-                if(!sortBy) setOrderDatas(allOrders)
-                else setOrderDatas(sortOrders(allOrders, sortBy, direction))
-
-    
-            
-
-        // userService.getUserDatas()
-        //     .then(json => setUserDatas(Object.values(json)))
-
-        // productsService.getAllProducts()
-        //     .then(json => setProductDatas(Object.values(json)))
+                if(!sortBy) setOrderDatas(filteredOrders)
+                else setOrderDatas(sortOrders(filteredOrders, sortBy, direction))
         })
     }, [usp])
 
@@ -52,7 +53,7 @@ export default function UserOrderList(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {ordersDisplay.slice(pagerData.startIdx, pagerData.endIdx).map((order, idx) => {
+                    {orderDatas.slice(pagerData.startIdx, pagerData.endIdx).map((order, idx) => {
                         return (
                             <tr key={idx}>
                                 <td>{order.id}</td>
@@ -86,7 +87,7 @@ export default function UserOrderList(props) {
                     })}
                 </tbody>
             </Table>
-            <Pager allProducts={ordersDisplay.length} itemsPerPage={pagerData.itemsPerPage} />
+            <Pager allProducts={orderDatas.length} itemsPerPage={pagerData.itemsPerPage} />
         </div>
     )
 }

@@ -14,6 +14,7 @@ export default function AdminOrders() {
   const [filteredOrders, setFilteredOrders] = useState([]);
   const { startIdx, endIdx, itemsPerPage } = pagerService(usp);
   const name = usp.get("title")
+  const item = usp.get("item")
   const sortBy = usp.get("sortBy")
   const direction = usp.get("direction")
 
@@ -26,7 +27,8 @@ export default function AdminOrders() {
             setOrderDatas(
               orders.map((order) => ({
                 ...order,
-                fullName: `${userObj[order.uid].lastName} ${userObj[order.uid].firstName}`
+                fullName: `${userObj[order.uid].lastName} ${userObj[order.uid].firstName}`,
+                productsName: `${Object.values(order.termekek).map(items => items.name)}`
               }))
             );
           });
@@ -34,12 +36,17 @@ export default function AdminOrders() {
   }, [])
 
   useEffect(() => {
-    if (name) {
-      setFilteredOrders(orderDatas.filter((order) => order.fullName.toLowerCase().includes(name.toLowerCase())));
+    if (name && item) {
+      setFilteredOrders(orderDatas.filter((order) => (order.fullName.toLowerCase().includes(name.toLowerCase())) && 
+                                                      order.productsName.toLowerCase().includes(item.toLowerCase())))
+    } else if (name) {
+      setFilteredOrders(orderDatas.filter((order) => order.fullName.toLowerCase().includes(name.toLowerCase())))
+    } else if (item) {
+      setFilteredOrders(orderDatas.filter((order) => order.productsName.toLowerCase().includes(item.toLowerCase())))
     } else {
-      setFilteredOrders(orderDatas);
+      setFilteredOrders(orderDatas)
     }
-  }, [name, orderDatas]);
+  }, [name, orderDatas, item]);
 
   useEffect(() => {
     if (sortBy === 'name') {
@@ -53,7 +60,7 @@ export default function AdminOrders() {
       <div className="row text-center">
         <h2>Megrendelések</h2>
       </div>
-      <Filter type="title" />
+      <Filter type="title item" />
       <AdminOrdersTable orders={filteredOrders.slice(startIdx, endIdx)} />
       <Pager
         allProducts={filteredOrders.length}

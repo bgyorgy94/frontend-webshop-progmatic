@@ -9,6 +9,7 @@ export default function AddProduct() {
     const { showToast, setShowToast } = useContext(ToastContext);
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState("")
+    const [textarea, setTextArea] = useState("")
     const [file, setFile] = useState(null);
     const [uploadedUrl, setUploadedUrl] = useState(null);
     const [category, setCategory] = useState("")
@@ -33,6 +34,10 @@ export default function AddProduct() {
                     <div className="form-floating mt-2">
                         <input type="number" onChange={handlePriceChange} value={price} name="floatingPrice" className="form-control " placeholder="Termék ára" id="floatingPrice" />
                         <label for="floatingPrice">Termék ára</label>
+                    </div>
+                    <div className="form-floating mt-2">
+                        <textarea onChange={handleTextAreaChange} value={textarea} name="floatingTextArea" className="form-control " placeholder="Termék leírása" id="floatingTeaxctArea" />
+                        <label for="floatingTextArea">Termék leírása</label>
                     </div>
                     <div classNsme="mt-2">
                         <label for="formFile" class="form-label">Termék képe:</label>
@@ -63,6 +68,10 @@ export default function AddProduct() {
         let value = e.target.value;
         setPrice(value)
     }
+    function handleTextAreaChange(e) {
+        let value = e.target.value;
+        setTextArea(value)
+    }
     function fileChange(e) {
         setFile(e.target.files[0])
     }
@@ -83,6 +92,7 @@ export default function AddProduct() {
                         productsService.createProduct({
                             name: title,
                             price: price,
+                            description: textarea,
                             url: url,
                             categoryId: category
                         })
@@ -110,6 +120,10 @@ export default function AddProduct() {
 
         setTitle("");
         setPrice("");
+        setTextArea("");
+        setFile(null);
+        setCategory("");
+
     }
 
 }

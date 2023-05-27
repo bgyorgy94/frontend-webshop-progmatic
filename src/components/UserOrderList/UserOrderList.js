@@ -10,6 +10,7 @@ import IdSorter from "../IdSorter/IdSorter";
 import sortOrders from "../../services/sortOrders";
 import Table from 'react-bootstrap/Table';
 import "../UserOrderList/userOrderList.css"
+import bootstrap from 'bootstrap';
 
 export default function UserOrderList(props) {
 
@@ -43,50 +44,37 @@ export default function UserOrderList(props) {
     const ordersDisplay = orderDatas.filter(orderData => orderData.uid === props.user.id);
     return (
         <div>
-            <Table responsive striped bordered hover>
-                <thead>
-                    <tr>
-                        <th> <IdSorter title={"Rendelésszám"} /> </th>
-                        <th>Termékek</th>
-                        <th>Mennyiség</th>
-                        <th> <DateSorter title={"Dátum"}/> </th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div className="accordion" id="accordionExample">
                     {orderDatas.slice(pagerData.startIdx, pagerData.endIdx).map((order, idx) => {
                         return (
-                            <tr key={idx}>
-                                <td>{order.id}</td>
-                                <td>
-                                    <ul>
+                            <div className="accordion-item" key={idx}>
+                                <h2 className="accordion-header">
+                                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${idx}`} aria-expanded="false" aria-controls={`collapse${idx}`}>
+                                    {Intl.DateTimeFormat('HU', { dateStyle: 'long', timeStyle: 'short'}).format(order.timestamp)}
+                                    </button>
+                                </h2>
+                                <div id={`collapse${idx}`} class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                    <div className="accordion-body">
+                                        <strong>Rendelésszám:</strong>
+                                        <p>{order.id}</p>
+                                        <strong>Rendelt termékek: </strong>
+                                        <ul>
                                         {Object.values(order.termekek).map((prod, idx) => {
                                             return (
                                                 <li key={idx}>
-                                                    {prod.name}
+                                                    {prod.quantity} x {prod.name}
                                                 </li>
                                             )
                                         })}
-                                    </ul>
-                                </td>
-                                <td>
-                                    <ul>
-                                        {Object.values(order.termekek).map((prod, idx) => {
-                                            return (
-                                                <li key={idx}>
-                                                    {prod.quantity}
-                                                </li>
-                                            )
-                                        })}
-                                    </ul>
-                                </td>
-                                <td>
-                                    {Intl.DateTimeFormat('HU', { dateStyle: 'long', timeStyle: 'medium', }).format(order.timestamp)}
-                                </td>
-                            </tr>
+                                        </ul>
+                                        <strong>Rendelés leadás időpontja:</strong><br />
+                                        {Intl.DateTimeFormat('HU', { dateStyle: 'long', timeStyle: 'medium', }).format(order.timestamp)}
+                                    </div>
+                                </div>
+                            </div>
                         )
                     })}
-                </tbody>
-            </Table>
+            </div>
             <Pager allProducts={orderDatas.length} itemsPerPage={pagerData.itemsPerPage} />
         </div>
     )

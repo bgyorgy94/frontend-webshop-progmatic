@@ -2,12 +2,12 @@ import { useSearchParams } from "react-router-dom";
 import { FaSortUp, FaSortDown, FaSort } from 'react-icons/fa'
 
 
-export default function IdSorter({title}) {
+export default function FinalPriceSorter({title}) {
     const [searchParam, setSearchParam] = useSearchParams();
     const sortBy = searchParam.get("sortBy");
     let direction = "";
         
-    if (sortBy === "id") {
+    if (sortBy === "finalPrice") {
         direction = searchParam.get("direction");
     }
 
@@ -24,8 +24,8 @@ export default function IdSorter({title}) {
     )
 
     function handleClick() {
-        if (searchParam.get("sortBy") !== "id") {
-            searchParam.set("sortBy", "id");
+        if (searchParam.get("sortBy") !== "finalPrice") {
+            searchParam.set("sortBy", "finalPrice");
             searchParam.set("direction", "asc")
             
         } else if (searchParam.get("direction") === "asc") {

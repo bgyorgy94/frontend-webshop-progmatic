@@ -6,11 +6,12 @@ import { useSearchParams } from "react-router-dom";
 import Pager from "../Pager/Pager";
 import pagerService from "../../services/pager-service";
 import DateSorter from "../DateSorter/DateSorter";
-import IdSorter from "../IdSorter/IdSorter";
 import sortOrders from "../../services/sortOrders";
 import Table from 'react-bootstrap/Table';
 import "../UserOrderList/userOrderList.css"
 import bootstrap from 'bootstrap';
+import numberGrouper from "../../services/numberGrouper";
+import FinalPriceSorter from "../FinalPriceSorter/FinalPriceSorter";
 
 export default function UserOrderList(props) {
 
@@ -24,15 +25,18 @@ export default function UserOrderList(props) {
             .then(json => {
                 const allOrders = Object.values(json);
                 const userOrders = allOrders.filter((orderData) => orderData.uid === props.user.id);
-                const userOrdersWithProductNames = userOrders.map(order => ({
+                const userOrdersWithProductNamesAndFinalPrice = userOrders.map(order => ({
                     ...order,
-                    productsName: `${Object.values(order.termekek).map(items => items.name)}`
+                    productsName: `${Object.values(order.termekek).map(items => items.name)}`,
+                    finalPrice: Object.values(order.termekek).reduce((sum, product) => (
+                        sum + product.price * product.quantity
+                        ), 0)
                 }))
                 let filteredOrders;
                 if(item) {
-                    filteredOrders = userOrdersWithProductNames.filter((order) => order.productsName.toLowerCase().includes(item.toLowerCase()))
+                    filteredOrders = userOrdersWithProductNamesAndFinalPrice.filter((order) => order.productsName.toLowerCase().includes(item.toLowerCase()))
                 } else {
-                    filteredOrders = userOrders;
+                    filteredOrders = userOrdersWithProductNamesAndFinalPrice;
                 }
                 const sortBy = usp.get("sortBy");
                 const direction = usp.get("direction");
@@ -41,9 +45,12 @@ export default function UserOrderList(props) {
         })
     }, [usp])
 
-    const ordersDisplay = orderDatas.filter(orderData => orderData.uid === props.user.id);
     return (
         <div>
+            <p><strong>
+            <FinalPriceSorter title={"Végösszeg"}/>
+            <DateSorter title={"Dátum"}/>
+            </strong></p>
             <div className="accordion" id="accordionExample">
                     {orderDatas.slice(pagerData.startIdx, pagerData.endIdx).map((order, idx) => {
                         return (
@@ -67,8 +74,14 @@ export default function UserOrderList(props) {
                                             )
                                         })}
                                         </ul>
+                                        <p>
                                         <strong>Rendelés leadás időpontja:</strong><br />
                                         {Intl.DateTimeFormat('HU', { dateStyle: 'long', timeStyle: 'medium', }).format(order.timestamp)}
+                                        </p>
+                                        <p>
+                                            <strong>Rendelés végösszege:</strong>
+                                            <p>{numberGrouper(order.finalPrice) + " Ft"}</p>
+                                        </p>
                                     </div>
                                 </div>
                             </div>

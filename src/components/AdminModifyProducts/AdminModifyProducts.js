@@ -24,6 +24,7 @@ export default function ModifyProduct() {
             id: json.id,
             name: json.name,
             price: json.price,
+            description: json.description,
             categoryId: json.categoryId
         }))
         .catch(err => {
@@ -39,8 +40,6 @@ export default function ModifyProduct() {
         categoryService.getAllCategories()
         .then(json => setCategoryList(Object.values(json)))
     }, [])
-
-    console.log(categoryList)
     
     const [formData,setFormData] = useState({product});
 
@@ -75,8 +74,19 @@ export default function ModifyProduct() {
                         id="floatingPrice"
                     />
                     <label for="floatingPrice">Termék ára: {product.price}</label>
-
                 </div>
+                <div className="form-floating mt-2">
+                    <textarea  
+                        value={formData.description}
+                        onChange={(e) => setFormData({...formData,description: e.target.value})}
+                        name="floatingDescription"
+                        className="form-control "
+                        placeholder="Termék leírása"
+                        id="floatingDescription"
+                    />
+                    <label for="floatingDescription">Termék leírása: {product.description}</label>
+                </div>
+
                 <div className="form-floating mt-2">
                     <select name="category" class="form-select" id="floatingSelect" aria-label="Kategória"
                         value={formData.categoryId} onChange={(e) => setFormData({...formData, categoryId: e.target.value})}>

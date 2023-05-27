@@ -12,21 +12,33 @@ export default function ModifyProduct() {
         id:"",
         name:"",
         price:"",
+        description:"",
         categoryId: ""
     })
     const [categoryList, setCategoryList] = useState([])
     const navigate=useNavigate();
     const {showToast,setShowToast}  = useContext(ToastContext);
+    const [formData,setFormData] = useState({product});
 
     useEffect( () => {
         productsService.getProduct(id)
-        .then(json=> setProduct({
+        .then(json=> {
+            setProduct({
             id: json.id,
             name: json.name,
             price: json.price,
             description: json.description,
             categoryId: json.categoryId
-        }))
+        })
+            setFormData({
+            id: json.id,
+            name: json.name,
+            price: json.price,
+            description: json.description,
+            categoryId: json.categoryId
+        })
+
+    })
         .catch(err => {
             setShowToast({
                 show:true,
@@ -34,14 +46,12 @@ export default function ModifyProduct() {
                 type:"error"})
             navigate("/admin/termekek");
         })
-    },[])
-
-    useEffect(() => {
+        
         categoryService.getAllCategories()
         .then(json => setCategoryList(Object.values(json)))
-    }, [])
+
+    },[])
     
-    const [formData,setFormData] = useState({product});
 
     return(
         <div className="container mt-3">
@@ -52,7 +62,7 @@ export default function ModifyProduct() {
             <form>
                 <div className="form-floating mt-2">
                     <input   
-                    value={formData.name}
+                    defaultValue={formData.name}
                         type="text" 
                         onChange={(e) => {
                             setFormData({...formData,name: e.target.value})
@@ -65,7 +75,7 @@ export default function ModifyProduct() {
                 </div>
                 <div className="form-floating mt-2">
                     <input  
-                        value={formData.price}
+                        defaultValue={formData.price}
                         type="text" 
                         onChange={(e) => setFormData({...formData,price: e.target.value})}
                         name="floatingPrice"
@@ -77,7 +87,7 @@ export default function ModifyProduct() {
                 </div>
                 <div className="form-floating mt-2">
                     <textarea  
-                        value={formData.description}
+                        defaultValue={formData.description}
                         onChange={(e) => setFormData({...formData,description: e.target.value})}
                         name="floatingDescription"
                         className="form-control "
@@ -89,9 +99,9 @@ export default function ModifyProduct() {
 
                 <div className="form-floating mt-2">
                     <select name="category" className="form-select" id="floatingSelect" aria-label="Kategória"
-                        value={formData.categoryId} onChange={(e) => setFormData({...formData, categoryId: e.target.value})}>
+                        defaultValue={formData.categoryId} onChange={(e) => setFormData({...formData, categoryId: e.target.value})}>
                         {categoryList.map((category, idx) => {
-                        return (<option key={idx+1} value={category.id} selected={category.id === product.categoryId ? true : false}>{category.name}</option>)
+                        return (<option key={idx+1} defaultValue={category.id} selected={category.id === product.categoryId ? true : false}>{category.name}</option>)
                             })}
                     </select>
                     <label for="floatingSelect"> Termék kategória: {categoryList.map((category => {

@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import categoryService from "../../services/category-service";
+import { ToastContext } from "../../services/toastContext";
 
 export default function AdminDeleteCategory() {
     const [categoryName, setCategoryName] = useState();
     const {id} = useParams();
     const navigate = useNavigate();
+    const { showToast, setShowToast } = useContext(ToastContext);
 
     useEffect(() => {
         categoryService.getCategory(id)
@@ -29,6 +31,14 @@ export default function AdminDeleteCategory() {
 
     function deleteHandler() {
         categoryService.deleteCategory(id)
-        .then(json => navigate("/admin/kategoriak"))
+        .then(json => {
+            setShowToast({
+                show: true,
+                message: `Sikeresen törölve`,
+                type: "success"
+            })
+            navigate("/admin/kategoriak")
+        })
+            
     }
 }

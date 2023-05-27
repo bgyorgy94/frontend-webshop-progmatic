@@ -13,8 +13,9 @@ function createCategory(category) {
         .then(res=> {
             if(res.ok){
                 return res.json()
+            }else{
+                throw new Error('Hiba történt')
             }
-            throw new Error('Hiba történt')
         })
         .then(json => {
             fetch(`${API_URL}/${json.name}.json`, {
@@ -26,12 +27,13 @@ function createCategory(category) {
                     id: `${json.name}`
                 })
             })
-        })
-        .then(res => {
-            if(res.ok) {
-                return res.json()
-            }
-            throw new Error("Hiba történt")
+            .then(res => {
+                if(res.ok) {
+                    return res.json()
+                }else{
+                    throw new Error("Hiba történt")
+                }
+            })
         })
     )
 }

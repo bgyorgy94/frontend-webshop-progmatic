@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import categoryService from "../services/category-service";
+import { ToastContext } from "../services/toastContext";
+import { useNavigate } from "react-router-dom";
 
 export default function AddCategory() {
 
     const [categoryName, setCategoryName] = useState("");
+    const { showToast, setShowToast } = useContext(ToastContext);
+    const navigate=useNavigate();
+
 
     return (
         <div className="container mt-3 col-lg-6 col-md-8 col-sm-10">
@@ -13,7 +18,7 @@ export default function AddCategory() {
             <form onSubmit={submitHandler}>
                 <div className="form-floating mt-2">
                     <input type="text" onChange={handleCategoryChange} value={categoryName} name="floatingName" className="form-control " placeholder="Kategória neve" id="floatingName"/>
-                    <label for="folatingName">Kategória neve</label>
+                    <label htmlFor="folatingName">Kategória neve</label>
                 </div>
                 <div className=" d-flex align-items-center justify-content-center">
                     <button type="submit" className="btn btn-outline-secondary m-1" >Kategória létrehozása</button>
@@ -31,6 +36,14 @@ export default function AddCategory() {
         categoryService.createCategory({
             name: categoryName
         })
+        .then(json => {
+            setShowToast({
+                show: true,
+                message: `Sikeres kategóriafelvitel`,
+                type: "success"
+            })
+            navigate("/admin/kategoriak")
+    })
 
         setCategoryName("")
     }

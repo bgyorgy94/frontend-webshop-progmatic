@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import categoryService from "../../services/category-service";
+import { ToastContext } from "../../services/toastContext";
 
 export default function AdminModifyCategories() {
     const {id} = useParams();
     const [originalName, setOriginalName] = useState("");
     const [categoryName, setCategoryName] = useState("");
+    const { showToast, setShowToast } = useContext(ToastContext);
 
     const navigate = useNavigate();
 
@@ -40,6 +42,13 @@ export default function AdminModifyCategories() {
     function modifyProduct(e) {
         e.preventDefault();
         categoryService.updateCategory(id, categoryName)
-        .then(json => navigate("/admin/kategoriak"))
+        .then(json => {
+            setShowToast({
+                show:true,
+                message:`Sikeresen módosítva: ${json.name}`,
+                type:"success"
+            })
+            navigate("/admin/kategoriak");
+        });
     }
 }

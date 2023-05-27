@@ -4,6 +4,7 @@ import { ToastContext } from "../services/toastContext"
 import { app } from "../firebase/firebaseConfig"
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage"
 import categoryService from "../services/category-service";
+import { useNavigate} from "react-router-dom"
 
 export default function AddProduct() {
     const { showToast, setShowToast } = useContext(ToastContext);
@@ -15,7 +16,9 @@ export default function AddProduct() {
     const [category, setCategory] = useState("")
     const [categoryList, setCategoryList] = useState([])
 
-    const [valid,setValid] = useState(false)
+    const navigate=useNavigate();
+
+    const [valid,setValid] = useState(true)
     const [titleError,setTitleError] = useState(false)
     const [priceError,setPriceError] = useState(false)
     const [textareaError,setTextareaError] = useState(false)
@@ -31,7 +34,7 @@ export default function AddProduct() {
                 <h2>Új termék létrehozása</h2>
             </div>
             <div className="row">
-                <form className={valid? "was-validated": ""}>
+                <form>
                     <div className="form-floating mt-2 has-validation ">
                         <input type="text" onChange={handleTitleChange} value={title} className={`form-control ${ titleError ? " is-invalid" : ""}`} placeholder="Termék neve" id="prouctName" />
                         <label htmlFor="productName">Termék neve</label>
@@ -117,15 +120,12 @@ export default function AddProduct() {
                                 categoryId: category
                             })
                                 .then(res => {
-                                    if (res.ok) {
                                         setShowToast({
                                             show: true,
                                             message: `Sikeres termékfelvitel`,
                                             type: "success"
                                         })
-                                        return (res.json())
-                                    }
-                                    throw new Error('Hiba történt')
+                                        navigate("/admin/termekek");
                                 })
                                 .catch(err => {
                                     setShowToast({
@@ -145,6 +145,7 @@ export default function AddProduct() {
             setCategory("");
     
         }
+
     }
 
 }

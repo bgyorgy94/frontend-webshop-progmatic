@@ -31,11 +31,15 @@ export default function AdminDeleteProduct() {
 
     
     return(
-        <div>
-            <h2>Biztosan törli a terméket?</h2>
-            <p>{product.name}</p>
-            <button onClick={deleteButtonHandler}>törlés</button>
-            <button onClick={cancelButtonHandler}>mégsem</button>
+        <div className="container mt-3">
+            <div className="row  text-center">
+                <h2>Biztosan törli a terméket?</h2>
+                <p className="fw-bold">{product.name}</p>
+            </div>
+            <div className=" d-flex align-items-center justify-content-center flex-wrap">
+                <button onClick={deleteButtonHandler} className="btn btn-outline-secondary m-1">törlés</button>
+                <button onClick={cancelButtonHandler} className="btn btn-outline-secondary m-1">mégsem</button>        
+            </div>
         </div>
     )
 

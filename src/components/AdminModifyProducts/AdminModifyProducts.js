@@ -45,39 +45,57 @@ export default function ModifyProduct() {
     const [formData,setFormData] = useState({product});
 
     return(
-        <form>
+        <div className="container mt-3">
+        <div className="row  text-center">
             <h2>Termék módosítása</h2>
-            <p> Termék neve: {product.name} </p> 
-            <input   
-            value={formData.name}
-                type="text" 
-                onChange={(e) => {
-                    setFormData({...formData,name: e.target.value})
-                }}
-            />
+        </div>
+        <div className=" input-group row">
+            <form>
+                <div className="form-floating mt-2">
+                    <input   
+                    value={formData.name}
+                        type="text" 
+                        onChange={(e) => {
+                            setFormData({...formData,name: e.target.value})
+                        }}
+                        className="form-control"
+                        placeholder="Termék neve"
+                        id="floatingName"
+                    />          
+                    <label for="floatingName">Termék neve: {product.name}</label>
+                </div>
+                <div className="form-floating mt-2">
+                    <input  
+                        value={formData.price}
+                        type="text" 
+                        onChange={(e) => setFormData({...formData,price: e.target.value})}
+                        name="floatingPrice"
+                        className="form-control "
+                        placeholder="Termék ára"
+                        id="floatingPrice"
+                    />
+                    <label for="floatingPrice">Termék ára: {product.price}</label>
 
-            <p> Termék ára: {product.price} </p> 
-            <input  
-                value={formData.price}
-                type="text" 
-                onChange={(e) => setFormData({...formData,price: e.target.value})}
-            />
-
-            <p> Termék kategória: {categoryList.map((category => {
-                if (category.id === product.categoryId) return category.name
-            }))}</p> 
-            <select value={formData.categoryId} onChange={(e) => setFormData({...formData, categoryId: e.target.value})}>
-                <option key={0} value={""}>---</option>  
-                {categoryList.map((category, idx) => {
-                    return (<option key={idx+1} value={category.id} selected={category.id === product.categoryId ? true : false}>{category.name}</option>)
-                })}
-            </select>
-            <p>
-                <button onClick={modifyProductButton}>módosít</button>
-                <button onClick={cancelButton}>mégsem</button>
-            </p>
-        </form>
-
+                </div>
+                <div className="form-floating mt-2">
+                    <select name="category" class="form-select" id="floatingSelect" aria-label="Kategória"
+                        value={formData.categoryId} onChange={(e) => setFormData({...formData, categoryId: e.target.value})}>
+                        {categoryList.map((category, idx) => {
+                        return (<option key={idx+1} value={category.id} selected={category.id === product.categoryId ? true : false}>{category.name}</option>)
+                            })}
+                    </select>
+                    <label for="floatingSelect"> Termék kategória: {categoryList.map((category => {
+                        if (category.id === product.categoryId) return category.name
+                        }))}
+                    </label> 
+                </div>
+                <div className=" d-flex align-items-center justify-content-center flex-wrap">
+                    <button onClick={modifyProductButton} className="btn btn-outline-secondary m-1">módosít</button>
+                    <button onClick={cancelButton} className="btn btn-outline-secondary m-1">mégsem</button>
+                </div>
+            </form>
+        </div>
+    </div>
     )
     function modifyProductButton (e) {
         e.preventDefault();

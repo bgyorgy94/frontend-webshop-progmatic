@@ -40,7 +40,7 @@ export default function Filter(props) {
     }
 
         return (
-            <form onSubmit={search} className="col-6">
+            <form onSubmit={search}>
                 {props.type.includes("title") ? (
                 <div className="input-group justify-content-center">
                     <input type="text" className="form-control " name="title" id="example-search-input" placeholder="Keresés" value={filter.title} onChange={handleChange} aria-describedby="button-addon2" aria-label="Keresés név alapján"/>
@@ -52,12 +52,12 @@ export default function Filter(props) {
                 </div>) : ""}
                 {props.type.includes("price") ? (
                 <>
-                <div className="d-flex justify-content-evenly flex-wrap" >
-                    <div className=" flex-fill form-floating me-1 mt-2">
+                <div className="d-flex flex-wrap justify-content-between gap-2 mt-2" >
+                    <div className="form-floating flex-fill ">
                         <input type="number" name="minimumPrice" min={0} value={filter.minimumPrice} onChange={handleChange} className="form-control " placeholder="Minimum ár" id="floatingMinPrice"/>
                         <label for="floatingMinPrice">Minimum ár</label>
                     </div>
-                    <div className=" flex-fill form-floating ms-1 mt-2">
+                    <div className=" form-floating flex-fill">
                         <input type="number" name="maximumPrice" min={0} value={filter.maximumPrice} onChange={handleChange} className="form-control" placeholder="Maximum ár" id="floatingMaxPrice"/>
                         <label for="floatingMaxPrice">Maximum ár</label>
                     </div>
@@ -76,9 +76,9 @@ export default function Filter(props) {
                     </select>
                     <label for="floatingSelect">Kategória</label>
                 </div>) : ""}
-                <div className=" d-flex justify-content-center">
-                    <button className="btn btn-outline-secondary m-1 flex-start" type="submit">Szűrés</button>
-                    <button className="btn btn-outline-secondary m-1 flex-end" onClick={reset}>Reset</button>
+                <div className=" d-flex justify-content-center flex-wrap gap-1 mt-2">
+                    <button className="btn btn-outline-secondary flex-start flex-fill" type="submit">Szűrés</button>
+                    <button className="btn btn-outline-secondary flex-end flex-fill" onClick={reset}>Reset</button>
                 </div>
             </form>
         )

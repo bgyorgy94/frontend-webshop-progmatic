@@ -44,3 +44,13 @@
         height: 23rem;
     }
 }
+@include media-breakpoint-up(xl) {
+    .card {
+        height: 25rem;
+    }
+}
+@include media-breakpoint-up(xxl) {
+    .card {
+        height: 29rem;
+    }
+}

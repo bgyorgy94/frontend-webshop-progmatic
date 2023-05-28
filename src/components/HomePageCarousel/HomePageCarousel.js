@@ -1,43 +1,4 @@
 
-    // useEffect(() => {
-    //     productsService.getAllProducts()
-    //     .then(json => { 
-    //         const topProducts = Object.values(json).filter( item => item.categoryId === "-NWDM7ynmz5AYU8mkYAB")
-    //         // console.log(products)
-    //         setProducts(topProducts)
-    //         }
-    //         )
-    // }, [])
-
-    // return(
-    //     <div className="container">
-
-    //         <div id="carouselTopProducts" className="carousel slide md-10">
-    //             <div className="carousel-indicators">
-    //                 <button type="button" data-bs-target="#carouselTopProducts" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-    //                 <button type="button" data-bs-target="#carouselTopProducts" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    //                 <button type="button" data-bs-target="#carouselTopProducts" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    //             </div>
-    //             <div className="carousel-inner">
-    //                     {products.map( prod => {
-    //                         {console.log("url", prod.url)}
-    //                         return(
-    //                             <div className="carousel-item active">
-    //                                 <img src= {pictures[0]} className="d-block w-20" alt="..." />
-    //                                 <div className="carousel-caption d-none d-md-block">
-    //                                     <h5>{prod.name}</h5>
-    //                                     <p>prod.desc - termék leíró szöveg</p>
-    //                                 </div>
-    //                             </div>
-    //                         )
-    //                     }
-    //                     )}
-    //             </div>
-    //         </div>
-    //     </div>
-        // )
-
-
 
         import Carousel from 'react-bootstrap/Carousel';
 
@@ -57,8 +18,6 @@
                   className="d-block w-100"
                   src={carouselPictures[0]}
                   alt="First slide"
-                //   width={1}
-                //   height={1}
                 />
                 <Carousel.Caption>
                   <h3> <a className="link-opacity-25-hover" href="#"> Termék 1 </a>  </h3>

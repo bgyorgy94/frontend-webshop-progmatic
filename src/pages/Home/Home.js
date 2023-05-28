@@ -6,10 +6,6 @@ import HomePageCarousel from "../../components/HomePageCarousel/HomePageCarousel
 import React from "react"
 
 
- 
-
-
-
 export default function Home() {
     return(
         

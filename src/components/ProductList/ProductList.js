@@ -8,6 +8,9 @@ import pagerService from "../../services/pager-service";
 import { UserContext } from "../../contexts/userContext";
 import { ToastContext } from "../../services/toastContext";
 import numberGrouper from "../../services/numberGrouper";
+import "../ProductList/productlist.scss"
+import noImage from "../../pictures/noImageAvailable.webp"
+
 export default function ProductList() {
 
     const [products, setProducts] = useState([]);
@@ -70,21 +73,25 @@ export default function ProductList() {
                 {products.slice(pagerData.startIdx, pagerData.endIdx).map((product, idx) => {
                     return (
                         <div key={idx} className="col-md-4">
-                            <div className="card my-2">
-                            <img className="card-img-top" src={product.url ? product.url : ""} />
-                            <div className="card-body">
-                            <h5 className="card-title">{product.name}</h5>
-                            <h6 className="cart-subtitle"> Ár: {numberGrouper(product.price)} Ft</h6>
-                                <button type="button" className="btn btn-primary" onClick={() => {
-                                    user? addToCart(product.id) : navigate("/belepes")
-                                    setShowToast({
-                                        show:true,
-                                        message:`A termék a kosárba került`,
-                                        type:"success"})
-                                    }}>
-                                    Kosárba
-                                </button>
-                            </div>
+                            <div className="card my-2" >
+                                <img className="card-img-top" src={product.url ? product.url : noImage} style={{}}/>
+                                <div className="card-body"  >
+                                    <div className="card-text">
+                                        <h5 className="card-title" >{product.name}</h5>
+                                        <h6 className="card-subtitle"> Ár: {numberGrouper(product.price)} Ft</h6>
+                                    </div>
+                                    <div className="btn-container">
+                                        <button type="button" className="btn btn-primary" onClick={() => {
+                                            user? addToCart(product.id) : navigate("/belepes")
+                                            setShowToast({
+                                                show:true,
+                                                message:`A termék a kosárba került`,
+                                                type:"success"})
+                                            }}>
+                                            Kosárba
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )

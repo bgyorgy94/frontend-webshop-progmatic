@@ -1,0 +1,49 @@
+@import "~bootstrap/scss/bootstrap";
+
+
+.card-img-top {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+.card-text {
+    overflow: hidden;
+};
+.card-title {
+    font-weight: bold;
+}
+.btn-container {
+    text-align: center;
+}
+
+
+@include media-breakpoint-up(md) {
+    .card {
+        height: 24rem;
+    };
+    .card-text {
+        height: 70%
+    };
+    .card-title {
+        font-size: 1.1rem;
+    };
+    .card-subtitle {
+        font-size: .9rem;
+    }
+}
+@include media-breakpoint-up(lg) {
+    .card {
+        height: 30rem;
+    }
+        .card-title {
+        font-size: 1.5rem;
+    };
+    .card-subtitle {
+        font-size: 1.1rem;
+    }
+}

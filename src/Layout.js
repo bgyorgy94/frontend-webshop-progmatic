@@ -26,7 +26,7 @@ export default function Layout() {
       }, [])
 
     return(
-        <div className="d-flex flex-column vh-100">
+        <div className="d-flex flex-column vh-100 main-style">
             <ToastContext.Provider value={{showToast: showToast, setShowToast: setShowToast}}>
                 <nav><Navbar /></nav>
                 <main className="flex-grow-1">

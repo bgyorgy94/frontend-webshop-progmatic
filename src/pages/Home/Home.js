@@ -4,6 +4,7 @@ import {Link} from "react-router-dom"
 
 import HomePageCarousel from "../../components/HomePageCarousel/HomePageCarousel"
 import React from "react"
+import "./home.scss"
 
 
  
@@ -15,8 +16,8 @@ export default function Home() {
         
          
             <>
-            <div className="">
-                <img src={cover} alt="cover dogs" className="col-md-fluid w-100 max-h-40 coverphoto" style={{objectFit: 'cover'}} max-height= "500vh"  ></img>
+            <div className="home-page">
+                <img src={cover} alt="cover dogs" className="col-md-fluid w-100 max-h-40 coverphoto home-page" style={{objectFit: 'cover'}} max-height= "500vh"  ></img>
                 
 
             </div>

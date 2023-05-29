@@ -23,13 +23,11 @@ export default function Login() {
             <h1>Belépés</h1>
                 <EmailInput value={email} getEmail={getEmail}/>
                 <PasswordInput value={password} getPassword={getPassword}/>
-            <div className =" row mx-auto p-2 col-md-6 container text-center">
-                <div className="row gap-3">
+            <div className ="row mx-auto p-2 col-md-6 container text-center gap-3">
                 <button className="btn btn-outline-primary col" onClick={login}>Belépés</button>
                 <NavLink to="/regisztracio">
                 Ha még nincs fiókja, ide kattintva létrehozhat egyet.
                 </NavLink>
-                </div>
             </div>
         </div>
         </>

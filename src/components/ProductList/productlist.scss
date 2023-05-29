@@ -1,7 +1,7 @@
 @import "../../App.scss";
 
 .card {
-    padding: .5rem,
+    padding: .7rem,
 }
 .card-img-top {
     aspect-ratio: 1/1;
@@ -12,6 +12,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 2px;
+    padding-top: .5rem;
 }
 .card-text {
     overflow: hidden;
@@ -27,7 +28,6 @@
     text-decoration: none;
     color: var(--bs-card-title-color);
 }
-
 
 @include media-breakpoint-up(md) {
     .card {

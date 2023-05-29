@@ -7,6 +7,7 @@ import ProductPriceSorter from "../components/ProductPriceSorter/ProductPriceSor
 export default function Products() {
     return (
         <div className="container bg-light bg-gradient mt-0 p-3" >
+            <h1 className="text-align-center">Termékek</h1>
             <div className="row align-items-start">
                 <div className="col-md-2">
                     <div className="my-2">
@@ -19,6 +20,7 @@ export default function Products() {
                 <div className="col-md-10">
                     <ProductList />
                 </div>
+                
             </div>
         </div>
     )

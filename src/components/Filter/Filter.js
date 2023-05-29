@@ -7,7 +7,8 @@ const initFilter = {
     minimumPrice: "",
     maximumPrice: "",
     category: "",
-    item: ""
+    item: "",
+    itemsPerPage: "",
 };
 
 export default function Filter(props) {
@@ -40,6 +41,7 @@ export default function Filter(props) {
         setUsp(o);
     }
 
+
         return (
             <form onSubmit={search}>
                 {props.type.includes("title") ? (
@@ -70,7 +72,7 @@ export default function Filter(props) {
                 </>) : ""}
                 {props.type.includes("category") ? (
                 <div className="form-floating mt-2 justify-content-center">
-                    <select name="category" value={filter.category} onChange={handleChange} className="form-select" id="floatingSelect" aria-label="Kategória">
+                    <select name="category" value={filter.category} onChange={handleChange} className="form-select" id="floatingSelectCat" aria-label="Kategória">
                         <option key={-1} value={""}>Összes</option>
                         <option key={0} value={"uncategorized"}>besorolatlan</option>
                         {categoryList.map((category, idx) => {
@@ -79,8 +81,18 @@ export default function Filter(props) {
                             )
                         })}
                     </select>
-                    <label htmlFor="floatingSelect">Kategória</label>
+                    <label htmlFor="floatingSelectCat">Kategória</label>
                 </div>) : ""}
+                <div className="form-floating mt-2 justify-content-center">
+                    <select name="itemsPerPage" value={filter.itemsPerPage} onChange={handleChange} className="form-select" id="floatingSelectIt" aria-label="Termékek száma">
+                        <option key={-1} value={""}>--</option>
+                        <option key={0} value={6}>6</option>
+                        <option key={1} value={9}>9</option>
+                        <option key={2} value={12}>12</option>
+                    </select>
+                    <label htmlFor="floatingSelectIt">Termékek oldalanként</label>
+                </div>
+                
                 <div className=" d-flex justify-content-center flex-wrap gap-1 mt-2 mb-2">
                     <button className="btn btn-outline-secondary flex-start flex-fill" type="submit">Szűrés</button>
                     <button className="btn btn-outline-secondary flex-end flex-fill" onClick={reset}>Reset</button>

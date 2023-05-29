@@ -1,5 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
 import "../Footer/footer.scss"
+import MailTo from "../MailTo/Mailto";
 
 export default function Footer() {
     return (
@@ -28,7 +29,7 @@ export default function Footer() {
                     <p className="fw-bold">Elérhetőségek</p>
                         <ul>
                             <li><span className="fw-bold">Cím:</span> Ábrahámhegy, Sziget u. 20.</li>
-                            <li><span className="fw-bold">E-mail:</span> <email>woof@pupwear.hu</email></li>
+                            <li><span className="fw-bold">E-mail:</span> <MailTo label="woof@pupwear.hu" mailto="mailto:woof@pupwear.hu" /></li>
                             <li><span className="fw-bold">Telefon:</span> +36-80/9663-828</li>
                         </ul>
                     </Col>

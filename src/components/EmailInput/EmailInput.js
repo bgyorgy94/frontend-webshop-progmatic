@@ -11,7 +11,7 @@ export default function EmailInput(props) {
 
     return (
         <div className="col-md-6 mx-auto p-2">
-            <div className=" form-floating mb-3 has-validation"> 
+            <div className=" form-floating mb-1 has-validation"> 
                 <input type="email" value={email} onChange={typeEmail} onBlur={validateEmail}
                 className= {`form-control ${invalidEmail && "is-invalid"}`} placeholder="name@example.com"
                 id="floatingInput"

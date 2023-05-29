@@ -25,7 +25,7 @@ export default function AdminCategoryList() {
                             <td className="align-middle">{category.name}</td>
                             <td className="text-end w-3">
                                 <div className="btn-group">
-                                    <Link to={`/admin/kategoriak/${category.id}/modositas`} className="btn btn-outline-primary">Módosítás</Link>
+                                    <Link to={`/admin/kategoriak/${category.id}/modositas`} className="btn btn-outline-secondary">Módosítás</Link>
                                     <Link to={`/admin/kategoriak/${category.id}/torles`} className="btn btn-danger">Törlés</Link>
                                 </div>
                             </td>

@@ -24,6 +24,7 @@ import AddCategory from './pages/AddCategory';
 import AdminCategories from './pages/AdminCategories';
 import AdminModifyCategories from './components/AdminModifyCategories/AdminModifyCategories';
 import AdminDeleteCategory from './components/AdminDeleteCategory.js/AdminDeleteCategory';
+import Product from './pages/Product/Product';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/termekek",
         element: <Products />
+      },
+      {
+        path: "/termekek/:id",
+        element: <Product />
       },
       {
         path: "/",

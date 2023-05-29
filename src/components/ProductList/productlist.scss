@@ -23,6 +23,10 @@
     text-align: center;
 }
 
+.productLink {
+    text-decoration: none;
+    color: var(--bs-card-title-color);
+}
 
 
 @include media-breakpoint-up(md) {

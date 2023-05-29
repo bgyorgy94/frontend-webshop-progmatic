@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import productsService from "../../services/products-service";
 import { useContext, useEffect, useState } from "react";
 import sortProducts from "../../services/sortProducts";
@@ -77,7 +77,7 @@ export default function ProductList() {
                                 <img className="card-img-top" src={product.url ? product.url : noImage} style={{}}/>
                                 <div className="card-body"  >
                                     <div className="card-text">
-                                        <h5 className="card-title" >{product.name}</h5>
+                                        <h5 className="card-title" ><Link className="productLink" to={`/termekek/${product.id}`}>{product.name}</Link></h5>
                                         <h6 className="card-subtitle"> Ár: {numberGrouper(product.price)} Ft</h6>
                                     </div>
                                     <div className="btn-container">

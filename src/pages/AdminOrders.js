@@ -56,7 +56,7 @@ export default function AdminOrders() {
   }, [direction, sortBy, filteredOrders])
 
   return (
-    <Container className="mt-3">
+    <Container className="bg-light bg-gradient p-3" >
       <div className="row text-center">
         <h2>Megrendelések</h2>
       </div>

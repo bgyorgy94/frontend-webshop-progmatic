@@ -45,7 +45,7 @@ export default function Product() {
     }, [])
 
     return (
-        <div className="container">
+        <div className="container bg-light bg-gradient p-3" style={{marginTop: "-1rem"}}>
             <div className="row">
             <div className="col-sm">
                 <img className={"product-page-img"} src={product.url}/>

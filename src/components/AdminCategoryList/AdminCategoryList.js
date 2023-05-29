@@ -13,7 +13,7 @@ export default function AdminCategoryList() {
     }, []);
 
     return (
-        <div className="container mt-3 col-lg-5 col-md-6 col-sm-8">
+        <div className="container col-lg-5 col-md-6 col-sm-8 bg-light bg-gradient p-3" >
             <div className="row  text-center">
                 <h2>Kategóriák</h2>
             </div>

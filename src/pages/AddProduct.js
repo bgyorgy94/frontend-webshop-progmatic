@@ -29,7 +29,7 @@ export default function AddProduct() {
     }, [])
 
     return (
-        <div className="container mt-3 col-8">
+        <div className="container col-8 bg-light bg-gradient p-3" >
             <div className="row  text-center">
                 <h2>Új termék létrehozása</h2>
             </div>

@@ -10,7 +10,7 @@ export default function UserOrders() {
     return (
         <>
         { user &&
-            <div className="container">
+            <div className="container bg-light bg-gradient p-3" style={{marginTop: "-1rem"}}>
                 <h2>Rendeléseim:</h2>
                 <Filter type="item"/>
                 <div className="row text-center">

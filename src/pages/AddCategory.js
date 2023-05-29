@@ -11,7 +11,7 @@ export default function AddCategory() {
 
 
     return (
-        <div className="container mt-3 col-lg-6 col-md-8 col-sm-10">
+        <div className="container col-lg-6 col-md-8 col-sm-10 bg-light bg-gradient p-3">
             <div className="row  text-center">
                 <h2>Kategória létrehozása</h2>
             </div>

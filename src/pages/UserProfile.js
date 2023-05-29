@@ -6,10 +6,10 @@ export default function UserProfile() {
     const [user] = useContext(UserContext);
 
         return (
-            <div className="col-6 ms-4">
+            <div className="container col-6 bg-light bg-gradient p-3" style={{marginTop: "-1rem"}}>
                 { user &&
-                    <>
-                        <div className="row"> 
+                    <>  <h2>Profil</h2>
+                        <div className="row pt-2"> 
                             <p className="text-start fw-bold" > <span className="fw-normal m-2"> Név:</span> {user.lastName+ " " +user.firstName}</p>
                         </div> 
                         <div className="row"> 

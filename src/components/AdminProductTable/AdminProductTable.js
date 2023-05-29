@@ -74,7 +74,7 @@ export default function AdminProductTable() {
               <td className="text-end w-auto align-middle">{numberGrouper(product.price)} Ft</td>
               <td className="text-end w-1">
                 <div className="btn-group">
-                  <Link className="btn btn-outline-primary"
+                  <Link className="btn btn-outline-secondary"
                         to={`/admin/termekek/${product.id}/modositas`}>Módosítás</Link>
                   <Link className="btn btn-danger" to={`/admin/termekek/${product.id}/torles`}>Törlés</Link>
                 </div>

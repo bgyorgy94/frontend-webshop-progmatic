@@ -9,19 +9,19 @@ export default function Footer() {
                     <Col> 
                     <p className="fw-bold">Kövess minket</p>
                         <ul>
-                            <li><a href="#">Facebook</a></li>
-                            <li><a href="#">Instagram</a></li>
-                            <li><a href="#">TikTok</a></li>
-                            <li><a href="#">Pinterest</a></li>
-                            <li><a href="#">Twitter</a></li>
+                            <li><a className="link-dark" href="#">Facebook</a></li>
+                            <li><a className="link-dark" href="#">Instagram</a></li>
+                            <li><a className="link-dark" href="#">TikTok</a></li>
+                            <li><a className="link-dark" href="#">Pinterest</a></li>
+                            <li><a className="link-dark" href="#">Twitter</a></li>
                         </ul>
                     </Col>
                     <Col>
                     <p className="fw-bold">Fontos információk</p> 
                         <ul>
-                            <li><a href="#">ÁSZF</a></li>
-                            <li><a href="#">GYIK</a></li>
-                            <li><a href="#">Impresszum</a></li>
+                            <li><a className="link-dark" href="#">ÁSZF</a></li>
+                            <li><a className="link-dark" href="#">GYIK</a></li>
+                            <li><a className="link-dark" href="#">Impresszum</a></li>
                         </ul>
                     </Col>
                     <Col>

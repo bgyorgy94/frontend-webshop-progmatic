@@ -13,7 +13,8 @@ $pagination-active-border-color: #98D8AA;
 $accordion-button-active-bg: $yellow-100;
 $dropdown-link-active-bg: $gray-100;
 $dropdown-link-active-color: black;
-
+$input-focus-border-color: #548C64;
+$form-select-focus-border-color: #548C64;
 
 $theme-colors: map-merge($theme-colors, (
   "primary": $primary,

@@ -3,6 +3,9 @@
 
 $primary: #98D8AA;
 $danger: #FF6D60;
+$nav-link-color:  black;
+$nav-link-hover-color: gray;
+
 
 $theme-colors: map-merge($theme-colors, (
   "primary": $primary,

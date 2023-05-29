@@ -20,10 +20,6 @@ export default function ProductList() {
   
     const [user] = useContext(UserContext);
     const { addToCart } = useContext(CartContext)
-    let currentPage = Number(usp.get("page"))
-    if (!currentPage) currentPage = 1;
-    const endIdx = currentPage * 9;
-    const startIdx = endIdx - 9;
 
     const {showToast,setShowToast}  = useContext(ToastContext);
 

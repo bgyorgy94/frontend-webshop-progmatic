@@ -1,54 +1,66 @@
 
-
         import Carousel from 'react-bootstrap/Carousel';
-
-        
+        import getProduct from "../../services/products-service"
+import { Link } from 'react-router-dom';
         export default function HomePageCarousel() {
-            const carouselPictures = [
-                "https://firebasestorage.googleapis.com/v0/b/csapat-10.appspot.com/o/images%2Fkitten-5249587_960_720.jpg?alt=media&token=95ce15ed-dfb4-4148-a762-a7b826eebbd4"
-                ,
-                "https://firebasestorage.googleapis.com/v0/b/csapat-10.appspot.com/o/images%2Fpexels-edwin-rucci-2078747.jpg?alt=media&token=3c93fc22-bc46-434c-a25c-d00656ff0322"
-                ,
-                "https://firebasestorage.googleapis.com/v0/b/csapat-10.appspot.com/o/images%2Fpexels-karolina-grabowska-7291997.jpg?alt=media&token=8ea1a326-b666-4afa-a5c1-03dba72005b9"
+            const carouselData = 
+            [
+              {
+                id: "-NUl4fw89F62ds-toQS1",
+                name: "Piros csíkos kutyapóló",
+                shortDesc: "Klasszikus csíkos minta soha nem megy ki a divatból - kutya és gazdája garantáltan felhívja magára a figyelmet",
+                pic: "https://firebasestorage.googleapis.com/v0/b/csapat-10.appspot.com/o/images%2Fbig-dodzy-30vB4W1rnTQ-unsplash.jpg?alt=media&token=4ae532cc-40f7-44e6-a3e6-caf26af78cbf",
+              },
+              {
+                id: "-NUl4fwFy2GfEf4AD9we",
+                name: "Ocelot mintás egyberuha",
+                shortDesc: "Ha szeretnéd, hogy a kutyád vad és elegáns legyen, akkor ez az ocelot mintás kutyaruhát neked találták ki",
+                pic: "https://firebasestorage.googleapis.com/v0/b/csapat-10.appspot.com/o/images%2Fbruno-souza-pWB1_djX8lQ-unsplash.jpg?alt=media&token=f455fe94-e44e-431b-ba59-540fb1c84f49",
+              },
+              {
+                id: "-NV5eZBhNZnORUKRNHlE",
+                name: "Macskapóló Spongyabob mintával",
+                pic: "https://firebasestorage.googleapis.com/v0/b/csapat-10.appspot.com/o/images%2Fd-ng-ph-c-h-i-tri-u-7vMO_PQnixQ-unsplash.jpg?alt=media&token=bb7626ca-1d7c-40cd-b79a-d9f51a90b7df",
+                shortDesc: "Spongyabob rajongó vagy? Vagy a macskád az? Ez a pólónk tökéletes választás számodra"
+              }
             ]
           return (
             <Carousel >
               <Carousel.Item interval={4200} >
                 <img
                   className="d-block w-100"
-                  src={carouselPictures[0]}
+                  src={carouselData[0].pic}
                   alt="First slide"
                 />
-                <Carousel.Caption>
-                  <h3> <a className="link-opacity-25-hover" href="#"> Termék 1 </a>  </h3>
-                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                <Carousel.Caption className="bg-dark bg-opacity-50 p-3 rounded-3">
+                  <h3> <Link to={`/termekek/${carouselData[0].id}`} className="link-opacity-25-hover" > {carouselData[0].name} </Link>  </h3>
+                  <p>{carouselData[0].shortDesc}</p>
                 </Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item interval={2600}>
                 <img
                   className="d-block w-100"
-                  src={carouselPictures[1]}
+                  src={carouselData[1].pic}
                   alt="Second slide"
                 />
-                <Carousel.Caption>
-                  <h3> <a className="link-opacity-25-hover" href="#"> Termék 2 </a></h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <Carousel.Caption className="bg-dark bg-opacity-50 p-3 rounded-3">
+                  <h3> <Link to={`/termekek/${carouselData[1].id}`} className="link-opacity-25-hover" > {carouselData[1].name} </Link>  </h3>
+                  <p>{carouselData[1].shortDesc}</p>
                 </Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item >
                 <img
                   className="d-block w-100"
-                  src={carouselPictures[2]}
+                  src={carouselData[2].pic}
                   alt="Third slide"
                 />
-                <Carousel.Caption >
-                  <h3><a className="link-opacity-25-hover" href="#"> Termék 3 </a> </h3>
-                  <p>
-                    Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
+                <Carousel.Caption className="bg-dark bg-opacity-50 p-3 rounded-3">
+                    <h3> <Link to={`/termekek/${carouselData[2].id}`} className="link-opacity-25-hover" > {carouselData[2].name} </Link>  </h3>
+                    <p>{carouselData[2].shortDesc}</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
             </Carousel>
+            
           );
         }
         

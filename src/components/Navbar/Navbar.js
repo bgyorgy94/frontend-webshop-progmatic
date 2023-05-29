@@ -13,7 +13,7 @@ import { NavLink } from "react-router-dom";
 
      const [user] = useContext(UserContext);
      return (
-         <BootstrapNavbar sticky="top" expand="md">
+         <BootstrapNavbar sticky="top" expand="md" className="my-0">
              <Container>
                  <Nav.Link as={NavLink} to="/"><img src={logo} style={{ position: "relative", overflow: "auto", width: "10rem", }}></img></Nav.Link>
                  <BootstrapNavbar.Toggle />

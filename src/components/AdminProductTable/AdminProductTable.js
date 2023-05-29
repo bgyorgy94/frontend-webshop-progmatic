@@ -7,6 +7,8 @@ import Pager from "../Pager/Pager";
 import ProductNameSorter from "../ProductNameSorter/ProductNameSorter";
 import ProductPriceSorter from "../ProductPriceSorter/ProductPriceSorter";
 import numberGrouper from "../../services/numberGrouper";
+import noImage from "../../pictures/noImageAvailable.webp"
+import "./AdminProductTable.css"
 
 export default function AdminProductTable() {
   const [products, setProducts] = useState([]);
@@ -70,6 +72,7 @@ export default function AdminProductTable() {
         {products.slice(pagerData.startIdx, pagerData.endIdx).map((product, idx) => {
           return (
             <tr key={idx}>
+              <td className="align-middle col-1"><img className="img-admin-product" src={product.url ? product.url : noImage} /></td>
               <td className="align-middle">{product.name}</td>
               <td className="text-end w-auto align-middle">{numberGrouper(product.price)} Ft</td>
               <td className="text-end w-1">

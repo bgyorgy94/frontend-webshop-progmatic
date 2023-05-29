@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import productsService from "../../services/products-service";
 import sortProducts from "../../services/sortProducts";
 import pagerService from "../../services/pager-service";
@@ -13,7 +13,8 @@ import "./AdminProductTable.css"
 export default function AdminProductTable() {
   const [products, setProducts] = useState([]);
   const [usp] = useSearchParams();
-  const pagerData = pagerService(usp)
+  const pagerData = pagerService(usp);
+  const navigate = useNavigate();
 
   useEffect(() => {
     productsService.getAllProducts()
@@ -59,6 +60,7 @@ export default function AdminProductTable() {
       <table className="table table-hover">
         <thead>
         <tr>
+        <th/>
           <th className="text-nowrap">
             <ProductNameSorter name="Termék neve"/>
           </th>
@@ -71,11 +73,11 @@ export default function AdminProductTable() {
         <tbody>
         {products.slice(pagerData.startIdx, pagerData.endIdx).map((product, idx) => {
           return (
-            <tr key={idx}>
+            <tr key={product.id}>
               <td className="align-middle col-1"><img className="img-admin-product" src={product.url ? product.url : noImage} /></td>
-              <td className="align-middle">{product.name}</td>
+              <td className="align-middle" onClick={() => navigate(`/termekek/${product.id}`)}>{product.name}</td>
               <td className="text-end w-auto align-middle">{numberGrouper(product.price)} Ft</td>
-              <td className="text-end w-1">
+              <td className="text-end w-1 align-middle">
                 <div className="btn-group">
                   <Link className="btn btn-outline-secondary"
                         to={`/admin/termekek/${product.id}/modositas`}>Módosítás</Link>
@@ -89,4 +91,8 @@ export default function AdminProductTable() {
       <Pager allProducts={products.length} itemsPerPage={pagerData.itemsPerPage}/>
     </>
   )
+
+  function handleClick (product) {
+    console.log(`/termekek/${product}`);
+  }
 }

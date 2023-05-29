@@ -55,11 +55,14 @@ export default function Product() {
                 <p>{product.description}</p>
                 <p>Ár: {product.price} Ft</p>
                 <button type="button" className="btn btn-primary" onClick={() => {
-                    user? addToCart(product.id) : navigate("/belepes")
-                    setShowToast({
-                        show:true,
-                        message:`A termék a kosárba került`,
-                        type:"success"})
+                        if(user) {
+                            addToCart(product.id)
+                            setShowToast({
+                                show: true,
+                                message: "A termék kosárba került",
+                                type: "success"
+                            })
+                        } else navigate("/belepes")
                     }}>
                     Kosárba
                 </button>

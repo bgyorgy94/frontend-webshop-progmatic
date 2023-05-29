@@ -6,6 +6,7 @@ import Toast from "./components/Toast/Toast";
 import userService from "./services/user-service";
 import { UserContext } from "./contexts/userContext";
 import Footer from "./components/Footer/Footer";
+import "./Layout.css"
 
 export default function Layout() {
     const [showToast,setShowToast] = useState({

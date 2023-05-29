@@ -11,8 +11,8 @@ export default function Admin() {
         return <Navigate to={"/belepes"} />
     }
     return (
-        <div className="admin-menu">
-            <ul className="nav nav-tabs">
+        <div className="admin-menu ">
+            <ul className="nav nav-tabs col-md-10">
                 <li>
                     <NavLink className="nav-link" to="/admin/termekek">Termékek</NavLink>
                 </li>

@@ -24,7 +24,7 @@ export default function Cart() {
                 </div>
             </div>
                 :
-                <>
+                <div className="container bg-light bg-gradient p-3" style={{marginTop: "-1rem"}}>
                     <h2>A kosár tartalma:</h2>
                     <table className="table table-hover">
                         <thead>
@@ -48,7 +48,7 @@ export default function Cart() {
                             type:"success"})
                         })}>Megrendelem</button>
                         </div>
-                </>
+                </div>
             }
         </div>
     )

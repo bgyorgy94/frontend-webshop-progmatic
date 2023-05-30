@@ -15,7 +15,7 @@ export default function Cart() {
     const {showToast,setShowToast}  = useContext(ToastContext);
 
     return (
-        <div className="container">
+        <div className="container bg-light bg-gradient p-3">
             {Object.keys(cart).length === 0 ?
             <div>
                 <h2 className="text-center">A kosár üres</h2>
@@ -24,7 +24,7 @@ export default function Cart() {
                 </div>
             </div>
                 :
-                <div className="container bg-light bg-gradient p-3" style={{marginTop: "-1rem"}}>
+                <div className="container bg-light bg-gradient p-3">
                     <h2>A kosár tartalma:</h2>
                     <table className="table table-hover">
                         <thead>

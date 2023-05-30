@@ -13,7 +13,6 @@
     justify-content: space-between;
     padding: 2px;
     padding-top: .5rem;
-    // position: relative;
 }
 .card-text {
     overflow: hidden;
@@ -23,11 +22,12 @@
 }
 .card-subtitle {
     position: absolute;
-    bottom: 3.2rem
+    bottom: 3.4rem
 }
-
-.card-btn {
+.btn-container {
     text-align: center;
+}
+.card-btn {
     position: absolute;
     bottom: .7rem;
     left: 50%;
@@ -39,17 +39,14 @@
 }
 
 @include media-breakpoint-down(md) {
-    .card-title {
-        position: absolute;
-        top: 2rem
-    }
     .card-subtitle {
-        bottom: none;
-        bottom: 4rem
+        position: revert;
+        bottom: revert;
     }
-    
     .card-btn {
-        right: 1rem;
+        position: revert;
+        left: revert;
+        transform: revert; 
     }
 }
 @include media-breakpoint-up(md) {

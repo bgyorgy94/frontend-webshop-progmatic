@@ -76,6 +76,7 @@ export default function ProductList() {
                                         <h5 className="card-title" ><Link className="productLink" to={`/termekek/${product.id}`}>{product.name}</Link></h5>
                                         <h6 className="card-subtitle" > Ár: {numberGrouper(product.price)} Ft</h6>
                                     </div>
+                                    <div className="container btn-container">
                                     <button type="button" className="btn btn-primary card-btn" onClick={() => {
                                         if(user) {
                                             addToCart(product.id)
@@ -88,6 +89,7 @@ export default function ProductList() {
                                     }}>
                                         Kosárba
                                     </button>
+                                </div>
                                 </div>
                             </div>
                         </div>

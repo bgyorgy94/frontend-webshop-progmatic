@@ -31,7 +31,7 @@
 
 @include media-breakpoint-up(md) {
     .card {
-        height: 20rem;
+        height: 20rem !important;
     };
     .card-text {
         height: 70%
@@ -45,16 +45,16 @@
 }
 @include media-breakpoint-up(lg) {
     .card {
-        height: 23rem;
+        height: 24rem !important;;
     }
 }
 @include media-breakpoint-up(xl) {
     .card {
-        height: 25rem;
+        height: 26rem !important;
     }
 }
 @include media-breakpoint-up(xxl) {
     .card {
-        height: 29rem;
+        height: 29rem !important;;
     }
 }

@@ -31,4 +31,8 @@ $theme-colors: map-merge($theme-colors, (
     font-family: 'Roboto', sans-serif;
   }
   
+  .fill {
+    height: 100%;
+}
+
   @import "~bootstrap/scss/bootstrap";

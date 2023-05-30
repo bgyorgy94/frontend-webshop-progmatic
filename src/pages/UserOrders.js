@@ -9,15 +9,17 @@ export default function UserOrders() {
 
     return (
         <>
-        { user &&
-            <div className="container bg-light bg-gradient p-3" style={{marginTop: "-1rem"}}>
-                <h2>Rendeléseim:</h2>
-                <Filter type="item"/>
-                <div className="row text-center">
+            {user &&
+                <div className="container bg-light bg-gradient p-3">
+                    <div className="row text-center">
+                        <h2>Rendeléseim:</h2>
+                    </div>
+                    <Filter type="item" />
+                    <div className="row text-center">
+                    </div>
+                    <UserOrderList user={user} />
                 </div>
-                <UserOrderList user={user}/>
-            </div>
-        }
+            }
         </>
     )
 }

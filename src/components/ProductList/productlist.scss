@@ -21,6 +21,10 @@
 .card-title {
     font-weight: bold;
 }
+.card-subtitle {
+    position: absolute;
+    bottom: 3.2rem
+}
 
 .card-btn {
     text-align: center;
@@ -34,6 +38,20 @@
     color: var(--bs-card-title-color);
 }
 
+@include media-breakpoint-down(md) {
+    .card-title {
+        position: absolute;
+        top: 2rem
+    }
+    .card-subtitle {
+        bottom: none;
+        bottom: 4rem
+    }
+    
+    .card-btn {
+        right: 1rem;
+    }
+}
 @include media-breakpoint-up(md) {
     .card {
         height: 22rem !important;

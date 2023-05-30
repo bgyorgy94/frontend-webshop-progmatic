@@ -74,7 +74,7 @@ export default function ProductList() {
                                 <div className="card-body"  >
                                     <div className="card-text">
                                         <h5 className="card-title" ><Link className="productLink" to={`/termekek/${product.id}`}>{product.name}</Link></h5>
-                                        <h6 className="card-subtitle"> Ár: {numberGrouper(product.price)} Ft</h6>
+                                        <h6 className="card-subtitle" > Ár: {numberGrouper(product.price)} Ft</h6>
                                     </div>
                                     <button type="button" className="btn btn-primary card-btn" onClick={() => {
                                         if(user) {

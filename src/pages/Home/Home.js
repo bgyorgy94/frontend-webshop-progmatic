@@ -11,7 +11,7 @@ export default function Home() {
     return (
         <>
             <img src={cover} alt="cover dogs" className="col-md-fluid w-100 max-h-40 coverphoto home-page"  ></img>
-            <div className="container bg-light bg-gradient background-container">
+            <div className="container bg-light bg-gradient background-container pb-3">
                 <main className=" container col-md-10 py-4 ">
 
                     <h2>Üdvözöljük a PupWear webáruházban!</h2>
@@ -40,7 +40,7 @@ export default function Home() {
                 <div className="container col-md-6 " >
                     <HomePageCarousel />
                     <div style={{ textAlign: "right" }}>
-                        <Link to="/termekek" className="link-opacity-25-hover" > ugrás az összes termékhez </Link>
+                        <Link to="/termekek" className="link-opacity-25-hover" > Ugrás az összes termékhez </Link>
                     </div>
                 </div>
             </div>

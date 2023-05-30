@@ -11,7 +11,7 @@ export default function Admin() {
     }
     return (
         <>
-            <div className="admin-menu container x-3">
+            <div className="admin-menu container x-3 fill">
                 <ul className="nav nav-tabs">
                     <li>
                         <NavLink className="nav-link" to="/admin/termekek">Termékek</NavLink>

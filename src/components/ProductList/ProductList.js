@@ -76,20 +76,18 @@ export default function ProductList() {
                                         <h5 className="card-title" ><Link className="productLink" to={`/termekek/${product.id}`}>{product.name}</Link></h5>
                                         <h6 className="card-subtitle"> Ár: {numberGrouper(product.price)} Ft</h6>
                                     </div>
-                                    <div className="btn-container">
-                                        <button type="button" className="btn btn-primary" onClick={() => {
-                                            if(user) {
-                                                addToCart(product.id)
-                                                setShowToast({
-                                                    show: true,
-                                                    message: "A termék kosárba került",
-                                                    type: "success"
-                                                })
-                                            } else navigate("/belepes")
-                                        }}>
-                                            Kosárba
-                                        </button>
-                                    </div>
+                                    <button type="button" className="btn btn-primary card-btn" onClick={() => {
+                                        if(user) {
+                                            addToCart(product.id)
+                                            setShowToast({
+                                                show: true,
+                                                message: "A termék kosárba került",
+                                                type: "success"
+                                            })
+                                        } else navigate("/belepes")
+                                    }}>
+                                        Kosárba
+                                    </button>
                                 </div>
                             </div>
                         </div>

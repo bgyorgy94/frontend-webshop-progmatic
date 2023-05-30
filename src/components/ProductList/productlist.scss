@@ -13,6 +13,7 @@
     justify-content: space-between;
     padding: 2px;
     padding-top: .5rem;
+    // position: relative;
 }
 .card-text {
     overflow: hidden;
@@ -20,10 +21,14 @@
 .card-title {
     font-weight: bold;
 }
-.btn-container {
-    text-align: center;
-}
 
+.card-btn {
+    text-align: center;
+    position: absolute;
+    bottom: .7rem;
+    left: 50%;
+    transform: translateX(-50%)  ;
+}
 .productLink {
     text-decoration: none;
     color: var(--bs-card-title-color);

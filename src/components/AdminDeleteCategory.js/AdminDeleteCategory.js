@@ -15,7 +15,7 @@ export default function AdminDeleteCategory() {
     }, [])
 
     return (
-        <div className="container mt-3 col-lg-6 col-md-8 col-sm-10">
+        <div className="p-3 container bg-light bg-gradient fill">
             <div className="row  text-center">
                 <h2>Biztosan törli a kategóriát?</h2>
             </div>

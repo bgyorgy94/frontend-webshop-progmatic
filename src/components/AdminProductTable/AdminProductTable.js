@@ -64,7 +64,7 @@ export default function AdminProductTable() {
           <th className="text-nowrap">
             <ProductNameSorter name="Termék neve"/>
           </th>
-          <th className="text-end text-nowrap">
+          <th className="text-end text-nowrap d-none d-md-table-cell">
             <ProductPriceSorter/>
           </th>
           <th/>
@@ -76,7 +76,7 @@ export default function AdminProductTable() {
             <tr key={product.id}>
               <td className="align-middle col-1"><img className="img-admin-product" src={product.url ? product.url : noImage} /></td>
               <td className="align-middle" onClick={() => navigate(`/termekek/${product.id}`)}>{product.name}</td>
-              <td className="text-end w-auto align-middle">{numberGrouper(product.price)} Ft</td>
+              <td className="text-end w-auto align-middle d-none d-md-table-cell">{numberGrouper(product.price)} Ft</td>
               <td className="text-end w-1 align-middle">
                 <div className="btn-group">
                   <Link className="btn btn-outline-secondary"

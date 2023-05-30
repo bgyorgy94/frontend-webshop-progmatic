@@ -123,8 +123,8 @@ export default function ModifyProduct() {
                     </label>
                 </div>
                 <div className=" d-flex align-items-center justify-content-center flex-wrap">
-                    <button onClick={modifyProductButton} className="btn btn-outline-secondary m-1">módosít</button>
-                    <button onClick={cancelButton} className="btn btn-outline-secondary m-1">mégsem</button>
+                    <button onClick={modifyProductButton} className="btn btn-outline-secondary m-1">Módosítás</button>
+                    <button onClick={cancelButton} className="btn btn-outline-danger m-1">Mégsem</button>
                 </div>
             </form>
         </div>

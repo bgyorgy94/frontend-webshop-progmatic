@@ -95,7 +95,7 @@ export default function Filter(props) {
                 
                 <div className=" d-flex justify-content-center flex-wrap gap-1 mt-2 mb-2">
                     <button className="btn btn-outline-secondary flex-start flex-fill" type="submit">Szűrés</button>
-                    <button className="btn btn-outline-secondary flex-end flex-fill" onClick={reset}>Reset</button>
+                    <button className="btn btn-outline-secondary flex-end flex-fill" onClick={reset}>Szűrő törlése</button>
                 </div>
             </form>
         )

@@ -60,7 +60,7 @@ export default function ModifyProduct() {
 
 
     return(
-        <div className="container mt-3">
+        <div className="container container bg-light bg-gradient fill p-3">
         <div className="row  text-center">
             <h2>Termék módosítása</h2>
         </div>

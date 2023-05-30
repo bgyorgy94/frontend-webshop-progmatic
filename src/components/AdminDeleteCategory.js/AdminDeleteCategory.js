@@ -22,7 +22,7 @@ export default function AdminDeleteCategory() {
             <div className="row  text-center">
                 <p>{categoryName}</p>
                 <div className=" d-flex align-items-center justify-content-center flex-wrap">
-                    <button onClick={deleteHandler} className="btn btn-outline-secondary m-1">Törlés</button>
+                    <button onClick={deleteHandler} className="btn btn-outline-danger m-1">Törlés</button>
                     <button onClick={() => navigate("/admin/kategoriak")} className="btn btn-outline-secondary m-1">Mégsem</button>
                 </div>
             </div>

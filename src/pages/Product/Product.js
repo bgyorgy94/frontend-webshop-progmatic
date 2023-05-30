@@ -44,7 +44,7 @@ export default function Product() {
     }, [])
 
     return (
-        <div className="container bg-light bg-gradient p-3">
+        <div className="container bg-light bg-gradient fill p-3">
             <div className="row">
             <div className="col-sm">
                 <img className={"product-page-img"} src={product.url}/>

@@ -22,7 +22,6 @@ export default function Product() {
     const { addToCart } = useContext(CartContext);
 
     useEffect(() => {
-        console.log(id)
         productsService.getProduct(id)
         .then(json => {
             setProduct({

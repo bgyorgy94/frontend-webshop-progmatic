@@ -4,6 +4,7 @@ import { UserContext } from "../../contexts/userContext";
 import productsService from "../../services/products-service";
 import { ToastContext } from "../../services/toastContext";
 import numberGrouper from "../../services/numberGrouper";
+import { useNavigate } from "react-router-dom";
 import "./cartList.css"
 export default function CartList() {
     const [user] = useContext(UserContext);
@@ -12,6 +13,7 @@ export default function CartList() {
     let sumPrice = 0;
     cartArray.forEach((product) => {sumPrice += (cart[product.id] * product.price)})
     const {showToast,setShowToast}  = useContext(ToastContext);
+    const navigate = useNavigate();
     
     useEffect(() => {Promise.all(Object.keys(cart).map(id => productsService.getProduct(id)))
                 .then((arr) => setCartArray(arr))}, [cart]);
@@ -23,7 +25,7 @@ export default function CartList() {
                 return (
                     <tr key={product.id}>
                         <td className="d-none d-sm-table-cell"><img className="img-thumbnail cart-product-img" src={product.url}></img></td>
-                        <td className="align-middle">{product.name}</td>
+                        <td className="align-middle" onClick={() => navigate(`/termekek/${product.id}`)}>{product.name}</td>
                         <td className="align-middle text-end">{numberGrouper(product.price)} Ft</td>
                         <td className="align-middle text-end">{cart[product.id]}</td>
                         <td className="align-middle text-end d-none d-md-table-cell">{(numberGrouper(cart[product.id] * product.price)) + " Ft" || "-"}</td>

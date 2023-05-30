@@ -40,7 +40,7 @@ export default function Cart() {
                             <CartList />
                     </table>
                     <div className="text-end d-grid px-4">
-                    <button className="btn btn-outline-success" onClick={() => orderService.sendOrder(cart, user).then(() => {
+                    <button className="btn btn-primary" onClick={() => orderService.sendOrder(cart, user).then(() => {
                         emptyCart()
                         setShowToast({
                             show:true,

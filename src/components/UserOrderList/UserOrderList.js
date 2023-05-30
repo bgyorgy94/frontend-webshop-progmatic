@@ -60,7 +60,7 @@ export default function UserOrderList(props) {
                                     {Intl.DateTimeFormat('HU', { dateStyle: 'long', timeStyle: 'short'}).format(order.timestamp)}
                                     </button>
                                 </h2>
-                                <div id={`collapse${idx}`} class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div id={`collapse${idx}`} className="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                     <div className="accordion-body">
                                         <strong>Rendelésszám:</strong>
                                         <p>{order.id}</p>
@@ -78,10 +78,10 @@ export default function UserOrderList(props) {
                                         <strong>Rendelés leadás időpontja:</strong><br />
                                         {Intl.DateTimeFormat('HU', { dateStyle: 'long', timeStyle: 'medium', }).format(order.timestamp)}
                                         </p>
-                                        <p>
+                                        <div>
                                             <strong>Rendelés végösszege:</strong>
                                             <p>{numberGrouper(order.finalPrice) + " Ft"}</p>
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

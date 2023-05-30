@@ -33,7 +33,7 @@ import { Link } from 'react-router-dom';
                   alt="First slide"
                 />
                 <Carousel.Caption className="bg-dark bg-opacity-50 p-3 rounded-3">
-                  <h3> <Link to={`/termekek/${carouselData[0].id}`} className="link-opacity-25-hover" > {carouselData[0].name} </Link>  </h3>
+                  <h3> <Link to={`/termekek/${carouselData[0].id}`} className="link-opacity-25-hover link-light" > {carouselData[0].name} </Link>  </h3>
                   <p>{carouselData[0].shortDesc}</p>
                 </Carousel.Caption>
               </Carousel.Item>
@@ -44,7 +44,7 @@ import { Link } from 'react-router-dom';
                   alt="Second slide"
                 />
                 <Carousel.Caption className="bg-dark bg-opacity-50 p-3 rounded-3">
-                  <h3> <Link to={`/termekek/${carouselData[1].id}`} className="link-opacity-25-hover" > {carouselData[1].name} </Link>  </h3>
+                  <h3> <Link to={`/termekek/${carouselData[1].id}`} className="link-opacity-25-hover link-light" > {carouselData[1].name} </Link>  </h3>
                   <p>{carouselData[1].shortDesc}</p>
                 </Carousel.Caption>
               </Carousel.Item>
@@ -55,7 +55,7 @@ import { Link } from 'react-router-dom';
                   alt="Third slide"
                 />
                 <Carousel.Caption className="bg-dark bg-opacity-50 p-3 rounded-3">
-                    <h3> <Link to={`/termekek/${carouselData[2].id}`} className="link-opacity-25-hover" > {carouselData[2].name} </Link>  </h3>
+                    <h3> <Link to={`/termekek/${carouselData[2].id}`} className="link-opacity-25-hover link-light" > {carouselData[2].name} </Link>  </h3>
                     <p>{carouselData[2].shortDesc}</p>
                   </Carousel.Caption>
                 </Carousel.Item>

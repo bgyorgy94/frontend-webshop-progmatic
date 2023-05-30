@@ -13,11 +13,17 @@ export default function AdminCategoryList() {
     }, []);
 
     return (
-        <div className="container col-lg-5 col-md-6 col-sm-8 bg-light bg-gradient p-3" >
+        <div className="container bg-light bg-gradient p-3 fill" >
             <div className="row  text-center">
                 <h2>Kategóriák</h2>
             </div>
-            <table className="table responsive striped bordered hover">
+            <table className="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Kategória neve</th>
+                        <th />
+                    </tr>
+                </thead>
                 <tbody>
                 {categories.map((category, idx) => {
                     return (

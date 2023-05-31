@@ -107,12 +107,12 @@ export default function ModifyProduct() {
                         placeholder="Termék leírása"
                         id="floatingDescription"
                     />
-                    <label for="floatingDescription">Termék leírása: {product.description}</label>
+                    <label htmlFor="floatingDescription">Termék leírása: {product.description}</label>
                 </div>
 
                 <div className="form-floating mt-2">
                     <select name="category" className="form-select" id="floatingSelect" aria-label="Kategória"
-                        defaultValue={formData.categoryId} onChange={(e) => setFormData({...formData, categoryId: e.target.value})}>
+                        defaultValue={formData.categoryId} onChange={(e) => categoryChange(e)}>
                         {categoryList.map((category, idx) => {
                         return (<option key={idx+1} defaultValue={category.id} selected={category.id === product.categoryId ? true : false}>{category.name}</option>)
                             })}
@@ -134,45 +134,50 @@ export default function ModifyProduct() {
         e.preventDefault();
         if (validation(formData.name, formData.price)) {
             
-                productsService.updateProduct(id,formData) 
-                    .then(json => {
-                            setShowToast({
-                                    show:true,
-                                    message:`Sikeresen módosítva: ${json.name}`,
-                                    type:"success"
-                                })
-                        
-                                navigate("/admin/termekek");
-                            });
-                        }
-                    }
-                
-function cancelButton () {
-    navigate("/admin/termekek");
-}
-function fileChange(e) {
-    fileToStorage(e.target.files[0])
-}
-function fileToStorage(file){
-    const storage = getStorage(app)
-    const fileRef = ref(storage, "images/" + file.name);
-    uploadBytes(fileRef, file)
-    .then((uploadResult) => {
-        getDownloadURL(uploadResult?.ref)
-                .then(resUrl => {
-                    setFormData({...formData,url: resUrl})
+            productsService.updateProduct(id,formData) 
+            .then(json => {
+                setShowToast({
+                    show:true,
+                    message:`Sikeresen módosítva: ${json.name}`,
+                    type:"success"
                 })
+                
+                navigate("/admin/termekek");
+            });
+        }
+    }
     
-                })
-
-
-
-
-}
-                
-                
-
-
+    function cancelButton () {
+        navigate("/admin/termekek");
+    }
+    function fileChange(e) {
+        fileToStorage(e.target.files[0])
+    }
+    function fileToStorage(file){
+        const storage = getStorage(app)
+        const fileRef = ref(storage, "images/" + file.name);
+        uploadBytes(fileRef, file)
+        .then((uploadResult) => {
+            getDownloadURL(uploadResult?.ref)
+            .then(resUrl => {
+                setFormData({...formData,url: resUrl})
+            })
+            
+        })
+    }
+    function categoryChange(e){
+        categoryList.map( category => {
+            if(category.name === e.target.value){
+                setFormData({...formData, categoryId: category.id})
+            }
+            
+        })
+        
+    }
+    
+    
+    
+    
 
 
 }

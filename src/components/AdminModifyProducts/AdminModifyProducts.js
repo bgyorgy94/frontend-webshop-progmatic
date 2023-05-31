@@ -77,7 +77,7 @@ export default function ModifyProduct() {
                         placeholder="Termék neve"
                         id="floatingName"
                     />
-                    <label htmFor="floatingName">Termék neve: {product.name}</label>
+                    <label htmfor="floatingName">Termék neve: {product.name}</label>
                 </div>
                 <div className="form-floating mt-2">
                     <input

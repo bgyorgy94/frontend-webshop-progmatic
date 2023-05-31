@@ -3,3 +3,9 @@
 .product-page-img {
     max-width: 30em;
 }
+
+@media (max-width: 500px) {
+    .product-page-img {
+        max-width: 320px;
+    }
+}

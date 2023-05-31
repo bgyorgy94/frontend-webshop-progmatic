@@ -19,7 +19,7 @@ export default function Login() {
 
     return (
         <>
-        <div className=" mx-auto container text-center"> 
+        <div className=" mx-auto container text-center p-3 bg-light bg-gradient fill"> 
             <h1>Belépés</h1>
                 <EmailInput value={email} getEmail={getEmail}/>
                 <PasswordInput value={password} getPassword={getPassword}/>

@@ -19,7 +19,7 @@ export default function Registration () {
     })
     const [users,setUsers] = useState([]);
     return(
-        <div className=" mx-auto container text-center">
+        <div className=" mx-auto container text-center p-3 bg-light bg-gradient fill">
             <h1>Új fiók létrehozása</h1>
             <div className=" container-sm"> 
                 <form>

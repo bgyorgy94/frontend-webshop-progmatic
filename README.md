@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# About the project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a simple webshop for dog clothes. It was made during the **2022/23 Junior Fullstack Developer** course of Progmatic Academy in a 4 people team plus the product owner.</br></br>
+There is a separate user and admin interface. On the user interface, the user can view the products, put them in the cart and order them after logging in. Sorting and filtering are available by name, minimum price, maximum price and category. The user can view their cart and their order history.</br></br>
+The admin features are only available with admin authorization. The admin can add products to the product list (setting the name, price, description, category and picture of the product), modify products and delete products. They can also view the list of users (without passwords) and the order history of all users.
 
-## Available Scripts
+## Development team
 
-In the project directory, you can run:
+**Product owner:** Bence Simon </br>
 
-### `npm start`
+**Developers:** 
+- György Bognár
+- Milán Tar
+- Imre Tóth
+- Emese Reisch
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Programming languages
+The project is written in Javascript, HTML and CSS.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technology
+- The webshop is made using the **Create React App**. </br>
+- Backend is provided by **Firebase**.</br>
+- We used **Bootstrap** and **SCSS** to create the look of the website.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Development process
+We used the **Scrum** management framework, including daily stand-ups, sprints and weekly retrospectives. We had a demonstration at the end of the project, where we presented the final product.</br></br>
+**Github** was used as a code repository during the project. We did not use different branches, but we worked in close cooperation to make sure there weren't any conflicts between our written code. </br></br>
+For keeping track of each other's work and progress, we used **Trello**. 

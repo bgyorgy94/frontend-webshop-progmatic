@@ -1,8 +1,13 @@
+# Published webshop link
+
+https://64e213dc7de90c667a6c4316--magical-frangipane-aee7f5.netlify.app/
+
 # About the project
 
 This project is a simple webshop for dog clothes. It was made during the **2022/23 Junior Fullstack Developer** course of Progmatic Academy in a 4 people team plus the product owner.</br></br>
 There is a separate user and admin interface. On the user interface, the user can view the products, put them in the cart and order them after logging in. Sorting and filtering are available by name, minimum price, maximum price and category. The user can view their cart and their order history.</br></br>
-The admin features are only available with admin authorization. The admin can add products to the product list (setting the name, price, description, category and picture of the product), modify products and delete products. They can also view the list of users (without passwords) and the order history of all users.
+The admin features are only available with admin authorization. The admin can add products to the product list (setting the name, price, description, category and picture of the product), modify products and delete products. They can also view the list of users (without passwords) and the order history of all users.</br></br>
+The webshop pages are fully responsive both on bigger (e.g. laptop screen) and smaller (e.g. smartphone screen) sizes.
 
 ## Development team
 
